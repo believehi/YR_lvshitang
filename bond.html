@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.fa {
+				color: #EA8C59;
+			}
+			.payment {
+				line-height: 60px;
+				border-bottom: 1px solid #ddd;
+			}
+			.payment input {
+				margin-top: 16px;
+			}
+			.payment input:before {
+				font-size: 24px!important;
+			}
+			.footer {
+				position: fixed;
+				z-index: 9;
+				bottom: 0;
+				width: 100%;
+				height: 2.5rem;
+				background: #ddd;
+				text-align: center;
+				/* background: #fff; */
+			}
+			.footer div {
+				margin: .25rem auto 0;
+				width: 90%;
+				border-radius: 1rem;
+				color: #fff;
+				background: #003499;
+				height: 2rem;
+				line-height: 2rem;
+			}	
+			.mui-badge {
+				font-size: 18px;
+				font-weight: 600;
+			}
+			.badge-info {
+				color: #F66766!important;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">交保障金</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<i class="fa fa-jpy"></i>&ensp;订单金额<span class="mui-badge mui-badge-inverted badge-info">￥1000</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<i class="fa fa-superpowers"></i>&ensp;账户余额<span class="mui-badge mui-badge-inverted">￥500</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<i class="fa fa-money"></i>&ensp;余额支付<span class="mui-badge mui-badge-inverted">￥500</span>
+					</li>
+				</ul>
+				<div style="height: 5px;width: 100%;"></div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<i class="fa fa-user-secret"></i>&ensp;实际支付<span class="mui-badge mui-badge-inverted badge-info">￥1000</span>
+					</li>
+					<div class="mui-input-row mui-radio payment">
+						<label><i class="fa fa-comments"></i>&ensp;微&ensp;信</label>
+						<input name="radio1" type="radio">
+					</div>
+					<div class="mui-input-row mui-radio payment">
+						<label><i class="fa fa-jpy"></i>&ensp;支付宝</label>
+						<input name="radio1" type="radio">
+					</div>
+				</ul>
+			</div>
+		</div>
+		<div class="footer"><div>立即支付</div></div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+			})();
+		</script>
+	</body>
+</html>

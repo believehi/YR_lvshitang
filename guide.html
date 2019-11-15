@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/public.css" rel="stylesheet" />
+		<link href="css/index.css" rel="stylesheet" />
+	</head>
+	<body>
+
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/aes_1.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						
+					};
+					setTimeout(function() {
+						loadPage();
+					}, 300);
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+			})();
+		</script>
+	</body>
+</html>

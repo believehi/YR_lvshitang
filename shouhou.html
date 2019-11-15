@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.list {}
+
+			.list ul {
+				padding: 0.625rem 0.625rem;
+				margin-bottom: 0.25rem;
+				background-color: #ffffff;
+			}
+
+			.list ul .tit {
+				color: #999999;
+				margin-bottom: 0.3125rem;
+			}
+
+			.list ul .boy {
+				margin-bottom: 0.3125rem;
+			}
+
+			.list ul .btnlist {
+				text-align: right;
+			}
+
+			.list ul .btnlist button {
+				height: 1.875rem;
+				margin-left: 0.3125rem;
+			}
+
+			.list ul .zhuangt {
+				float: right;
+				color: #1777FB;
+			}
+
+			.list ul .img {
+				width: 20%;
+				float: left;
+				display: block;
+			}
+
+			.list ul .img img {
+				width: 17vw;
+				height: 17vw;
+				border-radius: 50%;
+			}
+
+			.list ul .txt {
+				width: 80%;
+				float: left;
+				display: block;
+				line-height: 1.25rem;
+			}
+
+			.list ul .title {
+				display: block;
+			}
+
+			.time {
+				display: block;
+				color: #999999;
+			}
+
+			.servicename {
+				display: inline-block;
+				height: 1.375rem;
+				line-height: 1.375rem;
+				text-align: center;
+				border-radius: 0.1875rem;
+				margin-bottom: 0.3125rem;
+				margin-right: 0.3125rem;
+				padding: 0rem 0.3125rem;
+			}
+
+			.ser_1 {
+				color: #1777FB;
+				border: 1px #1777FB solid;
+			}
+
+			.ser_2 {
+				color: #2AC845;
+				border: 1px #2AC845 solid;
+			}
+
+			.ser_3 {
+				color: #EC971F;
+				border: 1px #EC971F solid;
+			}
+
+			.jine {
+				float: right;
+				color: #ff6600;
+				font-size: 1rem;
+			}
+
+			.box {
+				margin-top: 0.3125rem;
+				background-color: #ffffff;
+			}
+
+			textarea {
+				border: 0rem;
+				padding: 0.625rem;
+				height: 6.25rem;
+			}
+
+			.imglist {
+				padding: 0.3125rem;
+				color: #cccccc;
+			}
+
+			.imglist span {
+				width: 33.3333333333333333333%;
+				height: 33vw;
+				overflow: hidden;
+				float: left;
+				position: relative;
+			}
+
+			.imglist span img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				border: 0.3125rem #ffffff solid;
+			}
+
+			.imglist span i {
+				display: block;
+				position: absolute;
+				right: 0.3125rem;
+				top: 0rem;
+				width: 1.5rem;
+				height: 1.875rem;
+				color: #ffffff;
+				text-shadow: 1px 1px 1px #000000;
+				line-height: 1.875rem;
+				text-align: center;
+				font-size: 1.5rem;
+			}
+
+			.upload {
+				margin-left: 0.625rem;
+				color: #cccccc;
+				display: inline-block;
+				border: 1px #eeeeee solid;
+				text-align: center;
+				padding: 0.625rem;
+				margin-bottom: 0.625rem;
+			}
+
+			.upload i {
+				font-size: 2.25rem;
+				display: block;
+			}
+
+			.btn {
+				width: 80%;
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">订单申诉/售后</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrappera transparent">
+			<div class="mui-scrolla">
+				<div class="list" id="list">
+					<ul>
+					</ul>
+				</div>
+				<div class="box">
+					<textarea id="desc" placeholder="请描述您的问题"></textarea>
+				</div>
+				<div class="box" id="upfile">
+					<div class="imglist" id="imglist">
+						&nbsp;&nbsp;上传图片
+					</div>
+					<div class="cl"></div>
+					<a id="upload" class="upload"><i class="fa fa-camera"></i>选择图片</a>
+				</div>
+				<div class="" style="text-align: center;margin:1.25rem 0rem;">
+					<button type="button" id="btn" class="btn mui-btn mui-btn-primary">提交申诉</button>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {},
+					o, oid, imgstr = "",
+					imgnum = 0;
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					// o = JSON.parse(ws.order_str);
+					// console.log(JSON.stringify(o));
+					oid = ws.order_id;
+
+					loadPage = function() {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('order/getOrderDetail', function(data) {
+							w.close();
+							o = data.data;
+							var html = '';
+							html += '<li class="tit"><span class="zhuangt"></span>订单编号:' + o
+								.id + '&nbsp;&nbsp;&nbsp;&nbsp;律师:' + o
+								.sell_authname + '</li>' +
+								'<li class="boy">' +
+								'<span class="img"><img src="' + BaseUrl + '/' + o.buy_avatar + '" /></span>' +
+								'<span class="txt">' +
+								'<span class="jine">￥' + o.bounty + '</span>' +
+								'<span class="servicename ser_' + o.service_type + '">' + o.service_type_name + '</span>' +
+								'<span class="servicename ser_' + o.service_type + '">' + o.servicename + '</span>' +
+								'<span class="title">' + o.title + '</span>' +
+								'<span class="time">下单时间：' + o.created_at + '</span>' +
+								(o.wait_accept_at ? ('<span class="time">付款时间：' + o.wait_accept_at + '</span>') : '') +
+								'</span>' +
+								'<div class="cl"></div>' +
+								'</li>' +
+								'<li class="btnlist">' +
+								'</li>';
+							$("#list ul").html(html);
+							YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+						}, {
+							order_id: oid
+						}, w);
+
+					};
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					mui('body').on('tap', '#btn', function() {
+						$("#desc").blur();
+						var desc = $("#desc").val();
+						if (!desc) {
+							mui.toast("请输入您的描述");
+							return false;
+						}
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('order/orderCreateRightsService', function(data) {
+							w.close();
+							$("#desc").val("");
+							mui.toast("申诉提交成功");
+
+							var ddv = plus.webview.getWebviewById("dingdan_view.html");
+							if (ddv) {
+								mui.fire(ddv, 'updatedata');
+							}
+							var dd = plus.webview.getWebviewById("dingdan.html");
+							if (dd) {
+								mui.fire(dd, 'updatedata');
+							}
+							mui.back();
+						}, {
+							order_id: o.id,
+							desc: desc,
+							images: imgstr.substr(0, imgstr.length - 1)
+						}, w);
+					});
+					mui('#upfile').on('tap', '#upload', function() {
+						$("#desc").blur();
+						showActionSheet(function(imgs) {
+							imgstr += imgs.data.url + ",";
+							if (imgnum == 0) {
+								$("#imglist").html("");
+							}
+							imgnum += 1;
+							$("#imglist").append('<span><img src="' + BaseUrl + '/' + imgs.data.url +
+								'" /><i class="fa fa-times" data-src="' + imgs.data.url + '"></i></span>');
+						}, {
+							type: 7
+						}, imgnum);
+
+					});
+					mui('#imglist').on('tap', 'span i', function() {
+						imgstr = imgstr.replace(this.getAttribute("data-src") + ",", "");
+						$(this).parent().remove();
+						imgnum -= 1;
+						if (imgnum <= 0) {
+							$("#imglist").html("&nbsp;&nbsp;上传图片");
+						}
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

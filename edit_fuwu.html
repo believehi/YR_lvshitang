@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.edit {
+				position: fixed;
+				top: 2.75rem;
+				bottom: 2.5rem;
+				width: 100%;
+				overflow: auto;
+				background: #fff;
+			}
+
+			.list {
+				display: flex;
+				align-items: center;
+				line-height: 2.75rem;
+				border-bottom: 0.0625rem solid #eee;
+				padding: 0 0.625rem;
+			}
+
+			.list-name {
+				white-space: nowrap;
+				width: 3.5rem;
+				text-align: right;
+				margin-right: 0.625rem;
+			}
+
+			.edit-title {
+				margin: 0 20px;
+				width: 100%;
+				border: 0;
+				background: #eee;
+				border-radius: 0.25rem;
+				height: 1.5rem;
+				padding: 0 10px;
+			}
+
+			.edit_fl {
+				flex: 1;
+				text-align: center;
+			}
+
+			.edit_zx {
+				flex: 1;
+				display: table;
+				text-align: center;
+			}
+
+			.edit_zx input {
+				display: table-cell;
+				width: 4.5rem;
+			}
+
+			.input {
+				border: 0;
+				height: 1.5rem;
+				background: #eee;
+				border-radius: 0.25rem;
+				text-align: center;
+			}
+
+			.edit_zx span {
+				margin: 0 1rem 0 2rem;
+			}
+
+			.tijiao {
+				position: fixed;
+				bottom: 0;
+				width: 100%;
+				height: 2.5rem;
+				background: #eee;
+				text-align: center;
+				/* background: #fff; */
+			}
+
+			.tijiao div {
+				margin: .25rem auto 0;
+				width: 90%;
+				border-radius: 1rem;
+				color: #fff;
+				background: #003499;
+				height: 2rem;
+				line-height: 2rem;
+			}
+			.mui-backdrop {display: none;}
+			.edit_sort {
+				background: #fff;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 90%;
+				border-radius: 0.25rem;
+			}
+			.mui-input-row label {
+				padding: 15px;
+			}
+			.edit_sort p {
+				line-height: 3rem;
+				padding-left: 1rem;
+				font-weight: 600;
+				color: #333;
+				font-size: 1rem;
+			}
+			.edit_sort input::before {
+				font-size: 20px!important;
+			}
+			.edit_sort input {
+				width: 20px!important;
+				height: 20px!important;
+				top: 12px!important;
+			}
+			.edit_major {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+				background: #fff;
+			}
+			.edit_major h4{
+				text-align: center;
+				line-height: 3rem;
+				color: #3CAED7;
+				position: relative;
+			}
+			.edit_major h4 span {
+				position: absolute;
+				top: .875rem;
+				right: 1rem;
+				border: 0.0625rem solid #aaa;
+				border-radius: 50%;
+				color: #aaa;
+				font-size: 20px;
+			}
+			.edit_icon {
+				position: absolute;
+				left: 15px;
+				top: 11px;
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				background-image: url(img/btn_1.png);
+				background-repeat: no-repeat;
+				background-size: 95px;
+			}
+			.edit_icon1 {
+				background-position: 0 0;
+			}
+			.edit_icon2 {
+				background-position: -24px 0;
+			}
+			.edit_icon3 {
+				background-position: -48px 0;
+			}
+			.edit_icon4 {
+				background-position: -72px 0;
+			}
+			.edit_icon5 {
+				background-position: 0 -24px;
+			}
+			.edit_icon6 {
+				background-position: -24px -24px;
+			}
+			.edit_icon7 {
+				background-position: -48px -24px;
+			}
+			.edit_icon8 {
+				background-position: -72px -24px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">修改服务</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="edit">
+			<ul class="">
+				<li class="list">
+					<div class="list-name">服务名称</div>
+					<input type="" name="" id="" value="" class="edit-title" placeholder="服务名称"/>
+				</li>
+				<li class="list">
+					<div class="list-name">服务分类</div>
+					<div class="edit_fl edit_fenlei">图文咨询&nbsp;<i class="fa fa-caret-down"></i></div>
+				</li>
+				<li class="list">
+					<div class="list-name">问题范围</div>
+					<div class="edit_fl edit_zhuanye">全部专业&nbsp;<i class="fa fa-caret-down"></i></div>
+				</li>
+				<li class="list">
+					<div class="list-name">审核文件</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+				<li class="list">
+					<div class="list-name">商业合同</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+				<li class="list">
+					<div class="list-name">离婚协议</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+				<li class="list">
+					<div class="list-name">起诉状</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+				<li class="list">
+					<div class="list-name">应诉状</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+				<li class="list">
+					<div class="list-name">发律师函</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+				<li class="list">
+					<div class="list-name">其他协议</div>
+					<div class="edit_zx">
+						<input class="input" type="" name="" id="" value="0.00" />
+						<span>线下价</span>
+						<input class="input" type="" name="" id="" value="0.00" />
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="tijiao">
+			<div>提交</div>
+		</div>
+		<!-- 服务分类 -->
+		<div class="sort mui-backdrop">
+			<div class="edit_sort">
+				<p>服务分类</p>
+				<div class="mui-input-row mui-radio">
+					<label>图文咨询</label>
+					<input name="radio1" type="radio">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>电话咨询</label>
+					<input name="radio1" type="radio">
+				</div>
+				<div class="mui-input-row mui-radio">
+					<label>文书咨询</label>
+					<input name="radio1" type="radio">
+				</div>
+			</div>
+		</div>
+		<!-- 选择专业 -->
+		<div class="major mui-backdrop">
+			<div class="edit_major">
+				<h4>选择专长<span class="mui-icon mui-icon-closeempty major_zc"></span></h4>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon1"></span>&emsp;&emsp;合同纠纷</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon2"></span>&emsp;&emsp;家庭婚姻</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon3"></span>&emsp;&emsp;债权债务</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon4"></span>&emsp;&emsp;劳动纠纷</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon5"></span>&emsp;&emsp;房产土地</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon6"></span>&emsp;&emsp;交通事故</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon7"></span>&emsp;&emsp;刑事犯罪</a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right"><span class="edit_icon edit_icon8"></span>&emsp;&emsp;全部专业</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					// 选择服务
+					mui('body').on('tap', '.edit_fenlei', function() {
+						$(".sort").show();
+					});
+					mui('body').on('tap', '.edit_sort div', function() {
+						setTimeout(function() {
+							$(".sort").hide();
+						}, 100);
+					});
+					// 选择专业
+					mui('body').on('tap', '.edit_zhuanye', function() {
+						$(".major").show();
+					});
+					mui('body').on('tap', '.major_zc', function() {
+						$(".major").hide();
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

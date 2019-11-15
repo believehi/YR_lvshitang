@@ -1,0 +1,256 @@
+html {
+	/* height: 100%; */
+	font-size: 16px;
+	/* overflow: hidden; */
+}
+
+body {
+	/* height: 100%;
+	overflow: hidden; */
+	font-size: 0.875rem;
+	color: #3e3e3e;
+	line-height: 1.5rem;
+	margin: 0rem;
+}
+
+body,
+div,
+i,
+dt,
+dd,
+b,
+p,
+ul,
+li,
+span,
+u,
+h1,
+h2,
+h3,
+h4,
+a,
+input,
+label,
+select {
+	font-family: "microsoft yahei";
+	padding: 0px;
+	margin: 0px;
+	font-style: normal;
+	list-style: none;
+	text-decoration: none;
+}
+
+* {
+	touch-action: pan-y;
+}
+
+select {
+	/*Chrome和Firefox里面的边框是不一样的，所以复写了一下*/
+	/*很关键：将默认的select选择框样式清除*/
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	/*将背景改为红色*/
+	/*加padding防止文字覆盖*/
+	padding-right: 14px;
+}
+
+/*清除ie的默认选择框样式清除，隐藏下拉箭头*/
+select::-ms-expand {
+	display: none;
+}
+
+/*设置IOS页面长按不可复制粘贴，但是IOS上出现input、textarea不能输入，因此将使用-webkit-user-select:auto;*/
+* {
+	-webkit-touch-callout: none;
+	/*系统默认菜单被禁用*/
+	-webkit-user-select: none;
+	/*webkit浏览器*/
+	-khtml-user-select: none;
+	/*早期浏览器*/
+	-moz-user-select: none;
+	/*火狐*/
+	-ms-user-select: none;
+	/*IE10*/
+	user-select: none;
+}
+
+input,
+textarea {
+	-webkit-user-select: auto;
+	/*webkit浏览器*/
+	margin: 0px;
+	padding: 0px;
+	outline: none;
+	font-size: 0.875rem;
+}
+
+a:active {
+	filter: brightness(0.9);
+}
+
+.cl {
+	clear: both;
+	height: 0px;
+	line-height: 0px;
+	font-size: 0px;
+}
+
+.empty-show {
+	position: fixed;
+	z-index: 2;
+	top: 50%;
+	left: 0;
+	width: 100%;
+	padding: 0 1.25rem;
+	text-align: center;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	color: #a2a2a2;
+	font-size: 0.875rem;
+}
+
+.empty-show button {
+	padding: 0.625rem 1.875rem;
+	margin-top: 0.9375rem;
+}
+
+.empty-show p {
+	line-height: 1.875rem;
+	font-size: 0.875rem;
+	margin-bottom: 1.25rem;
+}
+
+.empty-show h4 {
+	font-weight: normal;
+}
+
+input::-webkit-input-placeholder {
+	/* placeholder颜色  */
+	color: #cccccc;
+	/* placeholder字体大小  */
+	font-size: 0.875rem;
+	/* placeholder位置*/
+	text-align: left;
+}
+
+textarea::-webkit-input-placeholder {
+	/* placeholder颜色  */
+	color: #cccccc;
+	/* placeholder字体大小  */
+	font-size: 0.875rem;
+	/* placeholder位置*/
+	text-align: left;
+}
+
+.transparent {
+	opacity: 0;
+}
+
+.mui-content {
+	transition: opacity 0.5s;
+}
+
+.mui-bar {
+	position: fixed;
+	z-index: 10;
+	right: 0;
+	left: 0;
+	height: 44px;
+	padding-right: 10px;
+	padding-left: 10px;
+	border-bottom: 0;
+	background-color: #1777fb;
+	-webkit-box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+	box-shadow: 0 0 1px rgba(0, 0, 0, .85);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+}
+
+.mui-bar h1 {
+	color: #ffffff;
+}
+
+.mui-bar a {
+	color: #FFFFFF;
+	/* line-height: 44px; */
+	font-size: 1.125rem;
+	width: 1.875rem;
+	display: block;
+}
+
+.mui-bar i {
+	color: #FFFFFF;
+	line-height: 44px;
+	font-size: 0.875rem;
+
+}
+
+.mui-popup-title {
+	font-size: 1.125rem;
+	font-weight: 500;
+	background-image: url(../img/logo.png);
+	background-repeat: no-repeat;
+	background-size: auto 80%;
+	padding-left: 1.875rem;
+	padding-bottom: 0.3125rem;
+	text-align: left;
+	border-bottom: 1px #1777FB dotted;
+}
+
+.mui-scroll-wrapper-popover {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	overflow: hidden;
+	width: 100%;
+}
+
+.mui-scroll-popover {
+	position: absolute;
+	z-index: 1;
+	width: 100%;
+}
+
+.mui-popover {
+	width: 80%;
+	height: auto;
+	overflow: hidden;
+}
+
+.mui-pull {
+	font-weight: normal;
+}
+
+.mui-pull-caption {
+	font-size: 0.875rem;
+	color: #999999;
+}
+
+.fenleilist {
+	padding: 0.625rem;
+}
+
+.fenleilist li {
+	width: 50%;
+	float: left;
+	height: 2.5rem;
+	line-height: 2.5rem;
+}
+
+.fenleilist li a {
+	color: #555555;
+}
+
+.fenleilist li a:active {
+	opacity: 0.7;
+}
+
+.fenleilist li img {
+	width: 1.25rem;
+	height: auto;
+	vertical-align: middle;
+	margin-right: 0.625rem;
+}

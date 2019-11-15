@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.footer {
+				position: fixed;
+				bottom: 0px;
+				height: 50px;
+				width: 100%;
+				background: #ddd;
+				padding: 5px;
+				box-sizing: border-box;
+				color: #fff;
+				line-height: 40px;
+				text-align: center;
+				font-size: 16px;
+			}
+			.footer div {
+				background: #30C545;
+			}
+			.content {
+				position: fixed;
+				top: 44px;
+				bottom: 50px;
+				width: 100%;
+				overflow: auto;
+				padding: 0 10px;
+				box-sizing: border-box;
+				background: #fff;
+			}
+			.content p {
+				font-size: 16px;
+				color: #333;
+				font-weight: 600;
+				line-height: 40px;
+			}
+			.mode {
+				padding: 18px 16px 24px;
+				display: flex;
+				border-bottom: 1px solid #eee;
+			}
+			.mode div {
+				margin-right: 20px;
+				height: 50px;
+				width: 100px;
+				border-radius: 4px;
+				border: 1px solid #CBCBCB;
+			}
+			.mode-wx {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 16px;
+				color: #CBCBCB;
+				font-weight: 600;
+			}
+			.mui-icon-weixin {
+				margin-left: 6px;
+				background: #CBCBCB;
+				color: #fff;
+				border-radius: 3px;
+				font-size: 30px;
+			}
+			.mode-zfb {
+				background-image: url(img/zhifu_01.png);
+				background-size: auto 56px;
+				background-position: -20px -4px;
+			}
+			/* .mode-wx-active 改变微信支付状态 */
+			.mode .mode-wx-active {
+				border: 1px solid #07B803;
+				color: #07B803;
+			}
+			.mode-wx-active .mui-icon-weixin {
+				background: #07B803;
+			}
+			/* .mode-zfb-active 改变支付宝支付状态 */
+			.mode-zfb-active {
+				background-image: url(img/zhifu_02.png);
+				border: 1px solid #00A8EC!important;
+			}
+			.weixin {
+				/* line-height: 40px; */
+				padding: 16px 0;
+				border-bottom: 1px solid #eee;
+			}
+			.weixin span:nth-child(2) {
+				margin-left: 10px;
+				background: #07B803;
+				color: #fff;
+				padding: 3px 8px;
+				border-radius: 3px;
+			}
+			.zhifubao {padding: 10px 0; display: none;}
+			.zhifubao div {
+				padding: 10px 20px;
+				display: flex;
+			}
+			.zhifubao input {
+				flex: 1;
+				border: 0;
+				border-bottom: 2px solid #eee;
+			}
+			.main-money {
+				padding: 20px;
+				display: flex;
+				align-items: flex-end;
+			}
+			.main-money span {
+				height: 32px;
+				font-size: 50px;
+				margin-right: 20px;
+			}
+			.main-money input {
+				flex: 1;
+				border: 0;
+				font-size: 24px;
+			}
+			.main-tixian {
+				border-top: 1px solid #eee;
+				line-height: 50px;
+				text-align: center;
+				padding-bottom: 20px;
+			}
+			.main-tixian span {
+				color: #00A8EC;
+			}
+			.notice {
+				border-top: 1px solid #eee;
+				line-height: 40px;
+				text-align: center;
+			}
+			.de_xuzhi{display: none;}
+			.details {
+				position: fixed;
+				z-index: 99;
+				background: #fff;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 90%;
+				padding: 0 0.625rem 0.5rem;
+				border-radius: 0.625rem;
+			}
+			.details p {
+				border-bottom: 0.125rem solid #003499;
+				line-height: 3rem;
+				text-align: center;
+				color: #003499;
+				font-weight: 600;
+				font-size: 1rem;
+			}
+			.queding {
+				background: #003499;
+				color: #fff;
+				line-height: 2.375rem;
+				text-align: center;
+			}
+			
+			.de-mian {
+				min-height: 6.25rem;
+				max-height: 16rem;
+				overflow: auto;
+				margin: 0.5rem 0 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">余额提现</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="content">
+			<p style="border-bottom: 1px solid #eee;">提现到</p>
+			<div class="mode">
+				<div class="mode-wx mode-wx-active">
+					<span>微信</span>
+					<span class="mui-icon mui-icon-weixin"></span>
+				</div>
+				<div class="mode-zfb"></div>
+			</div>
+			<div class="weixin">
+				<span>微信账户：</span><span>绑定微信</span>
+			</div>
+			<div class="zhifubao">
+				<div><span>支付宝账户:&emsp;</span><input type="" name="" id="" value="" /></div>
+				<div><span>支付宝名字:&emsp;</span><input type="" name="" id="" value="" /></div>
+			</div>
+			<div style="height: 5px; background: #eee;"></div>
+			<div class="main">
+				<p>提现金额</p>
+				<div class="main-money">
+					<span>￥</span><input type="" name="" id="" value="33212" />
+				</div>
+				<div class="main-tixian">当前金额￥12.5&emsp;<span>全部提现</span></div>
+			</div>
+			<div class="notice">提现须知</div>
+		</div>
+		<div class="footer">
+			<div>提现到微信</div>
+		</div>
+		
+		<!-- 提现须知 -->
+		<div class="mui-backdrop de_xuzhi">
+			<div class="details">
+				<p>提现须知</p>
+				<div class="de-mian">
+					提现须知提现须知提现须知
+				</div>
+				<div class="queding">确定</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					mui('body').on('tap', '.mode-wx', function() {
+						$(this).addClass('mode-wx-active');
+						$('.mode-zfb').removeClass('mode-zfb-active');
+						$(".weixin").show();
+						$(".zhifubao").hide();
+						$(".footer div").html("提现到微信");
+						$(".footer div").css("background", "#07B803")
+					});
+					mui('body').on('tap', '.mode-zfb', function() {
+						$(this).addClass('mode-zfb-active');
+						$('.mode-wx').removeClass('mode-wx-active');
+						$(".weixin").hide();
+						$(".zhifubao").show();
+						$(".footer div").html("提现到支付宝");
+						$(".footer div").css("background", "#00A8EC")
+					});
+					mui('body').on('tap', '.notice', function() {
+						$(".de_xuzhi").show()
+					});
+					mui('body').on('tap', '.queding', function() {
+						$(".de_xuzhi").hide()
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

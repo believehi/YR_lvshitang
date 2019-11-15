@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.footer {
+				position: fixed;
+				z-index: 9;
+				bottom: 0;
+				width: 100%;
+				height: 2.5rem;
+				background: #ddd;
+				text-align: center;
+				/* background: #fff; */
+			}
+			.footer div {
+				margin: .25rem auto 0;
+				width: 90%;
+				border-radius: 1rem;
+				color: #fff;
+				background: #003499;
+				height: 2rem;
+				line-height: 2rem;
+			}		
+			i {color: #F3AD4C;}
+			.content{
+				position: fixed;
+				top: 44px;
+				bottom: 2.5rem;
+				width: 100%;
+				overflow: auto;
+				padding-bottom: 10px;
+			}
+			
+			.mian-img {
+				height: 40px;
+				width: 40px;
+				border-radius: 50%;
+			}
+			.choice-xz {
+				display: flex;
+				align-items: center;
+			}
+			input {
+				border: 0;
+				text-align: right;
+				background: transparent;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">个人资料</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="content">
+			<ul class="mui-table-view">
+			    <li class="mui-table-view-cell">
+			      <a class="mui-navigate-right">头像<span class="mui-badge mui-badge-inverted"><img src="img/bar1.jpg" class="mian-img"></span></a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			       <a class="mui-navigate-right">昵称<span class="mui-badge mui-badge-inverted"><input type="" name="" id="" value="婚姻专家" /></span></a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			       <a class="mui-navigate-right">性别
+							<span class="mui-badge mui-badge-inverted choice-xz">
+								<input name="radio1" type="radio">男&ensp;<input name="radio1" type="radio">女
+							</span>
+						</a>
+			    </li>
+			    <li class="mui-table-view-cell">
+			       <a class="mui-navigate-right">账号<span class="mui-badge mui-badge-inverted"><input type="" name="" id="" value="188888888" /></span></a>
+			    </li>
+			</ul>
+			
+		</div>
+		<div class="footer"><div>保存</div></div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+			})();
+		</script>
+	</body>
+</html>

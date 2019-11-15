@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.top {
+				background: #1777fb;
+				height: 7.5rem;
+				padding: 0px 0.3125rem 0.625rem 0.3125rem;
+				overflow: hidden;
+				position: fixed;
+				z-index: 5;
+				top: 44px;
+				left: 0rem;
+				right: 0rem;
+			}
+
+			.mui-bar {
+				box-shadow: 0px 0px 0px #1777fb
+			}
+
+			.lvshibox {}
+
+			.lvshibox ul {}
+
+			.lvshibox ul li {
+				float: left;
+			}
+
+			.lvshibox ul li.lvimg {
+				width: 30%;
+				text-align: center;
+			}
+
+			.lvshibox ul li.lvimg img {
+				width: 20vw;
+				height: 20vw;
+				border-radius: 50%;
+				display: block;
+				margin: auto;
+			}
+
+			.lvshibox ul li.lvimg span.lvzx_zx,
+			.lvshibox ul li.lvimg span.lvzx_lx {
+				display: inline-block;
+				border-radius: 0.3125rem;
+				padding: 0rem 0.3125rem;
+				color: #ffffff;
+				height: 1rem;
+				line-height: 1rem;
+				font-size: 0.75rem;
+			}
+
+			.lvshibox ul li.lvimg span.lvzx_zx {
+				background-color: #2AC845;
+			}
+
+			.lvshibox ul li.lvimg span.lvzx_lx {
+				background-color: transparent;
+				border: 1px #ffffff dotted;
+				opacity: 0.6;
+			}
+
+			.lvshibox ul li.lvtxt {
+				width: 69%;
+				padding-left: 1%;
+			}
+
+			.lvname {
+				display: block;
+				font-size: 1rem;
+				height: 1.5625rem;
+				line-height: 1.5625rem;
+				position: relative;
+				color: #ffffff;
+			}
+
+			.lvname u {
+				font-size: 0.75rem;
+				/* margin-left: 2.5rem; */
+				height: 1rem;
+				margin: 0.1875rem 0rem 0.5rem 0.5rem;
+				line-height: 1rem;
+				color: #1777FB;
+				display: inline-block;
+				vertical-align: middle;
+				padding: 0rem 0.25rem;
+				background: #FFFF00;
+				border-radius: 0.3125rem;
+			}
+
+			.lvname b {
+				/* position: absolute; */
+				font-size: 0.875rem;
+				height: 1rem;
+				line-height: 1rem;
+				padding: 0rem 0.25rem;
+				text-align: center;
+				color: #ffffff;
+				font-weight: normal;
+				font-size: 0.75rem;
+				border-radius: 1.25rem 1.25rem 1.25rem 0rem;
+				margin: 0.1875rem 0rem 0.5rem 0rem;
+				background-color: #EC971F;
+				display: inline-block;
+				vertical-align: middle;
+
+			}
+
+			.lvzy {
+				display: block;
+				font-size: 0.75rem;
+				color: #ffffff;
+				line-height: 1.125rem;
+				color: #C1DCEF;
+			}
+
+			.lvzy u {
+				color: #ffffff;
+				text-shadow: 0.0625rem 0.0625rem 0.0625rem #0062CC;
+			}
+
+			.lvzy u b {
+				font-family: "times new roman";
+				font-size: 1.125rem;
+				margin: 0rem 0.125rem;
+			}
+
+			.lvfl {
+				display: block;
+				margin-top: 0.3125rem;
+				color: #ffffff;
+				line-height: 1.25rem;
+			}
+
+			.lvfl i {
+				height: 1.25rem;
+				line-height: 1.25rem;
+				display: inline-block;
+				padding: 0px 0.3125rem;
+				color: #ffffff;
+				border: #ffffff 1px solid;
+				border-radius: 0.3125rem;
+				margin-right: 0.3125rem;
+			}
+
+			.lvzxrs {
+				font-size: 0.75rem;
+				color: #ffffff;
+				font-weight: normal;
+				display: block;
+				line-height: 1.25rem;
+				line-height: 1.25rem;
+			}
+
+			.bottom {
+				height: 3.0625rem;
+				position: fixed;
+				bottom: 0rem;
+				width: 100%;
+				border-top: 1px #ccc solid;
+				z-index: 999;
+				background-color: #ffffff;
+			}
+
+			.mui-content {
+				margin-bottom: 3.125rem;
+				margin-top: 7.5rem;
+			}
+
+			.fuwu {
+				padding: 0.3125rem 0.625rem;
+				background-color: #ffffff;
+				;
+			}
+
+			.f_left {
+				width: 20%;
+				float: left;
+			}
+
+			.f_right {
+				width: 80%;
+				float: left;
+			}
+
+			.f_right i {
+				float: left;
+				display: inline-block;
+				border-radius: 0.3125rem;
+				border: 1px #1777fb solid;
+				margin: 0rem 0.3125rem 0.3125rem 0rem;
+				padding: 0rem 0.3125rem;
+				color: #1777fb;
+			}
+
+			.f_right i.active {
+				background-color: #1777fb;
+				color: #ffffff;
+			}
+
+			.f_title {
+				padding: 0.625rem;
+				color: #1777FB;
+				font-size: 1rem;
+				background-color: #ffffff;
+				line-height: 1.25rem;
+				border-bottom: 1px #cccccc dotted;
+			}
+
+			.f_jiage {
+				padding: 0.625rem 0.625rem 0 0.625rem;
+				background-color: #ffffff;
+			}
+
+			.f_jiage_xx {
+				padding: 0rem 0.625rem 0.625rem 0.625rem;
+				color: #999999;
+				background-color: #ffffff;
+				border-bottom: 1px #cccccc dotted;
+			}
+
+			.f_jiage span {
+				font-size: 1.75rem;
+				color: #ff6600;
+			}
+
+			.f_jiage i {
+				font-size: 0.875rem;
+				color: #999999;
+				float: right;
+			}
+
+			.f_jiage_xx span {
+				font-size: 0.875rem;
+				text-decoration: line-through;
+			}
+
+			.pingjiatit {
+				font-size: 1rem;
+				padding: 0rem 0.625rem 0.625rem 0.625rem;
+				background-color: #ffffff;
+				margin-top: 0.25rem;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				border-bottom: 1px #cccccc dotted;
+			}
+
+			.pingjiatit i {
+				color: #ff6600;
+				margin-right: 0.3125rem;
+				font-size: 1.125rem;
+			}
+
+			.pingjiabox {
+				/* height: 2.5rem; */
+				padding: 0.3125rem 0.625rem;
+				background-color: #ffffff;
+			}
+
+			.pingjiabox span {
+				display: block;
+				float: left;
+
+			}
+
+			.pingjiabox span u {
+				display: none;
+
+			}
+
+			.pingjiabox span a {
+				display: block;
+				text-align: center;
+				background-color: #f1f1f1;
+				margin: 0.3125rem 0.3125rem 0rem 0.3125rem;
+				color: #555555;
+				padding: 0rem 0.3125rem;
+				height: 1.875rem;
+				line-height: 1.875rem;
+				border-radius: 0.3125rem;
+				/* border: 1px #f1f1f1 solid; */
+			}
+
+			.pingjiabox span a.active {
+				/* border: 1px #F3AD4C; */
+				background-color: #F3AD4C;
+				color: #ffffff;
+			}
+
+			.bottom .b_left,
+			.bottom .b_right {
+				width: 50%;
+				float: left;
+				width: 50%;
+				text-align: center;
+			}
+
+			.bottom .b_right {
+				line-height: 3.125rem;
+				background-color: #1777fb;
+				font-size: 1.125rem;
+				color: #ffffff;
+			}
+
+			.bottom .b_right i:before {
+				font-size: 1.25rem;
+				margin-right: 0.3125rem;
+			}
+
+			.bottom .b_left span {
+				padding: 0.625rem;
+				display: block;
+				line-height: 1.875rem;
+			}
+
+			.bottom .b_left span i {
+				font-size: 1rem;
+				width: 50%;
+			}
+
+			.bottom .b_left span i:before {
+				color: #1777fb;
+				margin-right: 0.3125rem;
+				font-size: 1.25rem;
+			}
+
+			.bottom .b_left span i:first-child {
+				border-right: 1px #cccccc solid;
+			}
+
+			.pjlist {
+				padding-bottom: 0.625rem;
+			}
+
+			.pjlistbox {
+				margin-bottom: 1px;
+				padding: 0.625rem;
+				background-color: #ffffff;
+			}
+
+			.pjlist .pjleft {
+				width: 20%;
+				float: left;
+			}
+
+			.pjlist .pjleft img {
+				width: 15vw;
+				height: 15vw;
+				display: block;
+				border-radius: 50%;
+			}
+
+			.pjlist .pjright {
+				width: 80%;
+				float: left;
+			}
+
+			.pjlist .pjright .pjname {
+				color: #555555;
+			}
+
+			.pjlist .pjright .pjname span {
+				float: right;
+				color: #999999;
+				font-size: 0.75rem;
+			}
+
+			.pjlist .pjright .pjzan {
+				text-align: right;
+				margin-bottom: 0.3125rem;
+			}
+
+			.pjlist .pjright .pjzan i {
+				font-size: 0.875rem;
+				display: inline;
+				color: #ff6600;
+			}
+
+			.pjlist .phuifu {
+				padding-left: 20%;
+				position: relative;
+				margin-bottom: 0.3125rem;
+			}
+
+			.pjlist .phuifu_hide {
+				display: none;
+			}
+
+			.pjlist .phuifu .hftit {
+				width: 20%;
+				position: absolute;
+				z-index: 1;
+				text-align: center;
+				left: 0rem;
+				top: 0.625rem;
+				font-size: 1.125rem;
+			}
+
+			.pjlist .pjright .pjcon .imglist,
+			.pjlist .phuifu .pjcon .imglist {
+				display: block;
+			}
+
+			.pjlist .pjright .pjcon .imglist img,
+			.pjlist .phuifu .pjcon .imglist img {
+				width: 31.333333333333333%;
+				height: 31vw;
+				float: left;
+				display: inline-block;
+				margin: 1%;
+				border-radius: 0.3125rem;
+			}
+
+			.pjlist .pjright .pjzan i u {
+				font-size: 0.75rem;
+				margin-left: 0.3125rem;
+				color: #555555;
+			}
+
+			.pjlist .pjright .pjzan i span {
+				font-size: 0.75rem;
+				color: #555555;
+			}
+
+			.pjhf .pjcon {
+				/* background-color: #e1effe; */
+				border: 1px #e1effe solid;
+				padding: 0.625rem;
+				border-radius: 0.3125rem;
+			}
+
+			.pjhf .hftit {
+				color: #e1effe;
+			}
+
+			.pjzp .pjcon {
+				/* background-color: #fee6e1; */
+				border: 1px #fee6e1 solid;
+				padding: 0.625rem;
+				border-radius: 0.3125rem;
+			}
+
+			.pjzp .hftit {
+				color: #fee6e1;
+			}
+
+			.pjzf .pjcon {
+				/* background-color: #e1effe; */
+				border: 1px #e1effe solid;
+				padding: 0.625rem;
+				border-radius: 0.3125rem;
+			}
+
+			.pjzf .hftit {
+				color: #e1effe;
+			}
+
+			.phuifu .pjcon .time {
+				display: block;
+				font-size: 0.75rem;
+				color: #BBBBBB;
+				height: 1rem;
+				line-height: 1rem;
+			}
+
+			.jjcon {
+				padding: 0.3125rem 0.625rem;
+			}
+
+			.jjcon li {
+				border: 1px #cccccc solid;
+				margin-bottom: 0.625rem;
+				padding: 0.625rem;
+				display: none;
+			}
+
+			.jjcon li span {
+				display: block;
+			}
+
+			.jjcon li span img {
+				display: block;
+				width: 45%;
+				height: auto;
+			}
+
+			.jjcon li i {
+				display: block;
+				color: #1777FB;
+				border-bottom: 1px #1777FB dotted;
+				line-height: 1.25rem;
+				padding-bttom: 0.625rem;
+				margin-bottom: 0.3125rem;
+				font-size: 0.75rem;
+			}
+
+			.jjcon li i:before {
+				margin-right: 0.3125rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title"></h1>
+			<i class="fa fa-share-alt mui-pull-right" id="share" style="font-size:1.125rem;"></i>
+		</header>
+		<div class="top">
+			<div class="lvshibox" id="lvshibox">
+				<!-- <ul>
+					<li class="lvimg">
+						<img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" />
+						<span class="lvzx_zx">•在线•</span>
+						<span class="lvzxrs">1214人咨询</span>
+					</li>
+					<li class="lvtxt">
+						<span class="lvname">刘叶红<b>金牌</b><u></u></span>
+						<span class="lvzy">湖南长沙</span>
+						<span class="lvfl"><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i></span>
+					</li>
+					<div class="cl"></div>
+				</ul> -->
+			</div>
+		</div>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper2 transparent">
+			<div class="mui-scroll1">
+
+				<div class="f_title" id="f_title"></div>
+				<div class="f_jiage" id="f_jiage"><i></i><span></span></div>
+				<div class="f_jiage_xx" id="f_jiage_xx">线下价:<span></span></div>
+				<div class="fuwu" id="fuwu_desc" style="height: 2.5rem;line-height: 2.5rem;padding: 0rem 0.625rem;">
+					<div class="f_left">服务保障</div>
+					<div class="f_right">不满意退款，担保交易<u class="fa fa-hand-o-left" style="line-height: 2.5rem;font-size:1.125rem;color:#1777FB;margin-left: 0.625rem;opacity: 0.5;"></u></div>
+					<div class="cl"></div>
+				</div>
+				<div class="fuwu">
+					<div class="f_left">服务类型</div>
+					<div class="f_right" id="fuwuleixing"></div>
+					<div class="cl"></div>
+				</div>
+				<div class="fuwu" id="wenti">
+					<div class="f_left">问题类型</div>
+					<div class="f_right" id="wentileixing"></div>
+					<div class="cl"></div>
+				</div>
+				<div class="fuwu">
+					<div class="f_left" id="youxiaotxt">有效时间</div>
+					<div class="f_right" id="youxiaoqi"></div>
+					<div class="cl"></div>
+				</div>
+				<div class="pingjiatit">
+					<i class="fa fa-heart"></i>服务评价
+				</div>
+				<div class="pingjiabox" id="pingjiabox">
+					<!-- <span><a class="active" data-id="1">热门<u>(<i id="prm">0</i>)</u></a></span>
+					<span><a data-id="2">最新<u>(<i id="pzx">0</i>)</u></a></span>
+					<span><a data-id="3">追加<u>(<i id="pzj">0</i>)</u></a></span> -->
+				</div>
+				<div class="pjlist" id="pjlist">
+					<!-- <div class="pjlistbox">
+						<div class="pjleft">
+							<img src="http://www.lvshitang.cn/images/public/avatar/avatar130.jpg" />
+						</div>
+						<div class="pjright">
+							<div class="pjname"><span>2019-12-23 12:32:23</span>13060648341</div>
+							<div class="pjcon">解答了问题 律师很有耐心
+								<div class="imglist"><img src="img/bar1.jpg" /><img src="img/bar1.jpg" /><img src="img/lvtest.jpg" /><img src="img/bar1.jpg" /><img
+									 src="img/bar1.jpg" />
+									<div class="cl"></div>
+								</div>
+							</div>
+							<div class="pjzan" id="pjzan"><i class="fa fa-thumbs-up"><u id="zannum">12</u><span>赞</span></i></div>
+						</div>
+						<div class="cl"></div>
+						<div class="phuifu pjhf">
+							<div class="hftit">回复:</div>
+							<div class="pjcon">解答了问题 律师很有耐心
+								<div class="imglist"><img src="img/bar1.jpg" /><img src="img/bar1.jpg" /><img src="img/lvtest.jpg" /><img src="img/bar1.jpg" /><img
+									 src="img/bar1.jpg" />
+									<div class="cl"></div>
+								</div><span class="time">3月前</span>
+							</div>
+						</div>
+						<div class="phuifu pjzp">
+							<div class="hftit">追评:</div>
+							<div class="pjcon">威风威风威风<span class="time">3月前</span></div>
+						</div>
+						<div class="phuifu pjzf">
+							<div class="hftit">追答:</div>
+							<div class="pjcon">威风威风威风<span class="time">3月前</span></div>
+						</div>
+					</div>
+					<div class="pjlistbox">
+						<div class="pjleft">
+							<img src="http://www.lvshitang.cn/images/public/avatar/avatar130.jpg" />
+						</div>
+						<div class="pjright">
+							<div class="pjname"><span>2019-12-23 12:32:23</span>13060648341</div>
+							<div class="pjcon">解答了问题 律师很有耐心</div>
+							<div class="pjzan" id="pjzan"><i class="fa fa-thumbs-up"><u id="zannum">12</u><span>赞</span></i></div>
+						</div>
+
+						<div class="cl"></div>
+					</div> -->
+				</div>
+			</div>
+		</div>
+		<div class="bottom" id="bottom">
+			<div class="b_left"><span><i class="fa fa-address-card-o" id="jianjie">简介</i><i class="fa fa-comments-o" id="zixun">咨询</i></span></div>
+			<div class="b_right" id="goumai"><i class="fa fa-shopping-cart"></i>购买服务</div>
+		</div>
+		<!-- 弹出框 -->
+		<div id="popover" class="mui-popover" style="height: 65vh;width:97%;border-radius: 0rem;box-shadow: 0 0 0px rgba(0,0,0,0);">
+			<div class="mui-scroll-wrapper">
+				<div class="mui-scroll">
+					<ul class="jjcon" style="">
+						<li id="company_li"><i class="fa fa-plus-square-o">所在律所</i><span id="company"></span></li>
+						<li id="deptaddress_li"><i class="fa fa-plus-square-o">详细地址</i><span id="deptaddress"></span></li>
+						<li id="shop_desc_li"><i class="fa fa-plus-square-o">店铺介绍</i><span id="shop_desc"></span></li>
+						<li id="ZYZH_li"><i class="fa fa-plus-square-o">职业证号</i><span id="ZYZH"></span></li>
+						<li id="desc_grjl_li"><i class="fa fa-plus-square-o">个人经历</i><span id="desc_grjl"></span></li>
+						<li id="school_li"><i class="fa fa-plus-square-o">学习经历</i><span id="school"></span></li>
+						<li id="desc_scly_li"><i class="fa fa-plus-square-o">擅长领域</i><span id="desc_scly"></span></li>
+						<li id="work_pic_li"><i class="fa fa-plus-square-o">工作环境</i><span id="work_pic"></span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 弹出框 -->
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {},
+					fuwuinfo = [],
+					youxiao = [],
+					fwlxid = 0,
+					fwlxid_ls = 0,
+					wtlxid = 0,
+					yxsjid = 0,
+					fid = 0,
+					fname = '',
+					fimg = '',
+					shopid,
+					p_rm = 0,
+					p_zx = 0,
+					p_zj = 0,
+					fuwu_desc;
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					shopid = ws.shopid;
+					loadPage = function() {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('shop/getShopDetail', function(data) {
+							w.close();
+							if (data.code == 1011) {
+								mui.back();
+								mui.toast(data.message);
+								return false;
+							}
+							var info = data.data;
+							//console.log(JSON.stringify(data));
+							fid = info.uid;
+							fname = info.authname;
+							fimg = info.avatar;
+							var html = '<ul>' +
+								'<li class="lvimg">' +
+								'<img src="' + BaseUrl + '/' + info.avatar + '" />' +
+								(info.online == 1 ? '<span class="lvzx_zx">•在线•</span>' : '<span class="lvzx_lx">•离线•</span>') +
+								//'<span class="lvzxrs"></span>' +
+								'</li><li class="lvtxt">' +
+								'<span class="lvname">' + info.shop_name + '' + (info.is_recommend == 1 ? '<b>金牌</b>' : '') + '<u>' +
+								info.xueli + '</u></span>' +
+								'<span class="lvzy"><u>从业<b>' + info.years + '</b>年</u>&nbsp;&nbsp;&nbsp;&nbsp;' + info.provincename +
+								'.' +
+								//info.cityname + '&nbsp;&nbsp;&nbsp;&nbsp;' + info.shopzxrs + '人咨询</span>' +
+								info.cityname + '</span>' +
+								'<span class="lvfl">' + getlvfl(info.tagname) +
+								'</span>' +
+								'</li>' +
+								'<div class="cl"></div>' +
+								'</ul>';
+							$("#lvshibox").html(html);
+							/*
+							<li><i>店铺介绍</i><span id="shop_desc">咯咯咯鹅嘎然噶</span></li>
+							<li><i>职业证号</i><span id="ZYZH">咯咯咯鹅嘎然噶</span></li>
+							<li><i>个人经历</i><span id="desc_grjl">咯咯咯鹅嘎然噶</span></li>
+							<li><i>所在地址</i><span id="deptaddress">咯咯咯鹅嘎然噶</span></li>
+							<li><i>学习经历</i><span id="school">咯咯咯鹅嘎然噶</span></li>
+							<li><i>擅长领域</i><span id="desc_scly">咯咯咯鹅嘎然噶</span></li>
+							<li><i>工作环境</i><span id="work_pic">咯咯咯鹅嘎然噶</span></li>	
+							*/
+							//$("#f_jiage i").html(info.shopzxrs + '人咨询');
+							if (!!info.company) {
+								$("#company").html(info.company);
+								$("#company_li").show();
+							}
+							if (!!info.shop_desc) {
+								$("#shop_desc").html(info.shop_desc);
+								$("#shop_desc_li").show();
+							}
+							if (!!info.ZYZH) {
+								$("#ZYZH").html(info.ZYZH);
+								$("#ZYZH_li").show();
+							}
+							if (!!info.desc_grjl) {
+								$("#desc_grjl").html(info.desc_grjl);
+								$("#desc_grjl_li").show();
+							}
+							if (!!info.deptaddress) {
+								$("#deptaddress").html(info.deptaddress);
+								$("#deptaddress_li").show();
+							}
+							if (!!info.school) {
+								$("#school").html(info.school);
+								$("#school_li").show();
+							}
+							if (!!info.desc_scly) {
+								$("#desc_scly").html(info.desc_scly);
+								$("#desc_scly_li").show();
+							}
+							if (!!info.work_pic) {
+								$("#work_pic").html('<img src="' + info.work_pic.split(',')[0] + '" />');
+								$("#work_pic_li").show();
+							}
+							YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+
+
+							//获取服务类型列表
+							YiRu.getajax('shop/getGoodsList', function(datafw) {
+								fuwuinfo = datafw.data;
+								//console.log(JSON.stringify(fuwuinfo));
+								if (fuwuinfo.length > 0) {
+									$("#fuwuleixing").html(getfuwu(fuwuinfo));
+									//获取问题类型等相关信息
+									initData(fuwuinfo[0]);
+								}
+							}, {
+								shop_id: info.id
+							}, null, 'post', {
+								key: info.id,
+								num: CaCheNum
+							});
+							//获取评价
+							getPingJia(info.id, '', '');
+							GetCommentTypeData(function(data) {
+								var _html = '';
+								//console.log(JSON.stringify(data));
+								for (var i = 0; i < data.length; i++) {
+									_html += '<span><a' + (data[i].id == 1 ? ' class="active"' : '') + ' data-id="' + data[i].id + '">' +
+										data[i].name +
+										'<u>(<i id="pzj">' + data[i].num + '</i>)</u></a></span>';
+
+								}
+								$("#pingjiabox").html(_html + '<div class="cl"></div>');
+							});
+
+						}, {
+							shopid: shopid
+						}, w, 'post', {
+							key: shopid,
+							num: CaCheNum
+						});
+
+					};
+
+					loadPage();
+
+					mui('#fuwuleixing').on('tap', 'i', function(e) {
+						var _id = this.getAttribute("data-id");
+						var _sid = this.getAttribute("data-sid");
+						if (_id == fwlxid_ls) return false;
+						fwlxid = _sid;
+						fwlxid_ls = _id;
+						if (_sid == 3) {
+							$("#youxiaotxt").html("服务类别");
+						} else {
+							$("#youxiaotxt").html("有效时间");
+						}
+						$("#fuwuleixing i").removeClass("active");
+						$(this).addClass("active");
+						initData(fuwuinfo[_id]);
+					});
+					mui('#wentileixing').on('tap', 'i', function(e) {
+						var _id = this.getAttribute("data-id");
+						$("#wentileixing i").removeClass("active");
+						wtlxid = _id;
+						$(this).addClass("active");
+
+					});
+					mui('#youxiaoqi').on('tap', 'i', function(e) {
+						var _id = this.getAttribute("data-id");
+						var _yid = this.getAttribute("data-yid");
+						$("#youxiaoqi i").removeClass("active");
+						yxsjid = _yid;
+						$(this).addClass("active");
+						initYouxiao(youxiao[_id]);
+
+					});
+					mui('#bottom').on('tap', '#goumai', function(e) {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						//console.log(fwlxid + "/" + wtlxid + "/" + yxsjid)
+						YiRu.getajax('order/orderCreate', function(data) {
+							w.close();
+							var buyinfo = data.data;
+							YiRu.openVW("goumai.html", {
+								bounty: buyinfo.bounty,
+								ordeyid: buyinfo.id
+							});
+							//console.log(JSON.stringify(data));
+						}, {
+							goods_id: wtlxid,
+							num: 1,
+							service_id: yxsjid
+						}, w);
+					});
+
+					mui('#bottom').on('tap', '#zixun', function(e) {
+
+						YiRu.openVW("send.html", {
+							fid: fid,
+							fname: fname,
+							fimg: BaseUrl + "/" + fimg
+						});
+
+					});
+					mui('#pjlist').on('tap', '.pjzan', function(e) {
+						var _id = this.getAttribute("data-id");
+						var zanbox = $(this).find("u.zannum");
+						var oldnum = parseInt(zanbox.html());
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('shop/setCommentDianZan', function(data) {
+							w.close();
+							//console.log(JSON.stringify(data));
+							if (data.data.dianzan_num > oldnum) {
+								mui.toast("点赞成功");
+							} else {
+								mui.toast("已取消点赞");
+							}
+							zanbox.html(data.data.dianzan_num);
+							//loadPage();
+						}, {
+							comment_id: _id
+						}, w);
+					});
+					mui('#pullrefresh').on('tap', '#fuwu_desc', function(e) {
+
+						mui.confirm(fuwu_desc, '服务保障', ['知道了'], null, 'div');
+
+					});
+
+					mui('#pingjiabox').on('tap', 'a', function(e) {
+						var _id = this.getAttribute("data-id");
+						$("#pingjiabox a").removeClass("active");
+						$(this).addClass("active");
+						$("#pjlist").html("");
+						getPingJia(shopid, _id, '');
+
+					});
+					mui('#bottom').on('tap', '#jianjie', function(e) {
+						mui('.mui-popover').popover('toggle', document.getElementById("jianjie"));
+					});
+					mui('header').on('tap', '#share', function(e) {
+						loadShare({
+							href: 'http://www.lvshitang.cn',
+							title: '律师堂',
+							content: '法律服务咨询平台，您随身携带的律师！',
+							pictures: 'http://www.lvshitang.cn/images/erweima.png',
+							thumbs: 'http://www.lvshitang.cn/images/erweima.png',
+							callBack: function() {
+								mui.toast("分享成功");
+							},
+							NocallBack: function() {
+								mui.toast("分享失败");
+							}
+						});
+					});
+
+					function getfuwu(data) {
+						var html = "";
+						fwlxid = data[0].service_type_id;
+						for (var i = 0; i < data.length; i++) {
+							html += '<i' + (i == 0 ? ' class="active"' : '') + ' data-id="' + i + '" data-sid="' + data[i].service_type_id +
+								'">' +
+								data[i].service_type_name + '</i>';
+						}
+						return html;
+					}
+
+					function getlvfl(data) {
+						var html = "";
+						var _d = data.split(',');
+						for (var i = 0; i < _d.length; i++) {
+							html += '<i>' + _d[i] + '</i>';
+						}
+						return html;
+					}
+
+					function initData(data) {
+						fuwu_desc = data.desc;
+						$("#f_title").html(data.title);
+						$("#f_jiage span").html('￥' + data.cash);
+						$("#f_jiage_xx span").html('￥' + data.cashls);
+						$("#f_jiage i").html(data.shopzxrs + '人咨询');
+						var wenti = data.menusecond;
+						youxiao = data.menuthird;
+						//console.log(JSON.stringify(data));
+						var html = "";
+						if (wenti.length > 0) {
+							for (var i = 0; i < wenti.length; i++) {
+
+								html += '<i' + (i == 0 ? ' class="active"' : '') + ' data-id="' + wenti[i].goods_id + '">' + wenti[i].titleshort +
+									'</i>';
+							}
+							wtlxid = wenti[0].goods_id;
+							$("#wentileixing").html(html);
+						}
+						if (wenti.length < 2) {
+							$("#wenti").hide();
+						} else {
+							$("#wenti").show();
+						}
+						var html_yx = "";
+						if (youxiao.length > 0) {
+							for (var i = 0; i < youxiao.length; i++) {
+								html_yx += '<i' + (i == 0 ? ' class="active"' : '') + '  data-id="' + i + '" data-yid="' + youxiao[i].id +
+									'">' + youxiao[i].namemin + '</i>';
+							}
+							yxsjid = youxiao[0].id;
+							$("#f_jiage span").html('￥' + youxiao[0].cash);
+							$("#f_jiage_xx span").html('￥' + youxiao[0].cashls);
+
+							$("#youxiaoqi").html(html_yx);
+						}
+
+					}
+
+					function initYouxiao(data) {
+						$("#f_jiage span").html('￥' + data.cash);
+						$("#f_jiage_xx span").html('￥' + data.cashls);
+					}
+
+					function getpjImg(imgs) {
+						if (imgs == null || imgs == "" || imgs == "null" || !imgs) {
+							return "";
+						}
+						var _img = imgs.split(',');
+						var _imgstr = "";
+						for (var i = 0; i < _img.length; i++) {
+							_imgstr += '<img src="' + BaseUrl + '/' + _img[i] + '" />';
+						}
+						return "<div class=\"imglist\">" + _imgstr + "<div class=\"cl\"></div></div>";
+					}
+
+					function getPingJia(shop_id, commenttypeid, type) {
+						YiRu.getajax('shop/getCommentShop', function(data) {
+							w.close();
+							var pinfo = data.data;
+							if (pinfo.length > 0) {
+								var _html = "";
+								for (var i = 0; i < pinfo.length; i++) {
+									_html += '<div class="pjlistbox">' +
+										'<div class="pjleft">' +
+										'<img src="' + BaseUrl + '/' + pinfo[i].avatar + '" />' +
+										'</div>' +
+										'<div class="pjright">' +
+										'<div class="pjname"><span>' + getDateDiff(pinfo[i].created_at) + '</span>' + getMobile(pinfo[i].name) +
+										'</div>' +
+										'<div class="pjcon">' + pinfo[i].content + getpjImg(pinfo[i].images) + '</div>' +
+										'<div class="pjzan" data-id="' + pinfo[i].id + '"><i class="fa fa-thumbs-up"><u class="zannum">' + pinfo[
+											i].dianzan_num +
+										'</u><span>赞</span></i></div>' +
+										'</div>' +
+										/////phuifu_hide
+										'<div class="cl"></div>' +
+										'<div class="phuifu pjhf' + (pinfo[i].hfcontent == null ? ' phuifu_hide' : '') + '">' +
+										'<div class="hftit">回复:</div>' +
+										'<div class="pjcon">' + pinfo[i].hfcontent + getpjImg(pinfo[i].hfimages) +
+										'<span class="time">' + getDateDiff(pinfo[i].hfcreated_at) + '</span>' +
+										'</div>' +
+										'</div>' +
+										'<div class="phuifu pjzp' + (pinfo[i].zpcontent == null ? ' phuifu_hide' : '') +
+										'"><div class="hftit">追评:</div><div class="pjcon">' + pinfo[i].zpcontent + getpjImg(pinfo[i].zpimages) +
+										'<span class="time">' + getDateDiff(pinfo[i].zpcreated_at) + '</span></div></div>' +
+										'<div class="phuifu pjzf' + (pinfo[i].zdcontent == null ? ' phuifu_hide' : '') +
+										'"><div class="hftit">追答:</div><div class="pjcon">' + pinfo[i].zdcontent + getpjImg(pinfo[i].zdimages) +
+										'<span class="time">' + getDateDiff(pinfo[i].zdcreated_at) + '</span></div></div>' +
+										/////
+										'</div>';
+								}
+								$("#pjlist").html(_html);
+							}
+
+							//console.log(JSON.stringify(pinfo));
+						}, {
+							shop_id: shop_id,
+							commenttypeid: commenttypeid,
+							type: type
+						}, w);
+					}
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+				mui('.mui-scroll-wrapper').scroll({
+					bounce: true, //滚动条是否有弹力默认是true
+					indicators: false, //是否显示滚动条,默认是true
+				});
+			})();
+		</script>
+	</body>
+</html>

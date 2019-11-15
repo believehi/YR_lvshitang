@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.footer {
+				position: fixed;
+				z-index: 9;
+				bottom: 0;
+				width: 100%;
+				height: 2.5rem;
+				background: #ddd;
+				text-align: center;
+				/* background: #fff; */
+			}
+			.footer div {
+				margin: .25rem auto 0;
+				width: 90%;
+				border-radius: 1rem;
+				color: #fff;
+				background: #003499;
+				height: 2rem;
+				line-height: 2rem;
+			}	
+			.content{
+				position: fixed;
+				top: 44px;
+				bottom: 2.5rem;
+				width: 100%;
+				overflow: auto;
+				padding-bottom: 10px;
+			}
+			.list {
+				background: #fff;
+				margin-top: 10px;
+				padding: 0 10px;
+				border-top: 1px solid #ddd;
+				border-bottom: 1px solid #ddd;
+			}
+			.list-title {
+				line-height: 40px;
+				border-bottom: 1px solid #eee;
+			}
+			.list-title span {
+				float: right;
+				margin-top: 12px;
+				margin-right: 10px;
+			}
+			.main {
+				height: 200px;
+			}
+			.service_upload {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				margin: 10px 0;
+				color: #32CA31;
+			}
+			.service_upload i {
+				font-size: 60px;
+			}
+			.service_upload span {
+				font-size: 20px;
+				line-height: 30px;
+			}
+			.input {
+				border: 0;
+				text-align: right;
+				background: transparent;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">律师实名认证</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="content">
+			<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">执业证号<span class="mui-badge mui-badge-inverted"><input type="" name="" id="" value="456156689432" class="input"/></span></a>
+					</li>
+					<li class="mui-table-view-cell">
+							<a class="mui-navigate-right">微信号<span class="mui-badge mui-badge-inverted"><input type="" name="" id="" value="188888888" class="input"/></span></a>
+					</li>
+			</ul>
+			<div class="list">
+				<p class="list-title">手持身份证<span class="mui-badge mui-badge-success">样图</span></p>
+				<div class="main">
+						<div class="service_upload">
+							<i class="fa fa-upload"></i>
+							<span>点击上传</span>
+						</div>
+				</div>
+			</div>
+			<div class="list">
+				<p class="list-title">律师职业证件<span class="mui-badge mui-badge-success">样图</span></p>
+				<div class="main">
+						<div class="service_upload">
+							<i class="fa fa-upload"></i>
+							<span>点击上传</span>
+						</div>
+				</div>
+			</div>
+			<div class="list">
+				<p class="list-title">律师职业证件年审页<span class="mui-badge mui-badge-success">样图</span></p>
+				<div class="main">
+						<div class="service_upload">
+							<i class="fa fa-upload"></i>
+							<span>点击上传</span>
+						</div>
+				</div>
+			</div>
+			<div class="list">
+				<p class="list-title">个人形象照<span class="mui-badge mui-badge-success">样图</span></p>
+				<div class="main">
+						<div class="service_upload">
+							<i class="fa fa-upload"></i>
+							<span>点击上传</span>
+						</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer"><div>提交审核</div></div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+			})();
+		</script>
+	</body>
+</html>

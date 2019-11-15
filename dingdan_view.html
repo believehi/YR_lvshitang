@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.list {}
+
+			.list ul {
+				padding: 0.625rem 0.625rem;
+				margin-bottom: 0.25rem;
+				background-color: #ffffff;
+			}
+
+			.list ul .tit {
+				color: #999999;
+				margin-bottom: 0.3125rem;
+			}
+
+			.list ul .boy {
+				margin-bottom: 0.3125rem;
+			}
+
+			.list ul .btnlist {
+				text-align: right;
+			}
+
+			.list ul .btnlist button {
+				height: 1.875rem;
+				margin-left: 0.3125rem;
+			}
+
+			.list ul .zhuangt {
+				float: right;
+				color: #1777FB;
+			}
+
+			.list ul .img {
+				width: 20%;
+				float: left;
+				display: block;
+			}
+
+			.list ul .img img {
+				width: 17vw;
+				height: 17vw;
+				border-radius: 50%;
+			}
+
+			.list ul .txt {
+				width: 80%;
+				float: left;
+				display: block;
+				line-height: 1.25rem;
+			}
+
+			.list ul .title {
+				display: block;
+			}
+
+			.time {
+				display: block;
+				color: #999999;
+			}
+
+			.servicename {
+				display: inline-block;
+				height: 1.375rem;
+				line-height: 1.375rem;
+				text-align: center;
+				border-radius: 0.1875rem;
+				margin-bottom: 0.3125rem;
+				margin-right: 0.3125rem;
+				padding: 0rem 0.3125rem;
+			}
+
+			.ser_1 {
+				color: #1777FB;
+				border: 1px #1777FB solid;
+			}
+
+			.ser_2 {
+				color: #2AC845;
+				border: 1px #2AC845 solid;
+			}
+
+			.ser_3 {
+				color: #EC971F;
+				border: 1px #EC971F solid;
+			}
+
+			.jine {
+				float: right;
+				color: #ff6600;
+				font-size: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">订单详情</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<div class="list" id="list">
+					<ul>
+
+					</ul>
+
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {},
+					oid, goods_id, o = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					oid = ws.oid;
+					goods_id = ws.ogoodsid;
+
+					loadPage = function() {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('order/getOrderDetail', function(data) {
+							w.close();
+							o = data.data;
+							//console.log(JSON.stringify(data));
+							var html = '';
+							html += '<li class="tit"><span class="zhuangt">' + getOrderStatus(parseInt(o.status)) + '</span>订单编号:' + o
+								.id + '&nbsp;&nbsp;&nbsp;&nbsp;律师:' + o
+								.sell_authname + '</li>' +
+								'<li class="boy">' +
+								'<span class="img"><img src="' + BaseUrl + '/' + o.buy_avatar + '" /></span>' +
+								'<span class="txt">' +
+								'<span class="jine">￥' + o.bounty + '</span>' +
+								'<span class="servicename ser_' + o.service_type + '">' + o.service_type_name + '</span>' +
+								'<span class="servicename ser_' + o.service_type + '">' + o.servicename + '</span>' +
+								'<span class="title">' + o.title + '</span>' +
+								'<span class="time">下单时间：' + o.created_at + '</span>' +
+								(o.wait_accept_at ? ('<span class="time">付款时间：' + o.wait_accept_at + '</span>') : '') +
+								(o.already_accept_at ? '<span class="time">受理时间：' + o.already_accept_at + '</span>' : '') +
+								(o.check_accept_at ? '<span class="time">验收时间：' + o.check_accept_at + '</span>' : '') +
+								(o.finish_at ? '<span class="time">完成时间：' + o.finish_at + '</span>' : '') +
+								(o.finish_rights_at ? '<span class="time">维权交易成功：' + o.finish_rights_at + '</span>' : '') +
+								(o.finish_service_at ? '<span class="time">售后交易成功：' + o.finish_service_at + '</span>' : '') +
+								(o.cancel_buy_at ? '<span class="time">买家取消：' + o.cancel_buy_at + '</span>' : '') +
+								(o.cancel_sell_at ? '<span class="time">商家拒绝：' + o.cancel_sell_at + '</span>' : '') +
+								(o.rights_at ? '<span class="time">维权开始：' + o.rights_at + '</span>' : '') +
+								(o.rights_end_at ? '<span class="time">维权结束：' + o.rights_end_at + '</span>' : '') +
+								(o.service_at ? '<span class="time">售后开始：' + o.service_at + '</span>' : '') +
+								(o.service_end_at ? '<span class="time">售后结束：' + o.service_end_at + '</span>' : '') +
+								'</span>' +
+								'<div class="cl"></div>' +
+								'</li>' +
+								'<li class="btnlist">' +
+								(o.bounty_status == 0 ?
+									'<button type="button" id="del" class="mui-btn">删除</button><button type="button" id="fukuan" class="mui-btn mui-btn-success">付款</button>' :
+									'') +
+								(o.status == 3 || o.status == 4 ? (
+									'<button type="button" id="pingjia" class="mui-btn mui-btn-warning">评价</button>'
+								) : '') +
+								(o.status == 2 ? (
+									'<button type="button" id="yanshou" class="mui-btn mui-btn-warning">验收</button>') : '') +
+								(o.status == 21 || o.status == 31 ? (
+									'<button type="button" id="quxiaoshensu" class="mui-btn mui-btn-warning">取消申诉</button>') : '') +
+								(o.status == 1 || o.status == 2 || o.status == 3 ?
+									'<button type="button" id="shouhou" class="mui-btn mui-btn-warning">申诉</button>' : '') +
+								'<button type="button" id="zixun" class="mui-btn mui-btn-warning">咨询</button>' +
+								'</li>';
+							$("#list ul").html(html);
+							YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+						}, {
+							order_id: oid
+						}, w);
+
+
+					};
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					//验收
+					mui('#list').on('tap', '#yanshou', function() {
+
+						mui.confirm("确认通过验收吗？", "验收服务", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getajax('order/orderAcceptCheck', function(data) {
+									w.close();
+									mui.toast("验收成功");
+									loadPage();
+									var dd = plus.webview.getWebviewById("dingdan.html");
+									if (dd) {
+										mui.fire(dd, 'updatedata');
+									}
+								}, {
+									order_id: o.id
+								}, w);
+							}
+						}, "div");
+					});
+					//申请售后
+					mui('#list').on('tap', '#shouhou', function() {
+						mui.confirm("确认申请售后吗？", "申请售后", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								YiRu.openVW("shouhou.html", {
+									order_id: o.id
+								});
+							}
+						}, "div");
+					});
+					//取消申请售后
+					mui('#list').on('tap', '#quxiaoshensu', function() {
+						mui.confirm("确认取消申请售后吗？", "取消申请售后", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								//
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getajax('order/orderRightsServiceFail', function(data) {
+									w.close();
+									mui.toast("取消成功");
+									loadPage();
+									var dd = plus.webview.getWebviewById("dingdan.html");
+									if (dd) {
+										mui.fire(dd, 'updatedata');
+									}
+
+								}, {
+									order_id: o.id
+								}, w);
+							}
+						}, "div");
+					});
+					//评价
+					mui('#list').on('tap', '#pingjia', function() {
+						YiRu.openVW("pingjia.html", {
+							order_id: o.id
+						});
+					});
+					//咨询联系
+					mui('#list').on('tap', '#zixun', function() {
+						YiRu.openVW("send.html", {
+							fid: o.sell_uid,
+							fname: o.sell_authname,
+							fimg: BaseUrl + "/" + o.sell_avatar
+						});
+					});
+					//付款
+					mui('#list').on('tap', '#fukuan', function() {
+						YiRu.openVW("goumai.html", {
+							bounty: o.bounty,
+							ordeyid: o.id
+						});
+					});
+					//删除
+					mui('#list').on('tap', '#del', function() {
+						mui.confirm("确认删除该订单吗？", "删除订单", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getajax('order/orderDelete', function(data) {
+									w.close();
+									mui.toast("删除成功");
+									var dd = plus.webview.getWebviewById("dingdan.html");
+									if (dd) {
+										mui.fire(dd, 'updatedata');
+									}
+									mui.back();
+								}, {
+									order_id: o.id
+								}, w);
+							}
+						}, "div");
+					});
+					document.addEventListener('updatedata', function(tab) {
+						loadPage();
+					});
+				});
+
+
+				function getOrderStatus(s) {
+					var _s = "";
+					switch (s) {
+						case 0:
+							_s = "未付款";
+							break;
+						case 1:
+							_s = "待受理";
+							break;
+						case 2:
+							_s = "已受理";
+							break;
+						case 3:
+							_s = "已验收";
+							break;
+						case 4:
+							_s = "已完成";
+							break;
+						case 5:
+							_s = "维权交易成功";
+							break;
+						case 6:
+							_s = "售后交易成功";
+							break;
+						case 21:
+							_s = "买家维权";
+							break;
+						case 22:
+							_s = "商家维权";
+							break;
+						case 31:
+							_s = "买家申请售后";
+							break;
+						case 32:
+							_s = "卖家申诉售后";
+							break;
+						case 51:
+							_s = "买家取消";
+							break;
+						case 52:
+							_s = "商家拒绝";
+							break;
+						case 53:
+							_s = "维权交易失败";
+							break;
+						case 54:
+							_s = "售后交易失败";
+							break;
+					}
+					return _s;
+				}
+			})();
+		</script>
+	</body>
+</html>

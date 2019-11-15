@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.yr-chat-page {
+				position: relative;
+				/* width: 100%; */
+				padding:0px 0.625rem;
+				height: 100%;
+
+				/* padding-bottom: 2.6875rem; */
+			}
+
+			.yr-chat-page .yr-chat-input {
+				position: absolute;
+				width: 100%;
+				height: 43px;
+				left: 0;
+				bottom: 0;
+				background: #EFEFEF;
+				padding: 5px;
+				padding-right: 64px;
+			}
+
+			.yr-chat-page .yr-chat-input input {
+				margin: 0;
+				border: 0;
+				outline: 0;
+				position: relative;
+				width: 100%;
+				height: 100%;
+				line-height: 40px;
+				padding: 5px;
+			}
+
+			.yr-chat-page .yr-chat-input button {
+				position: absolute;
+				top: 5px;
+				right: 5px;
+			}
+
+			.yr-chat-page .yr-chat-msgcontent {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+
+			.yr-chat-msgcontent-list {
+				position: relative;
+				width: 100%;
+				margin: 0;
+				padding-top: 0.625rem;
+			}
+
+			.yr-chat-page .chatTime {
+				position: relative;
+				font-size: 0.75rem;
+				color: #FFFFFF;
+				text-align: center;
+				margin-bottom: 0.625rem;
+			}
+
+			.yr-chat-page .chatTime span {
+				background: #cccccc;
+				border-radius: 3px;
+				padding: 1px 10px;
+				color: #ffffff;
+			}
+
+
+			.yr-chat-page .other,
+			.yr-chat-page .me {
+				margin-bottom: 20px;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.yr-chat-page .other .arrow,
+			.yr-chat-page .me .arrow {
+				position: absolute;
+				width: 0;
+				height: 0;
+				display: inline-block;
+				border: 10px solid transparent;
+			}
+
+			.yr-chat-page .other img,
+			.yr-chat-page .me img {
+				width: 30px;
+				height: 30px;
+				border-radius: 3px;
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.yr-chat-page .other .content,
+			.yr-chat-page .me .content {
+				width: 100%;
+				background: #FDFDFD;
+				border-radius: 3px;
+				font-size: 0.875rem;
+				color: #666666;
+				padding: 6px 10px;
+				word-break: break-all;
+				text-align: justify;
+			}
+
+			.yr-chat-page .me .content {
+				background: #7db7ff;
+				color: #000000;
+			}
+
+			.yr-chat-page .other {
+				/* padding-left: 10px; */
+			}
+
+			.yr-chat-page .other .arrow {
+				left: 38px;
+				top: 4px;
+				border-right-color: #fff;
+			}
+
+			.yr-chat-page .other>* {
+				float: left;
+			}
+
+			.yr-chat-page .other img {
+				margin-right: 14px;
+			}
+
+			.yr-chat-page .me {
+				padding-right: 10px;
+			}
+
+			.yr-chat-page .me .arrow {
+				right: 38px;
+				top: 4px;
+				border-left-color: #7db7ff;
+			}
+
+			.yr-chat-page .me>* {
+				float: right;
+			}
+
+			.yr-chat-page .me img {
+				margin-left: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">律师堂</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<div class="yr-chat-page">
+					<div class="yr-chat-msgcontent" id="yr_chat_msgcontent">
+						<div class="yr-chat-msgcontent-list" id="messagelist">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false,
+					// gestureConfig: {
+					// 	longtap: true, //默认为false  
+					// 	hold: true, //默认为false，不监听  
+					// 	release: true //默认为false，不监听  
+					// },
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: YiRu.downstyle(pulldownRefresh)
+					}
+				});
+				var loadPage, w, ws, state = {},
+					//isan = false,
+					fid, fname, ftype, fimg, mid, myid, sendpar = {};
+				//luyin = null,
+				//bofang = null,
+				// cyy_id,
+				// cyy_desc,
+				// cyy_top,
+				// cyy_type;
+				var $list = $('#messagelist');
+				var msgMap = {};
+				var beginTime = "1988-01-01 00:00:00";
+				var endTime = "1988-01-01 00:00:00";
+				//var originalHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+				function pulldownRefresh() {
+					/*
+					w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+					YiRu.getajax('message/getLastMessage', function(data) {
+						w.close();
+						$list = $('#messagelist');
+						//console.log(JSON.stringify(data));
+						$.each(data.data, function(_index, _item) {
+
+							if (!msgMap[_item.id]) {
+								msgMap[_item.id] = "1";
+								var _html = getMsgHtml(_item);
+								$list.prepend(_html);
+								//beginTime = _item.F_CreateDate;
+							}
+						});
+						//mui('#pullrefresh').pullRefresh().scrollToBottom();
+						$list = null;
+
+					}, {
+						fs_id: fid,
+						js_id: YiRu.getuserinfo().uid
+					}, w);
+					*/
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+
+					//mui.toast('下拉刷新成功');
+				}
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					fid = ws.fid;
+					fname = ws.fname;
+					//ftype = ws.ftype;
+					//mid = ws.mid;
+					fimg = ws.fimg;
+					myid = YiRu.getuserinfo().uid;
+
+					//console.log(JSON.stringify(YiRu.getuserinfo()));
+					$("#title").html(fname);
+					loadPage = function() {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('message/getLastMessage', function(data) {
+							w.close();
+							$list = $('#messagelist');
+							//console.log(JSON.stringify(data));
+							$.each(data.data, function(_index, _item) {
+
+								if (!msgMap[_item.id]) {
+									msgMap[_item.id] = "1";
+									getMsgHtml(_item, $list);
+
+									//beginTime = _item.F_CreateDate;
+								}
+							});
+							mui('#pullrefresh').pullRefresh().scrollToBottom(10);
+							setTimeout(function() {
+								YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+							}, 300);
+
+							//$list = null;
+
+						}, {
+							fs_id: fid,
+							js_id: YiRu.getuserinfo().uid
+						}, w);
+					};
+					loadPage();
+				});
+
+				function getMsgHtml(item, obj, ty) {
+					//console.log(fimg);
+					var _html = '<div class="chatTime">' +
+						//($(".chatTime").length == 0 || getDifferDate($(".chatTime:first span").attr("data-time"), item.created_at,
+						//	3) > 5 ? ('<span data-time="' + item.created_at + '">' + getDateDiff(item.created_at) + '</span>') :
+						//'') +
+						'<span data-time="' + item.created_at + '">' + getDateDiff(item.created_at) + '</span>' +
+						'</div>' +
+						'<div class="' + (item.fs_id == myid ? 'me' : 'other') + '">' +
+						//'<span class="arrow"></span>' +
+						//'<img src="' + (item.fs_id == myid ? (BaseUrl + '/' + YiRu.getuserinfo().avatar) : fimg) + '" alt="">' +
+						getmsgtype(item) +
+						'</div>';
+					if (ty) {
+						obj.append(_html);
+					} else {
+						obj.prepend(_html);
+					}
+				};
+
+				function getmsgtype(item) {
+					//console.log(JSON.stringify(item));
+					var _h = '';
+					switch (item.type) {
+						case "10":
+						case "21":
+							_h = '<span class="content" data-tid="' + item.type + '" data-id="' + item.id + '">' + item.message.replace(
+								/\n/g, "<br />").replace(/ /g,
+								"&nbsp;") + '</span>';
+							break;
+						case "22":
+							_h = '<span class="content t22" style="min-width:20%;width:' + (item.notes / 60 * 100) + '%" data-tid="' + item
+								.type + '" data-id="' + item.id + '" data-src="' + item.message +
+								'">&nbsp;' + item.notes + '"</span>';
+							break;
+						case "11":
+							_h = '<span class="content" data-tid="' + item.type + '" data-id="' + item.id + '">已撤回</span>';
+							break;
+						case "23": //图片
+							_h = '<span class="content t23" data-tid="' + item.type + '" data-id="' + item.id + '" data-src="' + BaseUrl +
+								'/' + item.message +
+								'"><img src="' + BaseUrl + '/' + item.message +
+								'" /></span>';
+							break;
+						case "24": //网址
+							_h = '<span class="content t24" data-tid="' + item.type + '" data-id="' + item.id + '" data-src="' + item.message +
+								'">' + item.message +
+								'</span>';
+							break;
+						case "25": //视频
+							_h = '<span class="content t25" style="" data-tid="' + item.type + '" data-id="' + item.id +
+								'"><video style="margin:0px;padding:0px;" src="' + BaseUrl + '/' + item.message +
+								'" preload="metadata" controls width="200px" height="auto"></video></span>';
+							break;
+						case "26": //文件
+							_h = '<span class="content t26" data-tid="' + item.type + '" data-id="' + item.id + '" data-src="' + item.message +
+								'">' + item.message +
+								'</span>';
+							break;
+						case "27": //店铺
+							_h = '<span class="content t27" data-tid="' + item.type + '" data-id="' + item.id + '">' + data.data.item.message +
+								'</span>';
+							break;
+						case "28": //服务
+							_h = '<span class="content t28" data-tid="' + item.type + '" data-id="' + item.id + '">' + data.data.item.message +
+								'</span>';
+							break;
+						case "29": //订单
+							_h = '<span class="content t29" data-tid="' + item.type + '" data-id="' + item.id + '">' + data.data.item.message +
+								'</span>';
+							break;
+					}
+					return _h;
+				}
+
+			})();
+		</script>
+	</body>
+</html>

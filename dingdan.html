@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content {
+				margin-top: 2.5rem;
+			}
+
+			.top {
+				position: fixed;
+				top: 44px;
+				width: 100%;
+				z-index: 99;
+				height: 2.5rem;
+				display: table;
+				/* border-bottom:1px #cccccc solid; */
+			}
+
+			.top span {
+				display: table-cell;
+				line-height: 2.5rem;
+				height: 2.5rem;
+				text-align: center;
+				background-color: #E1EFFE;
+			}
+
+			.top span a {
+				display: block;
+				margin: 0.5rem 0.1875rem;
+				height: 1.5rem;
+				line-height: 1.5rem;
+				color: #333333;
+				border-bottom: 2px #E1EFFE solid;
+			}
+
+			.top span a.active {
+				border-bottom: 2px #1777FB solid;
+				color: #1777FB;
+				font-weight: bold;
+			}
+
+			.list {}
+
+			.list ul {
+				padding: 0.625rem 0.625rem;
+				margin-bottom: 0.25rem;
+				background-color: #ffffff;
+			}
+
+			.list ul .tit {
+				color: #999999;
+				margin-bottom: 0.3125rem;
+			}
+
+			.list ul .boy {
+				margin-bottom: 0.3125rem;
+			}
+
+			.list ul .btnlist {
+				text-align: right;
+			}
+
+			.list ul .btnlist button {
+				height: 1.875rem;
+				margin-left: 0.3125rem;
+			}
+
+			.list ul .zhuangt {
+				float: right;
+				color: #1777FB;
+			}
+
+			.list ul .img {
+				width: 20%;
+				float: left;
+				display: block;
+			}
+
+			.list ul .img img {
+				width: 17vw;
+				height: 17vw;
+				border-radius: 50%;
+			}
+
+			.list ul .txt {
+				width: 80%;
+				float: left;
+				display: block;
+				line-height: 1.25rem;
+			}
+
+			.time {
+				display: block;
+				color: #999999;
+			}
+
+			.servicename {
+				display: block;
+				width: 4.375rem;
+				height: 1.375rem;
+				line-height: 1.375rem;
+				text-align: center;
+				border-radius: 0.1875rem;
+				margin-bottom: 0.3125rem;
+			}
+
+			.ser_1 {
+				color: #1777FB;
+				border: 1px #1777FB solid;
+			}
+
+			.ser_2 {
+				color: #2AC845;
+				border: 1px #2AC845 solid;
+			}
+
+			.ser_3 {
+				color: #EC971F;
+				border: 1px #EC971F solid;
+			}
+
+			.jine {
+				float: right;
+				color: #ff6600;
+				font-size: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">我的订单</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="top" id="top">
+			<!-- 1:待受理;    2:已受理;    3:已验收;    4:已完成;    5:维权交易成功;    6:售后交易成功;    21:买家维权;    22:商家维权;    31:买家申请售后;    32:卖家申诉售后;    51:买家取消;    52:商家拒绝;    53:维权交易失败;    54:售后交易失败;    81:待评价(待评价状态只能单独传参); all为所有 -->
+			<span><a class="active" data-id="all">全部</a></span>
+			<span><a data-id="ispay">待付款</a></span>
+			<span><a data-id="1">待受理</a></span>
+			<span><a data-id="2">待验收</a></span>
+			<span><a data-id="81">待评价</a></span>
+			<span><a data-id="4">已完成</a></span>
+			<span><a data-id="5,6,21,22,31,32,51,52,53,54">售后</a></span>
+		</div>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<div class="list" id="list">
+					<ul>
+						<li class="tit"><span class="zhuangt">待付款</span>订单编号:1234567&nbsp;&nbsp;&nbsp;&nbsp;律师:</li>
+						<li class="boy">
+							<span class="img"><img src="img/lvtest.jpg" /></span>
+							<span class="txt"><span class="jine">￥98.00</span>婚姻家庭/合同文书
+								<span class="time">下单时间：132323</span>
+								<span class="time">维权时间：132323</span>
+								<span class="time">维权时间：132323</span>
+							</span>
+							<div class="cl"></div>
+						</li>
+						<li class="btnlist">
+							<button type="button" class="mui-btn">1蓝色</button>
+							<button type="button" class="mui-btn mui-btn-warning">2蓝色</button>
+							<button type="button" class="mui-btn mui-btn-warning">3蓝色</button>
+						</li>
+					</ul>
+					<ul>
+						<li class="tit"><span class="zhuangt">待付款</span>订单编号:1234567&nbsp;&nbsp;&nbsp;&nbsp;律师:</li>
+						<li class="boy">
+							<span class="img"><img src="img/lvtest.jpg" /></span>
+							<span class="txt"><span class="jine">￥98.00</span>婚姻家庭/合同文书
+								<span class="time">下单时间：132323</span>
+								<span class="time">维权时间：132323</span>
+								<span class="time">维权时间：132323</span>
+							</span>
+							<div class="cl"></div>
+						</li>
+						<li class="btnlist">
+							<button type="button" class="mui-btn">1蓝色</button>
+							<button type="button" class="mui-btn mui-btn-warning">2蓝色</button>
+							<button type="button" class="mui-btn mui-btn-warning">3蓝色</button>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false,
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: YiRu.downstyle(pulldownRefresh),
+						up: {
+							contentrefresh: '正在加载...',
+							callback: pullupRefresh
+						}
+					}
+				});
+				var loadPage, w, ws, state = {},
+					page = 1,
+					pagenum = 10,
+					pagecount = 0,
+					dType = 'all',
+					isPay = 'all',
+					ddsort = 1,
+					_id,
+					isdata = false;
+
+				function pulldownRefresh() {
+					//
+					page = 1;
+					loadPage();
+					isdata = false;
+					//
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui('#pullrefresh').pullRefresh().refresh(true);
+					$(".mui-pull-bottom-pocket .mui-pull-caption").empty();
+					mui.toast('下拉刷新成功');
+				}
+
+				function pullupRefresh() {
+
+					//var isdata = page > pagecount;
+					var allCount = pagecount / pagenum;
+					if (allCount > parseInt(allCount)) {
+						allCount = parseInt(allCount) + 1;
+					}
+					page++;
+					if (page > allCount) {
+						isdata = true;
+					}
+					//console.log(allCount);
+
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(isdata); //参数为true代表没有更多数据了。
+					if (!isdata) {
+						YiRu.getajax('order/getOrderList', function(data) {
+							var o = data.data;
+							$("#list").append(initData(o));
+						}, {
+							status: dType, //1:待受理;    2:已受理;    3:已验收;    4:已完成;    5:维权交易成功;    6:售后交易成功;    21:买家维权;    22:商家维权;    31:买家申请售后;    32:卖家申诉售后;    51:买家取消;    52:商家拒绝;    53:维权交易失败;    54:售后交易失败;    81:待评价(待评价状态只能单独传参); all为所有
+							type: '1',
+							bounty_status: isPay, //0为未付款，1为已付款，默认为1 ; all为所有
+							page: page,
+							paginate: pagenum
+						});
+					}
+				}
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+						state = YiRu.getuserinfo();
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						//$("#list").html("");
+						YiRu.getajax('order/getOrderList', function(data) {
+							w.close();
+							pagecount = data.pagecount;
+							var o = data.data;
+							$("#list").html(initData(o));
+							//console.log(JSON.stringify(data));
+							YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+						}, {
+							status: dType, //1:待受理;    2:已受理;    3:已验收;    4:已完成;    5:维权交易成功;    6:售后交易成功;    21:买家维权;    22:商家维权;    31:买家申请售后;    32:卖家申诉售后;    51:买家取消;    52:商家拒绝;    53:维权交易失败;    54:售后交易失败;    81:待评价(待评价状态只能单独传参); all为所有
+							type: '1',
+							bounty_status: isPay, //0为未付款，1为已付款，默认为1 ; all为所有
+							page: page,
+							paginate: pagenum
+						}, w);
+					};
+
+					loadPage();
+					mui('#top').on('tap', 'span a', function() {
+						// YiRu.openVW("/pages/cartoonList/cartoonList.html");
+						if (_id == this.getAttribute("data-id")) return false;
+						_id = this.getAttribute("data-id");
+						$("#top span a").removeClass("active");
+						$(this).addClass("active");
+						dType = _id;
+						isPay = "";
+						if (_id == "ispay") {
+							dType = "";
+							isPay = "0";
+						}
+						if (_id == "all") {
+							dType = "all";
+							isPay = "all";
+						}
+						page = 1;
+						isdata = false;
+						$("#list").html("");
+						console.log(dType + "/" + isPay);
+						loadPage();
+					});
+					mui('#list').on('tap', '.txt', function() {
+						// YiRu.openVW("/pages/cartoonList/cartoonList.html");
+						var oid = this.getAttribute("data-id");
+						var ogoodsid = this.getAttribute("data-goodsid");
+						//console.log(ostr);
+						YiRu.openVW("dingdan_view.html", {
+							oid: oid,
+							ogoodsid: ogoodsid
+						});
+
+					});
+					//删除订单
+					mui('#list').on('tap', '.del', function() {
+						// YiRu.openVW("/pages/cartoonList/cartoonList.html");
+						var oid = this.getAttribute("data-id");
+						mui.confirm("确认删除该订单吗？", "删除订单", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getajax('order/orderDelete', function(data) {
+									w.close();
+									mui.toast("删除成功");
+									page = 1;
+									isdata = false;
+									loadPage();
+								}, {
+									order_id: oid
+								}, w);
+							}
+						}, "div");
+					});
+					//付款
+					mui('#list').on('tap', '.fukuan', function() {
+						// YiRu.openVW("/pages/cartoonList/cartoonList.html");
+						var bounty = this.getAttribute("data-bounty"),
+							ordeyid = this.getAttribute("data-id");
+						YiRu.openVW("goumai.html", {
+							bounty: bounty,
+							ordeyid: ordeyid
+						});
+
+					});
+					//咨询联系
+					mui('#list').on('tap', '.zixun', function() {
+						YiRu.openVW("send.html", {
+							fid: this.getAttribute("data-fid"),
+							fname: this.getAttribute("data-name"),
+							fimg: BaseUrl + "/" + this.getAttribute("data-img")
+						});
+					});
+					//评价
+					mui('#list').on('tap', '.pingjia,.zhuiping', function() {
+						YiRu.openVW("pingjia.html", {
+							order_id: this.getAttribute("data-id")
+						});
+					});
+					//验收
+					mui('#list').on('tap', '.yanshou', function() {
+						mui.confirm("确认通过验收吗？", "验收服务", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getajax('order/orderAcceptCheck', function(data) {
+									w.close();
+									mui.toast("验收成功");
+									loadPage();
+									// var dd = plus.webview.getWebviewById("dingdan.html");
+									// if (dd) {
+									// 	mui.fire(dd, 'updatedata');
+									// }
+								}, {
+									order_id: this.getAttribute("data-id")
+								}, w);
+							}
+						}, "div");
+					});
+					//申诉
+					mui('#list').on('tap', '.shensu', function() {
+						var _id = this.getAttribute("data-id");
+						mui.confirm("确认申请售后吗？", "申请售后", ['确认', '取消'], function(e) {
+							if (e.index == 0) {
+								YiRu.openVW("shouhou.html", {
+									order_id: _id
+								});
+							}
+						}, "div");
+					});
+					// mui(".mui-scroll-wrapper").scroll({
+					// 	bounce: true, //滚动条是否有弹力默认是true
+					// 	indicators: false, //是否显示滚动条,默认是true
+					// });
+					document.addEventListener('updatedata', function(tab) {
+						loadPage();
+					});
+				});
+
+
+				function initData(o) {
+					var _html = '';
+					if (o.length > 0) {
+						for (var i = 0; i < o.length; i++) {
+							//console.log(JSON.stringify(o[i]).replace(/"/g, "&quot;"));
+							_html += '<ul>' +
+								'<li class="tit"><span class="zhuangt">' + getOrderStatus(o[i].bounty_status == 0 ? 0 : parseInt(o[i].status)) +
+								'</span>订单编号:' + o[i].id +
+								'&nbsp;&nbsp;&nbsp;&nbsp;律师:' + o[i].sell_authname +
+								'</li>' +
+								'<li class="boy">' +
+								'<span class="img"><img src="' + BaseUrl + '/' + o[i].sell_avatar + '" /></span>' +
+								'<span class="txt" data-goodsid="' + o[i].goods_id + '" data-id="' + o[i].id + '"><span class="jine">￥' + o[i]
+								.bounty + '</span>' +
+								'<span class="servicename ser_' + o[i].service_type + '">' + o[i].servicename + '</span>' +
+								o[i].title + '' +
+								(o[i].wait_accept_at ? ('<span class="time">付款时间：' + o[i].wait_accept_at + '</span>') : (
+									'<span class="time">下单时间：' +
+									o[i].created_at + '</span>')) +
+								//'<span class="time">服务天数：' + o[i].days + '天</span>' +
+								//(o[i].already_accept_at ? '<span class="time">受理时间：' + o[i].already_accept_at + '</span>' : '') +
+								//(o[i].check_accept_at ? '<span class="time">验收时间：' + o[i].check_accept_at + '</span>' : '') +
+								//(o[i].finish_at ? '<span class="time">完成时间：' + o[i].finish_at + '</span>' : '') +
+								//(o[i].finish_rights_at ? '<span class="time">维权交易成功：' + o[i].finish_rights_at + '</span>' : '') +
+								//(o[i].finish_service_at ? '<span class="time">售后交易成功：' + o[i].finish_service_at + '</span>' : '') +
+								//(o[i].cancel_buy_at ? '<span class="time">买家取消：' + o[i].cancel_buy_at + '</span>' : '') +
+								//(o[i].cancel_sell_at ? '<span class="time">商家拒绝：' + o[i].cancel_sell_at + '</span>' : '') +
+								//(o[i].rights_at ? '<span class="time">维权开始：' + o[i].rights_at + '</span>' : '') +
+								//(o[i].rights_end_at ? '<span class="time">维权结束：' + o[i].rights_end_at + '</span>' : '') +
+								//(o[i].service_at ? '<span class="time">售后开始：' + o[i].service_at + '</span>' : '') +
+								//(o[i].service_end_at ? '<span class="time">售后结束：' + o[i].service_end_at + '</span>' : '') +
+								'</span>' +
+								'<div class="cl"></div>' +
+								'</li>' +
+								'<li class="btnlist">' +
+								//未付款,删除,付款按钮
+								(o[i].bounty_status == 0 ? ('<button type="button" class="mui-btn del" data-id="' + o[i].id +
+									'">删除</button><button type="button" class="mui-btn mui-btn-success fukuan" data-id="' + o[i].id +
+									'" data-bounty="' + o[i].bounty + '">付款</button>') : '') +
+								//待受理,申诉按钮
+								//(o[i].status == 1 ? ('') : '') +
+								//3.已验收;4.已完成,评价按钮
+								(o[i].status == 3 || o[i].status == 4 ? (
+									'<button type="button" class="mui-btn mui-btn-warning pingjia" data-id="' + o[i].id +
+									'">评价</button><button type="button" class="mui-btn mui-btn-warning zhuiping" data-id="' + o[i].id +
+									'">追评</button>'
+								) : '') +
+								//已经完成,联系按钮
+								//(o[i].status == 4 ? ('') : '') +
+								//已受理,咨询,待验收按钮
+								(o[i].status == 2 ? (
+									'<button type="button" class="mui-btn mui-btn-warning yanshou" data-id="' + o[i].id + '">验收</button>') : '') +
+								//待受理,待验收,已验收三个阶段显示申诉
+								((o[i].status == 1 || o[i].status == 2 || o[i].status == 3) && o[i].bounty_status == 1 ?
+									'<button type="button" class="mui-btn mui-btn-warning shensu" data-id="' + o[i].id + '">申诉</button>' : '') +
+								'<button type="button" class="mui-btn mui-btn-warning zixun" data-img="' + o[i].sell_avatar + '" data-name="' +
+								o[i].sell_authname + '" data-fid="' + o[i].sell_uid + '">咨询</button>' +
+								'</li>' +
+								'</ul>';
+						}
+					}
+					return _html;
+				}
+
+				function getOrderStatus(s) {
+					var _s = "";
+					switch (s) {
+						case 0:
+							_s = "未付款";
+							break;
+						case 1:
+							_s = "待受理";
+							break;
+						case 2:
+							_s = "已受理";
+							break;
+						case 3:
+							_s = "已验收";
+							break;
+						case 4:
+							_s = "已完成";
+							break;
+						case 5:
+							_s = "维权交易成功";
+							break;
+						case 6:
+							_s = "售后交易成功";
+							break;
+						case 21:
+							_s = "买家维权";
+							break;
+						case 22:
+							_s = "商家维权";
+							break;
+						case 31:
+							_s = "买家申请售后";
+							break;
+						case 32:
+							_s = "卖家申诉售后";
+							break;
+						case 51:
+							_s = "买家取消";
+							break;
+						case 52:
+							_s = "商家拒绝";
+							break;
+						case 53:
+							_s = "维权交易失败";
+							break;
+						case 54:
+							_s = "售后交易失败";
+							break;
+					}
+					return _s;
+				}
+			})();
+		</script>
+	</body>
+</html>

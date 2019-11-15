@@ -1,0 +1,1571 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content {
+				margin-bottom: 3.125rem;
+			}
+
+			.bottom {
+				position: fixed;
+				bottom: 0rem;
+				left: 0rem;
+				right: 0rem;
+				padding: 0px 3.125rem 0rem 3.125rem;
+				background-color: #f3f3f3;
+				height: 3.125rem;
+				border-top: 1px #cccccc solid;
+			}
+
+			.bottom .jiahao,
+			.bottom .jianpan,
+			.bottom .mkf,
+			.bottom .fasong {
+				position: absolute;
+				margin-top: 0.5rem;
+				height: 2rem;
+				width: 2rem;
+				border: 0px #999999 solid;
+				border-radius: 50%;
+				text-align: center;
+				top: 0rem;
+			}
+
+			.mui-content_xuan {
+				/* margin-bottom: 18.75rem; */
+				margin-bottom: 12.5rem;
+			}
+
+			.bottom_xuan {
+				bottom: 9.375rem;
+			}
+
+			.bottom .mkf {
+				left: 0.625rem;
+				display: none;
+			}
+
+			.bottom .jianpan {
+				left: 0.625rem;
+			}
+
+			.bottom .fasong {
+				display: none;
+			}
+
+			.bottom .jiahao,
+			.bottom .fasong {
+				right: 0.625rem;
+			}
+
+			.bottom .fasong span {
+				line-height: 2rem;
+				border-radius: 0.3125rem;
+				background-color: #1777FB;
+				color: #ffffff;
+				height: 2rem;
+				display: block;
+				font-size: 0.75rem;
+				text-align: center;
+			}
+
+			.bottom .fasong span:active {
+				opacity: 0.7;
+			}
+
+			.bottom .mkf i,
+			.bottom .jianpan i,
+			.bottom .jiahao i {
+				font-size: 1.75rem;
+				line-height: 2rem;
+				width: 2rem;
+				height: 2rem;
+				color: #333333;
+				border: 1px #333333 solid;
+				border-radius: 50%;
+			}
+
+			.bottom .jiahao i {
+				-webkit-text-stroke: 4px #f3f3f3;
+			}
+
+			.bottom .jianpan i {
+				font-size: 1rem;
+			}
+
+			.bottom .mkf i {
+				transform:rotate(45deg);
+				font-size:1.375rem;
+				-webkit-text-stroke: 1px #f3f3f3;
+			}
+
+			input[type=text].sendmes {
+				height: 2rem;
+				margin-top: 0.5rem;
+				padding: 5px;
+				border: 0px #999999 solid;
+			}
+
+			.sendyuyin {
+				height: 2rem;
+				margin-top: 0.5rem;
+				padding: 5px;
+				border: 0px #999999 solid;
+				width: 100%;
+				color: #999999;
+				background-color: #ffffff;
+				text-align: center;
+				border-radius: 0.1875rem;
+			}
+
+			.sendyuyin:after {
+				content: '按住说话';
+			}
+
+			.sendyuyin:active {
+				background-color: #cccccc;
+			}
+
+			.sendyuyin:active:after {
+				content: '松开保存';
+			}
+
+			.txt {
+				display: none;
+			}
+
+			.yr-chat-page {
+				position: relative;
+				width: 100%;
+				height: 100%;
+
+				padding-bottom: 2.6875rem;
+			}
+
+			.yr-chat-page .yr-chat-input {
+				position: absolute;
+				width: 100%;
+				height: 2.6875rem;
+				left: 0;
+				bottom: 0;
+				background: #EFEFEF;
+				padding: 0.3125rem;
+				padding-right: 4rem;
+			}
+
+			.yr-chat-page .yr-chat-input input {
+				margin: 0;
+				border: 0;
+				outline: 0;
+				position: relative;
+				width: 100%;
+				height: 100%;
+				line-height: 2.5rem;
+				padding: 0.3125rem;
+			}
+
+			.yr-chat-page .yr-chat-input button {
+				position: absolute;
+				top: 0.3125rem;
+				right: 0.3125rem;
+			}
+
+			.yr-chat-page .yr-chat-msgcontent {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+
+			.yr-chat-msgcontent-list {
+				position: relative;
+				width: 100%;
+				margin: 0;
+				padding-top: 0.625rem;
+			}
+
+			.yr-chat-page .chatTime {
+				position: relative;
+				font-size: 0.75rem;
+				color: #FFFFFF;
+				text-align: center;
+				margin-bottom: 1.25rem;
+			}
+
+			.yr-chat-page .chatTime span {
+				background: #cccccc;
+				border-radius: 0.1875rem;
+				padding: 1px 0.625rem;
+				color: #ffffff;
+			}
+
+
+			.yr-chat-page .other,
+			.yr-chat-page .me {
+				margin-bottom: 1.25rem;
+				overflow: hidden;
+				position: relative;
+			}
+
+			.yr-chat-page .other .arrow,
+			.yr-chat-page .me .arrow {
+				position: absolute;
+				width: 0;
+				height: 0;
+				display: inline-block;
+				border: 0.625rem solid transparent;
+			}
+
+			.yr-chat-page .other img,
+			.yr-chat-page .me img {
+				width: 1.875rem;
+				height: 1.875rem;
+				border-radius: 0.1875rem;
+				display: inline-block;
+				vertical-align: middle;
+			}
+
+			.yr-chat-page .other .content,
+			.yr-chat-page .me .content {
+				max-width: 72%;
+				background: #FDFDFD;
+				border-radius: 0.1875rem;
+				font-size: 0.875rem;
+				color: #666666;
+				padding: 0.375rem 0.625rem;
+				word-break: break-all;
+				text-align: justify;
+			}
+
+			.yr-chat-page .me .content {
+				background: #7db7ff;
+				color: #000000;
+			}
+
+			.yr-chat-page .other {
+				padding-left: 0.625rem;
+			}
+
+			.yr-chat-page .other .arrow {
+				left: 2.375rem;
+				top: 0.25rem;
+				border-right-color: #fff;
+			}
+
+			.yr-chat-page .other>* {
+				float: left;
+			}
+
+			.yr-chat-page .other img {
+				margin-right: 0.875rem;
+			}
+
+			.yr-chat-page .me {
+				padding-right: 0.625rem;
+			}
+
+			.yr-chat-page .me .arrow {
+				right: 2.375rem;
+				top: 0.25rem;
+				border-left-color: #7db7ff;
+			}
+
+			.yr-chat-page .me>* {
+				float: right;
+			}
+
+			.yr-chat-page .me img {
+				margin-left: 0.875rem;
+			}
+
+			.yr-chat-page .me .t23,
+			.yr-chat-page .other .t23 {
+				width: 50%;
+				padding: 0.375rem 0.375rem;
+			}
+
+			.yr-chat-page .me .t23 img {
+				display: block;
+				width: auto;
+				max-width: 100%;
+				height: auto;
+				margin-left: 0rem;
+			}
+
+			.yr-chat-page .me .t26 i,
+			.yr-chat-page .other .t26 i {
+				color: #FFFF00;
+				text-shadow: 1px 1px 0px #0062CC;
+				font-size: 1.125rem;
+			}
+
+			.luyinlogo {
+				position: fixed;
+				top: 70vh;
+				width: 100%;
+				text-align: center;
+				z-index: 99;
+				display: none;
+			}
+
+			.luyinlogo div {
+				background-color: rgba(255, 255, 255, 0.5);
+				display: inline-block;
+				padding: 0.625rem;
+				border-radius: 0.625rem;
+				width: 6.25rem;
+			}
+
+			.luyinlogo i {
+				font-size: 3.125rem;
+			}
+
+			.xuan {
+				position: fixed;
+				height: 9.375rem;
+				bottom: 0px;
+				width: 100%;
+				display: none;
+				background-color: #f3f3f3;
+				border-top: 1px #eeeeee solid;
+				z-index: 5;
+			}
+
+			.xuan ul {
+				/* padding-top: 0.625rem; */
+			}
+
+			.xuan ul li {
+				width: 25%;
+				float: left;
+				text-align: center;
+				padding-top: 0.625rem;
+			}
+
+			.xuan ul li i {
+				display: inline-block;
+				width: 11vw;
+				height: 11vw;
+				background-color: #ffffff;
+				border-radius: 0.625rem;
+			}
+
+			.xuan ul li i:before {
+				color: #333333;
+				font-size: 1.25rem;
+				line-height: 10vw;
+				text-align: center;
+			}
+
+			.xuan ul li span {
+				display: block;
+				height: 1.25rem;
+				line-height: 1.25rem;
+				color: #999999;
+				font-size: 0.75rem;
+			}
+
+			.xuan ul li:active {
+				opacity: 0.5;
+			}
+
+			.mui-popover {
+				position: fixed;
+				bottom: 10vh;
+				left: 10vw;
+				right: 10vw;
+				width: 80vw;
+				height: 80vh;
+				/* top:20%;
+				left: 1.25rem;
+				right:1.25rem;
+				bottom:0rem;
+				height: auto; */
+			}
+
+			.wenjian {
+				bottom: 0;
+				left: 0;
+				right: 0;
+				top: 0;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			.wenjian_top {
+				border-bottom: 1px #cccccc solid;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				padding: 0rem 0.625rem;
+			}
+
+			.wenjian_top span {
+				display: none;
+				padding: 0rem 0.625rem;
+				line-height: 2.5rem;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.wenjian_bottom {
+				position: absolute;
+				bottom: 0rem;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				background-color: #1777FB;
+				color: #ffffff;
+				width: 100%;
+				padding: 0rem 0.625rem;
+			}
+
+			.wenjian_bottom button {
+				height: 1.5rem;
+				line-height: 1.5rem;
+				padding: 0rem 0.625rem;
+				margin-top: 0.5rem;
+			}
+
+			/*lable标签的大小、位置、背景颜色更改，在css选择时，“+”代表相邻元素，即当前元素的下一元素*/
+			.wenjian .filecheck+label {
+				display: block;
+				width: 1.25rem;
+				height: 1.25rem;
+				border-radius: 0.1875rem;
+				border: 1px #1777FB solid;
+				position: absolute;
+				top: 0.125rem;
+				right: 0rem;
+				/* background: rgba(240, 84, 77, 1); */
+				;
+			}
+
+			.wenjian ul li u {
+				position: relative;
+				margin-left: 0.625rem;
+			}
+
+			/*当input框为选中状态时，lable标签的样式，其中在css选择时，“：”表示当前input框的值，即checked；
+      该部分主要对显示的“对号”的大限居中方式，显示颜色进行了设置*/
+			.wenjian .filecheck:checked+label::before {
+				display: block;
+				content: "\2714";
+				text-align: center;
+				vertical-align: middle;
+				font-size: 1rem;
+				color: #1777FB;
+			}
+
+			.wenjian input[type=checkbox] {
+				visibility: hidden;
+			}
+
+			.editcyy {
+				bottom: 20vh;
+				left: 30vw;
+				right: 30vw;
+				width: 40vw;
+				height: auto;
+			}
+
+			.changyongyu {
+				overflow: hidden;
+			}
+
+			.changyongyu li {
+				height: 3.125rem;
+				line-height: 3.125rem;
+				border-bottom: 1px #cccccc dotted;
+				overflow: hidden;
+				padding: 0px 0.625rem;
+			}
+
+			.changyongyu li:active {
+				background-color: #eeeeee;
+			}
+
+			.popovername {
+				height: 2.5rem;
+				line-height: 2.5rem;
+				background-color: #ffffff;
+				padding-left: 0.625rem;
+			}
+
+			.mui-popup-input input {
+				height: 1.875rem;
+				line-height: 1.875rem;
+				border: 1px #cccccc solid;
+			}
+
+			.mui-btn-outlined {
+				color: #ffffff;
+			}
+
+			.lujinbtn {
+				border: 1px #ffffff solid;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">律师堂</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll" id="mui-scroll">
+				<div class="yr-chat-page">
+					<div class="yr-chat-msgcontent" id="yr_chat_msgcontent">
+						<div class="yr-chat-msgcontent-list" id="messagelist">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="bottom" id="bottom">
+			<div class="mkf" id="mkf"><i class="fa fa-feed"></i></div>
+			<div class="jianpan" id="jianpan"><i class="fa fa-braille"></i></div>
+			<div class="txt" id="txt"><input class="sendmes" type="text" name="sendmes" id="sendmes" placeholder="请输入文字" /></div>
+			<div class="yuyin" id="yuyin">
+				<div class="sendyuyin" id="sendyuyin"></div>
+			</div>
+			<div class="jiahao" id="jiahao"><i class="fa fa-plus"></i></div>
+			<div class="fasong" id="fasong"><span>发送</span></div>
+		</div>
+		<div class="luyinlogo" id="luyinlogo">
+			<div>
+				<i class="fa fa-microphone"></i>
+			</div>
+		</div>
+		<div class="xuan" id="xuan">
+			<ul>
+				<li data-id="1"><i class="fa fa-comments"></i><span>常用语</span></li>
+				<li data-id="2"><i class="fa fa-picture-o"></i><span>图片</span></li>
+				<li data-id="3"><i class="fa fa-video-camera"></i><span>录像</span></li>
+				<li data-id="4"><i class="fa fa-file"></i><span>发文件</span></li>
+				<li data-id="5"><i class="fa fa-gift"></i><span>服务</span></li>
+				<li data-id="6"><i class="fa fa-history"></i><span>历史记录</span></li>
+				<li data-id="7"><i class="fa fa-shopping-bag"></i><span>店铺</span></li>
+				<li data-id="8"><i class="fa fa-address-card-o"></i><span>律师</span></li>
+			</ul>
+		</div>
+		<!-- 弹出框 常用语 -->
+		<div id="popover" class="mui-popover" style="<!-- border-radius: 0rem;box-shadow: 0 0 0px rgba(0,0,0,0); -->">
+			<div class="popovername" id="popovername">常用语</div>
+			<div class="mui-scroll-wrapper-popover" style="margin-top:2.5rem">
+				<div class="mui-scroll-popover" id="popoverbox">
+					<ul class="changyongyu" id="changyongyu">
+						<li>沙发沙发沙发</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 弹出框 常用语 -->
+		<!-- 常用语修改按钮 -->
+		<div id="editcyy" class="mui-popover editcyy">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" data-id="1"><a>置顶/取消</a></li>
+				<li class="mui-table-view-cell" data-id="2"><a>删除</a></li>
+				<li class="mui-table-view-cell" data-id="3"><a>修改</a></li>
+				<li class="mui-table-view-cell" data-id="4"><a>添加</a></li>
+			</ul>
+		</div>
+		<!-- 常用语修改按钮 -->
+		<!-- 信息撤回和复制 -->
+		<div id="chehui" class="mui-popover editcyy" style="bottom:30vh;">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" data-id="1"><a>撤回</a></li>
+				<li class="mui-table-view-cell" data-id="2"><a>复制</a></li>
+			</ul>
+		</div>
+		<!-- 信息撤回和复制 -->
+		<!-- 文件选择 -->
+		<div id="wenjian" class="mui-popover wenjian">
+			<div class="wenjian_top"><span id="lujin"></span>请选择文件</div>
+			<div id="wenjianpop" class="mui-scroll-wrapper-popover" style="margin:2.5rem 0;">
+				<div class="mui-scroll-popover" id="wenjianbox">
+					<ul class="mui-table-view" style="max-height: none;">
+					</ul>
+				</div>
+			</div>
+			<div class="wenjian_bottom">
+				<button type="button" class="mui-btn lujinbtn" data-id="1">律师堂</button>
+				<button type="button" class="mui-btn lujinbtn mui-btn-outlined" data-id="2">系统文件</button>
+				<button type="button" id="lujinfanhui" class="mui-btn mui-pull-right"><i class="fa fa-arrow-left"></i></button>
+				<!-- <button type="button" id="fileclose" class="mui-btn mui-pull-right"><i class="fa fa-times"></i></button> -->
+				<button type="button" id="filefasong" class="mui-btn mui-btn-warning mui-pull-right" style="margin-right: 1.25rem;">选择</button>
+			</div>
+		</div>
+		<!-- 文件选择 -->
+		<!-- 律师服务 -->
+		<div id="fuwu" class="mui-popover fuwu">
+			<div class="mui-scroll-wrapper-popover" style="">
+				<div class="mui-scroll-popover">
+					<ul class="mui-table-view" id="fuwubox" style="max-height: none;">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 律师服务 -->
+		<!-- 店铺 -->
+		<div id="dianpu" class="mui-popover dianpu">
+			<div class="mui-scroll-wrapper-popover" style="">
+				<div class="mui-scroll-popover">
+					<ul class="mui-table-view" id="dianpubox" style="max-height: none;">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 店铺 -->
+		<!-- 店铺服务 -->
+		<div id="dianpufuwu" class="mui-popover dianpufuwu">
+			<div class="mui-scroll-wrapper-popover" style="">
+				<div class="mui-scroll-popover">
+					<ul class="mui-table-view" id="dianpufuwubox" style="max-height: none;">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 店铺服务 -->
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false,
+					gestureConfig: {
+						longtap: true, //默认为false  
+						hold: true, //默认为false，不监听  
+						release: true //默认为false，不监听  
+					},
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: YiRu.downstyle(pulldownRefresh)
+					}
+				});
+				var loadPage, w, ws, state = {},
+					page = 1,
+					paginate = 20,
+					maxid = 0,
+					isan = false,
+					fid, fname, ftype, fimg, mid, myid, sendpar = {},
+					luyin = null,
+					bofang = null,
+					cyy_id,
+					cyy_desc,
+					cyy_top,
+					cyy_type,
+					changanid,
+					changanstr,
+					mrpath = 1,
+					dingshi = null;
+				var $list = $('#messagelist');
+				var msgMap = {};
+				var beginTime = "1988-01-01 00:00:00";
+				var endTime = "1988-01-01 00:00:00";
+				var originalHeight = document.documentElement.clientHeight || document.body.clientHeight;
+
+				function pulldownRefresh() {
+
+					w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+					YiRu.getajax('message/getMessageList', function(data) {
+						w.close();
+						$list = $('#messagelist');
+						if (data.data) {
+							page++;
+							mui.toast('下拉刷新成功');
+						} else {
+							mui.toast('没有更多信息啦');
+						}
+						console.log(JSON.stringify(data) + "/" + page);
+						$.each(data.data, function(_index, _item) {
+
+							if (!msgMap[_item.id]) {
+								msgMap[_item.id] = "1";
+								getMsgHtml(_item, $list);
+								//$list.prepend(_html);
+								//beginTime = _item.F_CreateDate;
+							}
+						});
+						//mui('#pullrefresh').pullRefresh().scrollToBottom();
+						//$list = null;
+
+					}, {
+						fs_id: fid,
+						maxid: maxid,
+						page: page,
+						paginate: paginate
+					}, w);
+
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+
+
+				}
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					fid = ws.fid;
+					fname = ws.fname;
+					ftype = ws.ftype;
+					//mid = ws.mid;
+					fimg = ws.fimg;
+					myid = YiRu.getuserinfo().uid;
+					//mrpath = "_downloads";
+					//mrpath = YiRu.ios() ? "/Library" : "/sdcard";
+					resendpar();
+					luyin = plus.audio.getRecorder();
+					bofang = plus.audio.createPlayer({});
+					//console.log(JSON.stringify(YiRu.getuserinfo()));
+					$("#title").html(fname);
+					loadPage = function(lunxun) {
+						if (!lunxun) {
+							w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						}
+						YiRu.getajax('message/getLastMessage', function(data) {
+							w.close();
+							$list = $('#messagelist');
+							//console.log(JSON.stringify(data));
+							if (data.data.length > 0) {
+								maxid = data.data[data.data.length - 1].id;
+							}
+							$.each(data.data, function(_index, _item) {
+
+								if (!msgMap[_item.id]) {
+									msgMap[_item.id] = "1";
+									getMsgHtml(_item, $list);
+									//beginTime = _item.F_CreateDate;
+								}
+							});
+							if (!lunxun) {
+								YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+								mui('#pullrefresh').pullRefresh().scrollToBottom(10);
+							}
+
+							//$list = null;
+
+						}, {
+							fs_id: fid,
+							js_id: YiRu.getuserinfo().uid
+						}, w);
+					};
+					loadPage();
+					dingshi = setInterval(function() {
+						loadPage(true);
+					}, 1000);
+					setTimeout(function() {
+						mui.fire(plus.webview.getWebviewById("message.html"), 'updatedata', {
+							zxcount: null
+						});
+					}, 2000);
+					mui('#messagelist').on('tap', 'video', function(e) {
+						this.play();
+					});
+					mui('#bottom').on('tap', '#mkf', function(e) {
+						$("#mkf").hide();
+						$("#jianpan").show();
+						$("#txt").hide();
+						$("#yuyin").show();
+					});
+					mui('#bottom').on('tap', '#jianpan', function(e) {
+						$("#mkf").show();
+						$("#jianpan").hide();
+						$("#txt").show();
+						$("#yuyin").hide();
+					});
+					mui('#bottom').on('tap', '#jiahao', function(e) {
+						getxuan();
+					});
+					$("#sendmes").focus(function() {
+						$("#fasong").show();
+						$("#jiahao").hide();
+						$("#bottom").css("padding-right","6.25rem");
+						$("#fasong").css("width","4rem");
+						rexuan();
+					});
+					$("#sendmes").blur(function() {
+						$("#fasong").hide();
+						$("#jiahao").show();
+						$("#bottom").css("padding-right","3.125rem");
+						$("#fasong").css("width","2rem");
+
+					});
+					mui('#bottom').on('tap', '#fasong', function(e) {
+						var message = $("#sendmes").val();
+						if (message == "" || message == null || !message) {
+							return false;
+						}
+						$("#sendmes").blur();
+						sendpar.message = message;
+						sendpar.md5 = getmsgmd5();
+						sendpar.type = 21;
+						sendpar.title = "普通信息";
+						sendmsg(sendpar, function(data) {
+							fillhtml(data);
+						});
+						//
+
+						//
+
+					});
+					//点击开始录音说话
+					mui('#bottom').on('longtap', '#sendyuyin', function(e) {
+						console.log("111");
+						$("#luyinlogo").show();
+						luyin.record({
+							filename: "_downloads/audio/",
+							format: "mp3"
+						}, function(recordFile) {
+							w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+							console.log(recordFile);
+							YiRu.getupfile(recordFile, function(data) {
+
+								//获取音频长度
+								plus.io.getAudioInfo({
+									filePath: recordFile,
+									success: function(d) {
+										if (d.duration < 0.5) return false;
+										delFile(recordFile);
+										sendpar.message = data.data.url;
+										sendpar.md5 = getmsgmd5();
+										sendpar.type = 22;
+										sendpar.files_name = data.data.name;
+										sendpar.files_size = data.data.size;
+										sendpar.localid = recordFile;
+										sendpar.title = "语音信息";
+										sendpar.notes = parseInt(d.duration < 1 ? 1 : d.duration);
+										sendmsg(sendpar, function(data) {
+											console.log(JSON.stringify(data));
+											fillhtml(data);
+										});
+
+									},
+									fail: function(e) {
+										//console.log(JSON.stringify(e));
+										//delFile(recordFile);
+									},
+									complete: function(e) {
+										//console.log(JSON.stringify(e));
+										delFile(recordFile);
+									}
+								});
+
+							}, {
+								type: 1
+							}, w);
+						}, function(e) {
+							mui.toast("小失误，" + JSON.stringify(e));
+						});
+						isan = true;
+					});
+					//松开录音说话
+					mui('#bottom').on('release', '#sendyuyin', function(e) {
+						if (isan) {
+							//console.log("222");
+							$("#luyinlogo").hide();
+							luyin.stop();
+							isan = false;
+							rexuan();
+						}
+					});
+
+					//长按常用语
+					mui('#popover').on('longtap', '#changyongyu li', function(e) {
+
+						cyy_id = this.getAttribute("data-id");
+						cyy_top = this.getAttribute("data-top");
+						cyy_type = this.getAttribute("data-type");
+						cyy_desc = $(this).html();
+						//console.log(cyy_id);
+						mui('#editcyy').popover('toggle');
+						//console.log("444");
+					});
+					mui('#editcyy').on('tap', 'ul li', function(e) {
+						var _id = this.getAttribute("data-id");
+						//置顶
+						if (_id == 1) {
+							YiRu.getajax('message/setMessagePop', function(data) {
+								YiRu.RemoveItem('message/getMessagePop' + YiRu.getuserinfo().uid);
+								getChangYongYu(function() {
+									mui.toast(cyy_top == 99 ? '取消置顶成功' : '置顶成功');
+									mui('#editcyy').popover('toggle');
+									mui('#popover').popover('toggle');
+								});
+
+							}, {
+								cate_id: cyy_type,
+								pop_id: cyy_id,
+								top: cyy_top == 99 ? 1 : 99
+							}, null);
+						}
+						//删除
+						if (_id == 2) {
+							YiRu.getajax('message/setMessagePopDel', function(data) {
+								YiRu.RemoveItem('message/getMessagePop' + YiRu.getuserinfo().uid);
+								getChangYongYu(function() {
+									mui.toast('删除成功');
+									mui('#editcyy').popover('toggle');
+									mui('#popover').popover('toggle');
+								});
+							}, {
+								pop_id: cyy_id
+							}, null);
+						}
+						//修改
+						if (_id == 3) {
+							mui('#editcyy').popover('toggle');
+							mui.prompt('请输入常用语', cyy_desc, '修改常用语', ['修改', '取消'], function(e) {
+								if (e.index == 0) {
+									YiRu.getajax('message/setMessagePop', function(data) {
+										YiRu.RemoveItem('message/getMessagePop' + YiRu.getuserinfo().uid);
+										getChangYongYu(function() {
+											mui.toast('修改成功');
+											//mui('#editcyy').popover('toggle');
+											mui('#popover').popover('toggle');
+										});
+
+									}, {
+										cate_id: cyy_type,
+										pop_id: cyy_id,
+										desc: e.value
+									}, null);
+								} else {
+									//mui('#editcyy').popover('toggle');
+									mui('#popover').popover('toggle');
+								}
+								//console.log(JSON.stringify(e));
+							}, 'div');
+							document.querySelector('.mui-popup-input input').value = cyy_desc;
+						}
+						//添加
+						if (_id == 4) {
+							mui.prompt('请输入常用语', '请输入您要添加的常用语', '添加常用语', ['添加', '取消'], function(e) {
+								if (e.value == "" || e.value == null) {
+									mui.toast("请输入您要添加的常用语");
+									return false;
+								}
+								if (e.index == 0) {
+									YiRu.getajax('message/setMessagePop', function(data) {
+										YiRu.RemoveItem('message/getMessagePop' + YiRu.getuserinfo().uid);
+										getChangYongYu(function() {
+											mui.toast('添加成功');
+											mui('#editcyy').popover('toggle');
+											mui('#popover').popover('toggle');
+										});
+
+									}, {
+										cate_id: '4',
+										desc: e.value
+									}, null);
+								} else {
+									mui('#editcyy').popover('toggle');
+									mui('#popover').popover('toggle');
+								}
+								//console.log(JSON.stringify(e));
+							}, 'div');
+						}
+						//mui('#editcyy').popover('toggle');
+						//console.log("444");
+					});
+
+					//点击常用语
+					mui('#popover').on('tap', '#changyongyu li', function(e) {
+						cyy_id = this.getAttribute("data-id");
+						cyy_top = this.getAttribute("data-top");
+						cyy_type = this.getAttribute("data-type");
+						sendpar.message = $(this).html();
+						sendpar.md5 = getmsgmd5();
+						sendpar.type = 21;
+						sendpar.title = "普通信息";
+						sendmsg(sendpar, function(data) {
+							fillhtml(data);
+						});
+						mui('#popover').popover('toggle');
+						mui('#pullrefresh').pullRefresh().setStopped(false); //开启上拉和下拉刷新
+						//增加点击数
+						YiRu.getajax('message/setMessagePop', function(data) {
+							//
+						}, {
+							pop_id: cyy_id,
+							num: 1
+						}, null);
+					});
+					//点击消息
+					mui('#messagelist').on('tap', '.content', function(e) {
+						var _tid = this.getAttribute("data-tid");
+						var _id = this.getAttribute("data-id");
+						var _src = this.getAttribute("data-src");
+						var _filename = this.getAttribute("data-filename");
+						if (bofang != null) {
+							bofang.stop();
+						}
+						if (_tid == 22) { //语音
+							bofang.setStyles({
+								src: BaseUrl + "/" + _src
+							});
+							bofang.play();
+						}
+						if (_tid == 26) { //文件
+							w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+							YiRu.getFileUrl(BaseUrl + "/" + _src, function(_file) {
+								w.close();
+								plus.runtime.openFile(_file, {}, function(e) {
+									mui.toast(e.message + _src);
+								});
+							}, null, _filename);
+						}
+					});
+					//长按信息
+					mui('#messagelist').on('longtap', '.content', function(e) {
+						changanid = this.getAttribute("data-id");
+						//var _tid = this.getAttribute("data-tid");
+						changanstr = $(this);
+						mui('#chehui').popover('toggle');
+					});
+					mui('#chehui').on('tap', 'ul li', function(e) {
+						mui('#chehui').popover('toggle');
+						var _id = this.getAttribute("data-id");
+						//置顶
+						if (_id == 1) {
+							YiRu.getajax('message/setMessageBack', function(data) {
+								changanstr.html("已撤回")
+								mui.toast("撤回成功");
+							}, {
+								message_id: changanid
+							}, null);
+						}
+						//删除
+						if (_id == 2) {
+							YiRu.copyclip(changanstr.html());
+						}
+
+					});
+					mui('#xuan').on('tap', 'ul li', function(e) {
+						var _id = this.getAttribute("data-id");
+						//获取常用语
+						if (_id == 1) {
+							getChangYongYu(function() {
+								mui('#pullrefresh').pullRefresh().setStopped(true); //暂时禁止上拉和下拉刷新
+								mui('#popover').popover('toggle');
+
+							});
+						}
+						//选择图片,发送图片
+						if (_id == 2) {
+							showActionSheet(function(imgs) {
+								//imgstr += imgs.data.url + ",";
+								console.log(JSON.stringify(imgs));
+
+								sendpar.message = imgs.data.url;
+								sendpar.md5 = getmsgmd5();
+								sendpar.type = 23;
+								sendpar.files_name = imgs.data.name;
+								sendpar.files_size = imgs.data.size;
+								sendpar.localid = '';
+								sendpar.title = "发送图片";
+								sendpar.notes = '';
+								sendmsg(sendpar, function(data) {
+									console.log(JSON.stringify(data));
+									fillhtml(data);
+								});
+
+							}, {
+								type: 1
+							}, 0);
+						}
+						//拍视频
+						if (_id == 3) {
+							var cmr = plus.camera.getCamera();
+							var res = cmr.supportedVideoResolutions[0];
+							var fmt = cmr.supportedVideoFormats[0];
+							console.log(JSON.stringify(cmr.supportedVideoResolutions));
+							console.log(JSON.stringify(cmr.supportedVideoFormats));
+							cmr.startVideoCapture(function(path) {
+								console.log(path);
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getupfile(path, function(data) {
+									console.log(JSON.stringify(data));
+									sendpar.message = data.data.url;
+									sendpar.md5 = getmsgmd5();
+									sendpar.type = 25;
+									sendpar.files_name = data.data.name;
+									sendpar.files_size = data.data.size;
+									sendpar.localid = '';
+									sendpar.title = "发送视频";
+									sendpar.notes = '';
+									sendmsg(sendpar, function(data) {
+										console.log(JSON.stringify(data));
+										fillhtml(data);
+									});
+
+								}, {
+									type: 1
+								}, w);
+							}, function(e) {
+								console.log(JSON.stringify(e));
+							}, {
+								filename: '_doc/camera/',
+								format: fmt,
+								index: '1',
+								videoMaximumDuration: 30,
+								resolution: '1280*720', //分辨率
+							});
+						}
+						//选择文件
+						if (_id == 4) {
+							getFilelist();
+						}
+						//选择服务
+						if (_id == 5) {
+							w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+							YiRu.getajax('shop/getGoodsList', function(data) {
+								w.close();
+								var _htm = '';
+								if (data.data.length > 0) {
+									for (var i = 0; i < data.data.length; i++) {
+										_htm += '<li class="mui-table-view-cell" data-id="' + data.data[i].id + '" data-type="' + data.data[i]
+											.id + '" data-top="' +
+											data.data[
+												i].id + '">' + data.data[i].name +
+											'</li>';
+									}
+								} else {
+									_htm += '<li class="mui-table-view-cell">暂无服务</li>'
+								}
+
+								$("#fuwubox").html(_htm);
+								//console.log(JSON.stringify(data));
+								//return callback();
+
+							}, {
+								goods_uid: YiRu.getuserinfo().uid
+							}, w, 'post', {
+								key: YiRu.getuserinfo().uid,
+								num: 0
+							});
+							mui('#fuwu').popover('toggle');
+						}
+						//获取历史记录
+						if (_id == 6) {
+							mui.confirm("确认要获取所有历史聊天记录吗？", "获取历史聊天记录", ['确认', '取消'], function(e) {
+								if (e.index == 0) {
+									w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+									YiRu.getajax('message/getMessageAll', function(data) {
+										w.close();
+										//console.log(JSON.stringify(data));
+										mui.toast("获取成功");
+										$.each(data.data, function(_index, _item) {
+
+											if (!msgMap[_item.id]) {
+												msgMap[_item.id] = "1";
+												//var _html = getMsgHtml(_item);
+												getMsgHtml(_item, $list);
+												//$list.prepend(_html);
+												//beginTime = _item.F_CreateDate;
+											}
+										});
+										//loadPage();
+
+									}, {
+										fs_id: fid
+									}, w);
+								}
+							}, "div");
+						}
+						//选择在线店铺
+						if (_id == 7) {
+							getonlindianpu(function(data) {
+								console.log(JSON.stringify(data));
+								for (var i in data.data) {
+
+								}
+
+							});
+							mui('#dianpu').popover('toggle');
+						}
+						//选择在线店铺服务
+						if (_id == 8) {
+							getonlindianpu(function(data) {
+								console.log(JSON.stringify(data));
+								for (var i in data.data) {
+
+								}
+
+							});
+							mui('#dianpufuwu').popover('toggle');
+						}
+						rexuan();
+					});
+					//点击发送服务
+					mui('#fuwubox').on('tap', 'li', function(e) {
+
+					});
+
+					mui('#wenjianbox').on('tap', 'ul li', function(e) {
+						var _path = this.getAttribute("data-path"),
+							_file = this.getAttribute("data-file"),
+							_dir = this.getAttribute("data-dir");
+						if (_file == 'true') {
+							//console.log(_path);
+						}
+						if (_dir == 'true') {
+							getFilelist(_path);
+							$("#lujin").html(_path);
+						}
+
+					});
+					mui('#wenjian').on('tap', '#lujinfanhui', function(e) {
+						var _path = $("#lujin").html();
+						var _fpath = _path.substr(0, _path.lastIndexOf('/'));
+						var _jdpath = plus.io.convertLocalFileSystemURL("_downloads");
+						_jdpath = _jdpath.substr(0, _jdpath.lastIndexOf('/'));
+						var _p = YiRu.ios() ? "/Library" : "/sdcard";
+						if (_path != _p && _path != _jdpath && _path != '_downloads') {
+							getFilelist(_fpath);
+							$("#lujin").html(_fpath);
+						}
+					});
+					mui('#wenjian').on('tap', '#fileclose', function(e) {
+						mui('#wenjian').popover('toggle');
+					});
+					mui('#wenjian').on('tap', '.lujinbtn', function(e) {
+						$(".lujinbtn").addClass("mui-btn-outlined");
+						$(this).removeClass("mui-btn-outlined");
+						mrpath = this.getAttribute("data-id");
+						getFilelist(null, true);
+					});
+
+					mui('#wenjian').on('tap', '#filefasong', function(e) {
+						var fileobj = $("#wenjianbox input[type='checkbox']:checked");
+						if (fileobj.length > 9) {
+							mui.toast("每次最多只能选择9个文件");
+							return false;
+						}
+						if (fileobj.length == 0) {
+							mui.toast("没有选择任何文件");
+							return false;
+						} else {
+							fileobj.each(function(i, item) {
+								console.log($(this).val());
+								var _filepath = $(this).val();
+								w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+								YiRu.getupfile(_filepath, function(data) {
+
+									sendpar.message = data.data.url;
+									sendpar.md5 = getmsgmd5();
+									sendpar.type = 26;
+									sendpar.files_name = data.data.name;
+									sendpar.files_size = data.data.size;
+									sendpar.localid = _filepath;
+									sendpar.title = "文件";
+									sendpar.notes = '';
+									sendmsg(sendpar, function(data) {
+										console.log(JSON.stringify(data));
+										fillhtml(data);
+									});
+
+								}, {
+									type: 1
+								}, w);
+
+							});
+							mui('#wenjian').popover('toggle');
+							mui('#pullrefresh').pullRefresh().setStopped(false);
+						}
+
+					});
+
+					function getFilelist(path, m) {
+						var thispath = "_downloads";
+						if (mrpath == 2) {
+							thispath = YiRu.ios() ? "/Library" : "/sdcard";
+						}
+						plus.io.resolveLocalFileSystemURL(!!path ? path : thispath, function(entry) {
+							var Reader = entry.createReader();
+							Reader.readEntries(function(entrys) {
+								var _html = '';
+								entrys.sort(function(a, b) {
+									if (a.isFile === b.isFile) { //如果id相同，按照age的降序
+										var textA = a.name.toUpperCase();
+										var textB = b.name.toUpperCase();
+										return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+									} else {
+										return a.isFile - b.isFile
+									}
+								});
+								for (var i in entrys) {
+									//console.log(entrys[i].name + "/" + entrys[i].fullPath);
+									if (entrys[i].name.substr(0, 1) != ".") {
+										_html += '<li class="mui-table-view-cell" data-path="' + entrys[i].fullPath + '"' +
+											'data-file="' + entrys[i].isFile + '" data-dir="' + entrys[i].isDirectory + '">' +
+											'<a>' + (entrys[i].isFile ? '<u class="mui-pull-right"><input id="check_' + i +
+												'" class="filecheck" type="checkbox" name="check" value="' + entrys[i].fullPath +
+												'" /><label  for="check_' + i + '"></label ></u>' : '') +
+											'<i class="fa fa-fw ' + (entrys[i].isFile ? 'fa-file-o' : '') + (entrys[i].isDirectory ?
+												'fa-folder-open-o' : '') + '">' +
+											'</i>' + entrys[i].name + '</a></li>';
+									}
+								}
+								$("#wenjianbox ul").html(_html);
+								mui('#wenjianpop').scroll().scrollTo(0, 0, 100);
+
+								if (!path && !m) {
+									mui('#wenjian').popover('toggle');
+									mui('#pullrefresh').pullRefresh().setStopped(true);
+								}
+								//if (m) {
+								$("#lujin").html(!!path ? path : thispath);
+								//}
+
+							}, function(e) {
+								mui.toast(e.message);
+							});
+						}, function(e) {
+							mui.toast("Request file system failed: " + e.message);
+						});
+					}
+
+					function getmsgmd5() {
+						return CryptoJS.MD5(sendpar.js_id + sendpar.fs_id + sendpar.message + Date.parse(new Date())).toString()
+					}
+
+					function resendpar() {
+						sendpar = {
+							js_id: fid,
+							fs_id: myid,
+							message: '',
+							type: 21,
+							md5: '', //CryptoJS.MD5(fid + myid + message + Date.parse(new Date())).toString(),
+							localid: '',
+							notes: '',
+							files_name: '',
+							files_size: '',
+							json: '',
+							title: '普通信息'
+						};
+					}
+					//发送完消息之后填充信息记录
+					function fillhtml(data) {
+						$.each(data.data, function(_index, _item) {
+
+							if (!msgMap[_item.id]) {
+								msgMap[_item.id] = "1";
+								getMsgHtml(_item, $list, true);
+
+								//beginTime = _item.F_CreateDate;
+							}
+						});
+						resendpar();
+						$("#sendmes").val("");
+						mui('#pullrefresh').pullRefresh().scrollToBottom(10);
+					}
+
+					function sendmsg(sendjson, callback) {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('message/sendMessage', function(data) {
+							w.close();
+							return callback(data);
+						}, sendjson, w);
+					}
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					//点击加号屏幕上移
+					function getxuan() {
+						//console.log("1111");
+						if ($("#xuan").is(":hidden")) {
+							$("#pullrefresh").addClass("mui-content_xuan");
+							$("#bottom").addClass("bottom_xuan");
+							//mui('#pullrefresh').pullRefresh().scrollToBottom();
+							$("#xuan").show();
+							var aaa = mui('#pullrefresh').pullRefresh();
+							//aaa.reLayout();
+							aaa.scrollToBottom(10);
+							// mui('.mui-scroll-wrapper').scroll().reLayout();
+							// mui('.mui-scroll-wrapper').scroll().scrollToBottom(100);
+						} else {
+							rexuan();
+						}
+					}
+
+					//恢复屏幕
+					function rexuan() {
+						$("#pullrefresh").removeClass("mui-content_xuan");
+						$("#bottom").removeClass("bottom_xuan");
+						$("#xuan").hide();
+					}
+					//获取在线店铺
+					function getonlindianpu(callback) {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('shop/getShopListOnline', function(data) {
+							w.close();
+							return callback(data);
+						}, {}, w);
+					}
+					var oldback = mui.back;
+					mui.back = function() {
+						//console.log(JSON.stringify(dingshi));
+						mui('#pullrefresh').pullRefresh().setStopped(false);
+						if (dingshi != null) {
+							clearInterval(dingshi);
+						}
+						oldback();
+					}
+				});
+
+				function getMsgHtml(item, obj, ty) {
+					//console.log(fimg);
+					var _html = '<div class="chatTime">' +
+						//($(".chatTime").length == 0 || getDifferDate($(".chatTime:first span").attr("data-time"), item.created_at,
+						//	3) > 5 ? ('<span data-time="' + item.created_at + '">' + getDateDiff(item.created_at) + '</span>') :
+						//'') +
+						'<span data-time="' + item.created_at + '">' + getDateDiff(item.created_at) + '</span>' +
+						'</div>' +
+						'<div class="' + (item.fs_id == myid ? 'me' : 'other') + '">' +
+						'<span class="arrow"></span>' +
+						'<img src="' + (item.fs_id == myid ? (BaseUrl + '/' + YiRu.getuserinfo().avatar) : fimg) + '" alt="">' +
+						getmsgtype(item) +
+						'</div>';
+					if (ty) {
+						obj.append(_html);
+					} else {
+						obj.prepend(_html);
+					}
+				};
+
+				function getmsgtype(item) {
+					//console.log(JSON.stringify(item));
+					var _h = '';
+					switch (item.type) {
+						case "10":
+						case "21":
+							_h = '<span class="content" data-tid="' + item.type + '" data-id="' + item.id + '">' + item.message.replace(
+								/\n/g, "<br />").replace(/ /g,
+								"&nbsp;") + '</span>';
+							break;
+						case "22":
+							_h = '<span class="content t22" style="min-width:20%;width:' + (item.notes / 60 * 100) + '%" data-tid="' +
+								item
+								.type + '" data-id="' + item.id + '" data-src="' + item.message +
+								'">&nbsp;' + item.notes + '"</span>';
+							break;
+						case "11":
+							_h = '<span class="content" data-tid="' + item.type + '" data-id="' + item.id + '">已撤回</span>';
+							break;
+						case "23": //图片
+							_h = '<span class="content t23" data-tid="' + item.type + '" data-id="' + item.id + '" data-src="' + BaseUrl +
+								'/' + item.message +
+								'"><img src="' + BaseUrl + '/' + item.message +
+								'" /></span>';
+							break;
+						case "24": //网址
+							_h = '<span class="content t24" data-tid="' + item.type + '" data-id="' + item.id + '" data-src="' + item.message +
+								'">' + item.message +
+								'</span>';
+							break;
+						case "25": //视频
+							_h = '<span class="content t25" style="" data-tid="' + item.type + '" data-id="' + item.id +
+								'"><video style="margin:0px;padding:0px;" src="' + BaseUrl + '/' + item.message +
+								'" preload="metadata" controls width="200px" height="auto"></video></span>';
+							break;
+						case "26": //文件
+							_h = '<span class="content t26" data-tid="' + item.type + '" data-id="' + item.id + '" data-src="' + item.message +
+								'" data-filename="' + item.files_name + '"><i class="fa fa-fw ' + getfiletype(item.files_name) + '"></i>' +
+								item.files_name +
+								'</span>';
+							break;
+						case "27": //店铺
+							_h = '<span class="content t27" data-tid="' + item.type + '" data-id="' + item.id + '">' + data.data.item.message +
+								'</span>';
+							break;
+						case "28": //服务
+							_h = '<span class="content t28" data-tid="' + item.type + '" data-id="' + item.id + '">' + data.data.item.message +
+								'</span>';
+							break;
+						case "29": //订单
+							_h = '<span class="content t29" data-tid="' + item.type + '" data-id="' + item.id + '">' + data.data.item.message +
+								'</span>';
+							break;
+					}
+					return _h;
+				}
+
+				function getChangYongYu(callback) {
+					w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+					YiRu.getajax('message/getMessagePop', function(data) {
+						w.close();
+						var _htm = '<ul class="changyongyu" id="changyongyu">';
+						if (data.data.length > 0) {
+							for (var i = 0; i < data.data.length; i++) {
+								_htm += '<li data-id="' + data.data[i].id + '" data-type="' + data.data[i].type + '" data-top="' + data.data[
+										i].top + '">' + data.data[i].desc +
+									'</li>';
+							}
+						} else {
+							_htm += '暂无常用语'
+						}
+						_htm += '</ul>';
+						$("#popoverbox").html(_htm);
+						$("#popovername").html('常用语');
+						//console.log(JSON.stringify(data));
+						return callback();
+
+					}, {}, w, 'post', {
+						key: YiRu.getuserinfo().uid,
+						num: 1440
+					});
+				}
+
+				function getfiletype(name) {
+					_name = name.substr(name.lastIndexOf('.'), name.length);
+					//console.log(_name);
+					switch (_name) {
+						case '.jpg':
+						case '.png':
+						case '.gif':
+						case '.bmp':
+						case '.tiff':
+							return 'fa-file-image-o';
+						case '.txt':
+							return 'fa-file-text-o';
+						case '.xls':
+						case '.xlsx':
+							return 'fa-file-excel-o';
+						case '.pdf':
+							return 'fa-file-pdf-o';
+						case '.ppt':
+						case '.pps':
+						case '.pot':
+						case '.ppa':
+							return 'fa-file-powerpoint-o';
+						case '.doc':
+						case '.docx':
+							return 'fa-file-word-o';
+						case '.rar':
+						case '.zip':
+						case '.arj':
+						case '.z':
+							return 'fa-file-archive-o';
+						default:
+							return 'fa-file-o';
+					}
+
+				}
+				mui('.mui-scroll-wrapper-popover').scroll({
+					bounce: true, //滚动条是否有弹力默认是true
+					indicators: false, //是否显示滚动条,默认是true
+				});
+			})();
+		</script>
+	</body>
+</html>

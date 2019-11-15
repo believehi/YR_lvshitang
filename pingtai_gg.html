@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.transparent1 {
+				margin-top: 2.75rem;
+			}
+			.mui-badge {
+				background: transparent;
+			}
+			.back {
+				position: fixed;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				background: rgba(0,0,0, 0.4);
+				z-index: 99;
+				display: none;
+			}
+			.details {
+				display: none;
+				position: fixed;
+				z-index: 99;
+				background: #fff;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 90%;
+				padding: 0 0.625rem 0.5rem;
+				border-radius: 0.625rem;
+			}
+			.queding,
+			.details p {
+				border-bottom: 0.125rem solid #003499;
+				line-height: 3rem;
+				text-align: center;
+				color: #003499;
+				font-weight: 600;
+				font-size: 1rem;
+			}
+			.queding {
+				background: #003499;
+				color: #fff;
+				line-height: 2.375rem;
+			}
+			
+			.de-mian {
+				min-height: 6.25rem;
+				max-height: 20rem;
+				overflow: auto;
+				margin: 0.5rem 0 0.5rem;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">平台公告</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="transparent1">
+			<ul class="mui-table-view" id="pt_detailse">
+				<li class="mui-table-view-cell" id="shuoming">
+					<a class="mui-navigate-right"><i class="fa fa-bandcamp fa-fw"></i>&nbsp;&nbsp;律师成分说明<span class="mui-badge">收入提现</span></a>
+				</li>
+				<li class="mui-table-view-cell" id="baozhang">
+					<a class="mui-navigate-right"><i class="fa fa-money fa-fw"></i>&nbsp;&nbsp;交易保障规则</a>
+				</li>
+				<li class="mui-table-view-cell" id="renzheng">
+					<a class="mui-navigate-right"><i class="fa fa-info-circle fa-fw"></i>&nbsp;&nbsp;律师认证协议</a>
+				</li>
+				<li class="mui-table-view-cell" id="userXy">
+					<a class="mui-navigate-right"><i class="fa fa-user-circle fa-fw"></i>&nbsp;&nbsp;用户登录协议</a>
+				</li>
+				<li class="mui-table-view-cell" id="jieshao">
+					<a class="mui-navigate-right"><i class="fa fa-book fa-fw"></i>&nbsp;&nbsp;律师堂介绍</a>
+				</li>
+			</ul>
+		</div>
+		<!-- 信息弹窗 -->
+		<div class="back"></div>
+		<!-- 律师成分说明 -->
+		<div class="details shuoming">
+			<p>律师成分说明</p>
+			<div class="de-mian">
+				律师成分说明律师成分说明律师成分说明律师成分说明律师成
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说明律师成分说
+				明律师成分说明律师成分说明律师成分说明律师成分说明
+			</div>
+			<div class="queding">确定</div>
+		</div>
+		<!-- 交易保障规则 -->
+		<div class="details baozhang">
+			<p>交易保障规则</p>
+			<div class="de-mian">
+				交易保障规则
+			</div>
+			<div class="queding">确定</div>
+		</div>
+		<!-- 律师认证协议 -->
+		<div class="details renzheng">
+			<p>律师认证协议</p>
+			<div class="de-mian">
+				律师认证协议
+			</div>
+			<div class="queding">确定</div>
+		</div>
+		<!-- 用户登录协议 -->
+		<div class="details userXy">
+			<p>用户登录协议</p>
+			<div class="de-mian">
+				用户登录协议
+			</div>
+			<div class="queding">确定</div>
+		</div>
+		<!-- 律师堂介绍 -->
+		<div class="details jieshao">
+			<p>律师堂介绍</p>
+			<div class="de-mian">
+				律师堂介绍
+			</div>
+			<div class="queding">确定</div>
+		</div>
+		
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					
+				});
+					mui('body').on('tap', '#pt_detailse li', function() {
+						var dataClass = this.getAttribute('id');
+						$("." + dataClass).show();
+						$(".back").show();
+					});
+					mui('body').on('tap', '.queding', function() {
+						$(".back").hide();
+						$(".details").hide();
+					});
+			})();
+		</script>
+	</body>
+</html>

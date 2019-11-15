@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.mui-content {
+				/* height: 100%; */
+			}
+
+			.bar {
+				width: 100%;
+			}
+
+			.bar img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+
+			.btn_1_box {
+				background-color: #ffffff;
+				padding: 0.625rem 0.625rem 0rem 0.625rem;
+				margin-bottom: 0.625rem;
+				display: none;
+			}
+
+			.btn_1 {
+				width: 25%;
+				height: 4.375rem;
+				display: block;
+				float: left;
+				/* background: #0062CC; */
+				text-align: center;
+				margin-bottom: 0.625rem;
+				color: #555555;
+			}
+
+			.btn_1 span {
+				display: block;
+			}
+
+			.btn_1 .btn_img {
+				background-position: center center;
+				border-radius: 50%;
+				overflow: hidden;
+				width: 2.8125rem;
+				height: 2.8125rem;
+				border: 0px #000000 solid;
+				margin: auto;
+			}
+
+			.btn_1 .btn_txt {
+				height: 1.25rem;
+				line-height: 1.25rem;
+				font-size: 0.75rem;
+			}
+
+			/* .btn_1:nth-child(2) .btn_img {
+				background-position-x: -64px;
+			}
+
+			.btn_1:nth-child(3) .btn_img {
+				background-position-x: -128px;
+			}
+
+			.btn_1:nth-child(4) .btn_img {
+				background-position-x: -192px;
+			}
+
+			.btn_1:nth-child(5) .btn_img {
+				background-position-y: -66px;
+			}
+
+			.btn_1:nth-child(6) .btn_img {
+				background-position-x: -66px;
+				background-position-y: -66px;
+			}
+
+			.btn_1:nth-child(7) .btn_img {
+				background-position-x: -128px;
+				background-position-y: -66px;
+			}
+
+			.btn_1:nth-child(8) .btn_img {
+				background-position-x: -192px;
+				background-position-y: -66px;
+			} */
+
+			.btn_zx {
+				margin-bottom: 0.625rem;
+				background-color: #FFFFFF;
+				/* background-image: url(img/btn_zx.png);
+				background-repeat: no-repeat;
+				background-position: 95% center;
+				background-size: auto 80%; */
+				height: 6.25rem;
+			}
+
+			.btn_zx button {
+				float: right;
+				margin-right: 0.625rem;
+				margin-top: 1.875rem;
+			}
+
+			.btn_zx:active,
+			.btn_dx:active,
+			.btn_dgs:active {
+				opacity: 0.7;
+			}
+
+			.btn_zx_a {
+				font-size: 1.125rem;
+				display: block;
+				padding: 1.875rem 0 0 0.625rem;
+			}
+
+			.btn_zx_a b {
+				color: #007AFF;
+			}
+
+			.btn_zx_b {
+				display: block;
+				padding-left: 0.625rem;
+				color: #999999;
+			}
+
+			.btn_dx,
+			.btn_dgs {
+				width: 49%;
+				float: left;
+				padding: 0.625rem;
+				margin-bottom: 0.625rem;
+				background-color: #ffffff;
+				background: url(img/btn_3.png) #ffffff no-repeat;
+				background-size: 32%;
+
+			}
+
+			.btn_dx {
+				margin-right: 1%;
+				background-position: 0rem -5.3125rem;
+				padding-left: 14%;
+			}
+
+			.btn_dgs {
+				margin-left: 1%;
+				background-position: 0.3125rem 0.9375rem;
+				padding-left: 17%;
+			}
+
+			.btn_dx_a,
+			.btn_dgs_a {
+				display: block;
+				font-size: 1rem;
+				line-height: 1.25rem;
+				margin-top: 0.625rem;
+			}
+
+			.btn_dx_b,
+			.btn_dgs_b {
+				font-size: 0.75rem;
+				color: #999999;
+			}
+
+			.jptitle {
+				background: url(img/jp.png) no-repeat 0.625rem center;
+				background-size: 4%;
+				font-size: 1rem;
+				background-color: #ffffff;
+				height: 2.5rem;
+				line-height: 2.5rem;
+				padding-left: 1.875rem;
+				margin-bottom: 0.3125rem;
+			}
+
+			.lvshibox {
+				padding: 0rem;
+			}
+
+			.lvshibox a {
+				width: 50vw;
+				height: 60vw;
+				display: block;
+				overflow: hidden;
+				float: left;
+				color: #555555;
+				margin: 0.3125rem 0rem;
+			}
+
+			.lvshi_img {
+				margin: 0rem 0.3125rem;
+				position: relative;
+				overflow: hidden;
+				display: block;
+			}
+
+			.lvshi_img img {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.lvshi_img .diqu {
+				position: absolute;
+				left: 0.3125rem;
+				bottom: 0.3125rem;
+				color: #ffffff;
+				text-shadow: 1px 1px 1px #000000;
+
+			}
+
+			.lvshi_img .tips {
+				opacity: 0.7;
+				position: absolute;
+				left: 0.3125rem;
+				top: 0.3125rem;
+				color: #ffffff;
+				display: block;
+				font-size: 0.75rem;
+				line-height: 0.9375rem;
+				text-shadow: 1px 1px 1px #000000;
+			}
+
+			.lvshi_img .tips i {
+				margin-right: 0.3125rem;
+			}
+
+			.lvshi_txt {
+				height: 2.5rem;
+				line-height: 2.5rem;
+				background-color: #ffffff;
+				display: block;
+				margin: 0rem 0.3125rem;
+				padding: 0px 0.3125rem;
+				font-size: 1rem;
+				overflow: hidden;
+			}
+
+			.lvshi_txt i {
+				float: right;
+				font-size: 1.25rem;
+				margin-top: 0.5rem;
+				color: #2e82ff;
+			}
+
+			.lvshi_txt u {
+				color: #f3ad4c;
+				margin-right: 0.3125rem;
+				font-weight: bold;
+				float: right;
+			}
+
+			.lvshi_txt u b {
+				font-size: 0.75rem;
+				font-weight: normal;
+			}
+
+			.lvshi_txt span {
+				font-size: 0.75rem;
+				color: #999999;
+				display: none;
+			}
+
+			.swiper-container {
+				margin: 0 auto;
+				position: relative;
+				overflow: hidden;
+				z-index: 1;
+				background-color: #fff;
+				height: 100%;
+			}
+
+			.swiper-wrapper {
+				position: relative;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-transition-property: -webkit-transform;
+				-moz-transition-property: -moz-transform;
+				-o-transition-property: -o-transform;
+				-ms-transition-property: -ms-transform;
+				transition-property: transform;
+				-webkit-box-sizing: content-box;
+				-moz-box-sizing: content-box;
+				box-sizing: content-box;
+			}
+
+			.swiper-wrapper {
+				-webkit-transform: translate3d(0px, 0, 0);
+				-moz-transform: translate3d(0px, 0, 0);
+				-o-transform: translate(0px, 0px);
+				-ms-transform: translate3d(0px, 0, 0);
+				transform: translate3d(0px, 0, 0);
+			}
+
+			.swiper-slide {
+				-webkit-flex-shrink: 0;
+				-ms-flex: 0 0 auto;
+				flex-shrink: 0;
+				width: 100%;
+				height: 100%;
+				position: relative;
+			}
+
+			.swiper-slide a {
+				display: block;
+				height: 100%;
+			}
+
+			.swiper-container img {
+				width: 100%;
+				height: 100%;
+				display: block;
+			}
+
+			.swiper-pagination {
+				position: absolute;
+				text-align: center;
+				-webkit-transition: 300ms;
+				-moz-transition: 300ms;
+				-o-transition: 300ms;
+				transition: 300ms;
+				-webkit-transform: translate3d(0, 0, 0);
+				-ms-transform: translate3d(0, 0, 0);
+				-o-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				z-index: 10;
+			}
+
+			.swiper-container-horizontal>.swiper-pagination-bullets {
+				bottom: 10px;
+				left: 0;
+				width: 100%;
+			}
+
+			.swiper-pagination-bullet {
+				width: 8px;
+				height: 8px;
+				margin: 1px 4px;
+				display: inline-block;
+				border-radius: 100%;
+				border: 1px #ffffff solid;
+				opacity: 0.7;
+			}
+
+			.swiper-pagination-bullet-active {
+				background: #ffffff;
+			}
+
+			.mui-popover {
+				/* bottom: 20%;
+				left: 10vw;
+				right: 10vw;
+				height: auto; */
+			}
+		</style>
+	</head>
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<!-- <div class="bar">
+					<img src="img/bar1.jpg" />
+				</div> -->
+				<div id="swiperBox">
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+						</div>
+						<div class="swiper-pagination"></div>
+					</div>
+				</div>
+				<div class="btn_1_box" id="btn_1_box">
+					<!-- <a class="btn_1" data-name="家庭婚姻" data-id="1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">家庭婚姻</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">劳动纠纷</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">交通事故</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">合同纠纷</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">法律顾问</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">消费权益</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">刑事犯罪</span>
+					</a>
+					<a class="btn_1">
+						<span class="btn_img"></span>
+						<span class="btn_txt">全部专业</span>
+					</a>
+					<div class="cl"></div> -->
+				</div>
+				<div class="btn_zx">
+					<button type="button" id="btn_zx" alltxt="快速咨询,005" class="mui-btn mui-btn-warning allclick">立即咨询</button>
+					<span class="btn_zx_a">有<b>法律问题</b>需要咨询？</span>
+					<span class="btn_zx_b">一分钟接通律师 98%用户选择</span>
+				</div>
+				<div class="btn_dx allclick" alltxt="文书代写,006" id="btn_dx">
+					<span class="btn_dx_a">文书代写</span>
+					<span class="btn_dx_b">协议／诉讼／合同</span>
+				</div>
+				<div class="btn_dgs allclick" alltxt="我要打官司,007" id="btn_dgs">
+					<span class="btn_dgs_a">我要打官司</span>
+					<span class="btn_dgs_b">委托律师起诉·出庭</span>
+				</div>
+				<div class="cl"></div>
+				<div class="jptitle">金牌律师</div>
+				<div class="lvshibox" id="lvshibox">
+					<!-- <a>
+						<span class="lvshi_img"><span class="tips"><i class="fa fa-bar-chart"></i>2784人咨询过</span><img src="img/lvtest.jpg" /></span>
+						<span class="lvshi_txt"><i class="fa fa-comments-o"></i><u>￥268<b>/天</b></u>刘力红<span>律师</span></span>
+					</a>
+					<a>
+						<span class="lvshi_img"><span class="tips"><i class="fa fa-bar-chart"></i>2784人咨询过</span><img src="img/lvtest.jpg" /></span>
+						<span class="lvshi_txt"><i class="fa fa-comments-o"></i><u>￥638<b>/天</b></u>刘力红<span>律师</span></span>
+					</a>
+					<a>
+						<span class="lvshi_img"><span class="tips"><i class="fa fa-bar-chart"></i>2784人咨询过</span><img src="img/lvtest.jpg" /></span>
+						<span class="lvshi_txt"><i class="fa fa-comments-o"></i><u>￥1684<b>/天</b></u>刘力红<span>律师</span></span>
+					</a>
+					<a>
+						<span class="lvshi_img"><span class="tips"><i class="fa fa-bar-chart"></i>2784人咨询过</span><img src="img/lvtest.jpg" /></span>
+						<span class="lvshi_txt"><i class="fa fa-comments-o"></i><u>￥68<b>/天</b></u>刘力红<span>律师</span></span>
+					</a> -->
+				</div>
+				<div class="cl"></div>
+			</div>
+		</div>
+		<!-- 弹出分类框 -->
+		<div id="popover" class="mui-popover">
+			<ul class="fenleilist" id="fenleilist">
+			</ul>
+		</div>
+		<!-- 弹出分类框 -->
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/swiper.min.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false,
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: YiRu.downstyle(pulldownRefresh)
+					}
+				});
+				var loadPage, w, ws, state = {},
+					isdown = 0;
+
+				function pulldownRefresh() {
+					//
+					isdown = 1;
+					loadPage();
+					//
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui.toast('下拉刷新成功');
+				}
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+					loadPage = function() {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						//获取首页banner
+						YiRu.getajax('common/getAppMainBanner', function(databar) {
+							w.close();
+							var barlist = databar.data;
+							var swiperBox = $('#swiperBox');
+							if (barlist.length > 0) {
+								var _html = "";
+								for (var i = 0; i < barlist.length; i++) {
+									_html += "<div class=\"swiper-slide\"><a class=\"bar-href allclick\" alltxt=\"首页BANNER," + barlist[i].link +
+										"\" data-id=\"" + barlist[i].link +
+										"\"><img src=\"" + BaseUrl +
+										'/' + barlist[i].pic + "\" width=\"100%\" height=\"100%\" /></a></div>";
+								}
+								$(".swiper-wrapper").html(_html);
+								if (isdown == 0) {
+									swiper = new Swiper('.swiper-container', {
+										pagination: '.swiper-pagination',
+										autoplay: 4000,
+										speed: 500,
+										loop: true
+									});
+								} else {
+									swiper.init();
+								}
+								swiperBox.height(swiperBox.outerWidth() / 2);
+								swiperBox.show();
+							} else {
+								swiperBox.hide();
+							}
+
+						}, {}, w, 'post', {
+							key: '1',
+							num: CaCheNum
+						});
+						//获取分类
+						GetTagsData(function(datafl) {
+							console.log(JSON.stringify(datafl));
+							var fl = datafl;
+							if (fl) {
+								if (fl.length > 0) {
+									var html = "";
+									//' + BaseUrl + '/' + fl[i].ico + '
+									for (var i = 0; i < fl.length; i++) {
+										if (i < 8) {
+											html += '<a class="btn_1" data-id="' + fl[i].id + '" data-name="' + fl[i].name + '">' +
+												'<span class="btn_img" style="background: url(' + BaseUrl + '/' + fl[i].ico + ') no-repeat;background-size:cover;"></span>' +
+												'<span class="btn_txt">' + fl[i].name + '</span>' +
+												'</a>';
+										}
+									}
+									$("#btn_1_box").html(html + '<div class="cl"></div>');
+									$("#btn_1_box").show();
+								}
+							}
+						});
+						///////////////////////////////////////////////////////////
+						//获取首页金牌律师
+						YiRu.getajax('shop/getShopListMain', function(data) {
+							//w.close();
+							var list = data.data;
+							if (list.length > 0) {
+								var html = "";
+								for (var i = 0; i < list.length; i++) { //avatar //shop_picmax
+									html += '<a class="allclick" alltxt="首页金牌律师' + list[i].shop_name + ',' + list[i].id + '" data-id="' +
+										list[i].id + '">' +
+										'<span class="lvshi_img">' +
+										'<span class="tips"><i class="fa fa-bar-chart"></i>' +
+										'' + list[i].shopzxrs + '人咨询过</span><span class="diqu">' + list[i].provincename + '.' + list[i].cityname +
+										'</span><img src="' + BaseUrl + '/' + list[i].shop_picmax +
+										'" /></span>' +
+										'<span class="lvshi_txt">' +
+										'<i class="fa fa-comments-o"></i><u>￥' + list[i].minprice + '<b>/天</b></u>' + list[i].shop_name +
+										'<span>律师</span></span>' +
+										'</a>';
+								}
+								$("#lvshibox").html(html);
+							}
+
+							//console.log(JSON.stringify(data));
+						}, {
+							paginate: 12,
+							page: 1,
+							province: '',
+							city: '',
+							tag: '',
+							keywords: '',
+							sort: 1, //排序：1://默认综合	2://女商家	3://男商家	4://经验优先	5://价格由高到低 6://价格由低到高
+							order: 'DESC'
+						}, null, 'post', {
+							key: '1',
+							num: CaCheNum
+						});
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+						/////////////////////////////
+
+					};
+					loadPage();
+					// setTimeout(function() {
+					// 	loadPage();
+					// }, 300);
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					mui('body').on('tap', '#btn_zx', function(e) {
+						if (YiRu.getuserinfo().type == 2) {
+							mui.toast("律师不能发起快速咨询");
+							return false;
+						}
+						YiRu.openVW("lijizixun.html");
+					});
+					mui('#swiperBox').on('tap', '.bar-href', function(e) {
+						var _id = this.getAttribute("data-id");
+						if (_id == "") {
+							return false;
+						}
+						YiRu.openVW("dianpu.html", {
+							shopid: _id
+						});
+					});
+					mui('#lvshibox').on('tap', 'a', function(e) {
+						var _id = this.getAttribute("data-id");
+						if (_id == "") {
+							return false;
+						}
+						YiRu.openVW("dianpu.html", {
+							shopid: _id
+						});
+					});
+
+					mui('#btn_1_box').on('tap', '.btn_1', function(e) {
+						mui.fire(plus.webview.getLaunchWebview(), 'pageActive', {
+							newUrl: 'lvshi.html'
+						});
+						mui.fire(plus.webview.getWebviewById('lvshi.html'), 'search', {
+							tag: this.getAttribute("data-id"),
+							tagname: this.getAttribute("data-name")
+						});
+					});
+					mui('body').on('tap', '#btn_dx', function(e) {
+						mui.fire(plus.webview.getLaunchWebview(), 'pageActive', {
+							newUrl: 'lvshi.html'
+						});
+						mui.fire(plus.webview.getWebviewById('lvshi.html'), 'search', {
+							tag: 13,
+							tagname: '法律顾问'
+						});
+					});
+					mui('#popover').on('tap', 'ul li a', function(e) {
+						var _id = this.getAttribute("data-id");
+						//var _name = this.getAttribute("data-name");
+						mui('#popover').popover('toggle', document.getElementById("btn_dgs"));
+						GetToXiaoEr(_id, function(data) {
+							console.log(JSON.stringify(data));
+							YiRu.openVW("send.html", {
+								fid: data.data[0].js_id,
+								fname: data.data[0].title,
+								ftype: '3',
+								//ftype: '3',
+								//mid: '12',
+								fimg: BaseUrl + '/' + (data.data[0].avatar ? data.data[0].avatar :
+									'images/public/avatar/message_gsgw4.png')
+							});
+						});
+					});
+
+					mui('body').on('tap', '#btn_dgs', function(e) {
+						if (YiRu.getuserinfo().type == 2) {
+							mui.toast("律师不能提交");
+							return false;
+						}
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						GetTagsData(function(data) {
+							w.close();
+							var fl = data;
+							if (fl.length > 0) {
+								var html = "";
+								for (var i = 0; i < fl.length; i++) {
+									html += '<li class=""><a data-id="' + fl[i].id + '" data-name="' + fl[i].name + '">' +
+										'<img src="' + BaseUrl + '/' + fl[i].ico + '" />' + fl[i].name + '</a></li>';
+								}
+								$("#fenleilist").html(html + '<div class="cl"></div>');
+								mui('#popover').popover('toggle', document.getElementById("btn_dgs"));
+							}
+						});
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

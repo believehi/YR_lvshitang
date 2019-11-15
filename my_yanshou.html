@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.list {
+				background: #fff;
+				padding: 0 10px;
+				border-bottom: 1px solid #eee;
+			} 
+			.list-title {
+				line-height: 40px;
+			}
+			.list-title span {
+				color: #197F18;
+				float: right;
+				font-weight: 600;
+				font-size: 12px;
+			}
+			.centent {
+				display: flex;
+			}
+			.centent img {
+				width: 70px;
+				height: 70px;
+				border-radius: 50%;
+			}
+			.mian {
+				flex: 1;
+				margin: 0 10px;
+			}
+			.mian p {
+				overflow: hidden;
+				text-overflow:ellipsis;
+				white-space: nowrap;
+			}
+			.mian-state {
+				width: 60px;
+				text-align: center;
+				padding-top: 10px;
+				font-weight: 600;
+			}
+			.mian-state p:nth-child(1) {
+				color: #f40;
+			}
+			.mian-list {
+				text-align: right;
+				padding: 10px 0;
+			}
+			.mian-list span {
+				background: #003096;
+				color: #fff;
+				padding: 2px 10px;
+				border-radius: 10px;
+				margin-left: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">我的订单（卖出）</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent" style="overflow: auto;">
+			<div class="mui-scroll">
+				<ul>
+					<li class="list">
+						<p class="list-title">客户 13888888888<span>状态 已验收</span></p>
+						<div class="centent">
+							<img src="img/bar1.jpg" >
+							<div class="mian">
+								<p>劳动合同/工伤索赔/劳动索赔/工伤索赔/劳动索赔/工伤索赔/劳动索赔/工伤索赔/劳动索赔</p>
+								<p>订单编号：12555555555</p>
+								<p>验收时间：2019-05-06 19:16</p>
+							</div>
+							<div class="mian-state">
+								<p>￥78</p>
+								<p>已付款</p>
+							</div>
+						</div>
+						<div class="mian-list">
+							<span>联系Ta</span>
+							<span>回复评价</span>
+						</div>
+					</li>
+					<li class="list">
+						<p class="list-title">客户 13888888888<span>状态 已验收</span></p>
+						<div class="centent">
+							<img src="img/bar1.jpg" >
+							<div class="mian">
+								<p>劳动合同/工伤索赔/劳动索赔/工伤索赔/劳动索赔/工伤索赔/劳动索赔/工伤索赔/劳动索赔</p>
+								<p>订单编号：12555555555</p>
+								<p>验收时间：2019-05-06 19:16</p>
+							</div>
+							<div class="mian-state">
+								<p>￥78</p>
+								<p>已付款</p>
+							</div>
+						</div>
+						<div class="mian-list">
+							<span>联系Ta</span>
+							<span>回复评价</span>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+			})();
+		</script>
+	</body>
+</html>

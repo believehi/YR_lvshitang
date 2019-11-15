@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.content {
+				position: fixed;
+				top: 44px;
+				bottom: 0;
+				width: 100%;
+				overflow: auto;
+				padding-bottom: 10px;
+			}
+			.lvshi_title {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+			.lvshi_title img {
+				border-radius: 10px;
+				width: 80px;
+				height: 80px;
+				margin-top: 40px;
+			}
+			.lvshi_title h2 {
+				margin-top: 20px;
+			}
+			.lvshi_title h3 {
+				margin-top: 5px;
+				font-size: 14px;
+				color: #666;
+			}
+			.lvshi_title p {
+				font-size: 12px;
+				line-height: 30px;
+				margin-bottom: 12px;
+			}
+			.main {
+				margin-top: 20px;
+				background: #fff;
+				padding: 10px;
+				line-height: 24px;
+			}			
+			.mui-backdrop{display: none;}
+			.details {
+				position: fixed;
+				z-index: 99;
+				background: #fff;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 90%;
+				padding: 0 0.625rem 0.5rem;
+				border-radius: 0.625rem;
+			}
+			.details p {
+				border-bottom: 0.125rem solid #003499;
+				line-height: 3rem;
+				text-align: center;
+				color: #003499;
+				font-weight: 600;
+				font-size: 1rem;
+			}			
+			.de-mian {
+				min-height: 6.25rem;
+				max-height: 12rem;
+				overflow: auto;
+				margin: 0.5rem 0 0.5rem;
+			}
+			.queding {
+				display: flex;
+				justify-content: space-between;
+			}
+			.onqueding,
+			.queding span{
+				background: #003499;
+				color: #fff;
+				line-height: 2.375rem;
+				text-align: center;
+			}
+			.queding span {
+				width: 48%;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">关于律师堂法律咨询</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="content">
+			<div class="lvshi_title">
+				<img src="img/logo.png">
+				<h2>律师堂</h2>
+				<h3>法律咨询服务交易平台</h3>
+				<p>当前版本号 v1.2.02</p>
+			</div>
+
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="introduce"><i class="fa fa-bars"></i>&ensp;功能介绍</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="update"><i class="fa fa-refresh"></i>&ensp;版本更新<span class="mui-badge mui-badge-inverted">已是最新版本</span></a>
+				</li>
+			</ul>
+			<div class="main">
+				关于律师堂法律咨询关于律师堂法律咨询关于律师堂法律咨询
+				关于律师堂法律咨询关于律师堂法律咨询关于律师堂法律咨询
+				关于律师堂法律咨询关于律师堂法律咨询关于律师堂法律咨询
+			</div>
+		</div>
+		<!-- 功能介绍 -->
+		<div class="mui-backdrop introduce">
+			<div class="details">
+				<p>功能介绍！</p>
+				<div class="de-mian">
+					功能介绍功能介绍功能介绍功能介绍
+				</div>
+				<div class="onqueding" id="inCancel">确定</div>
+			</div>
+		</div>
+		<!-- 版本更新说明 -->
+		<div class="mui-backdrop update">
+			<div class="details">
+				<p>版本更新说明！</p>
+				<div class="de-mian">
+					版本更新说明版本更新说明版本更新说明
+				</div>
+				<div class="onqueding" id="inBanben">确定</div>
+			</div>
+		</div>
+		<!-- 更新提示 -->
+		<div class="mui-backdrop updateIn">
+			<div class="details">
+				<p>更新提示！</p>
+				<div class="de-mian">
+					当前版本已经是最新版！<br>
+					版本号 v1.1.2
+					<br><br>
+					您是否重新下载更新（同版本更新）？
+				</div>
+				<div class="queding">
+					<span id="cancel">取消</span>
+					<span id="onsetUp">重新更新</span>
+				</div>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					mui('body').on('tap', '#introduce', function() {
+						$(".introduce").show()
+					});
+					mui('body').on('tap', '#inCancel', function() {
+						$(".introduce").hide()
+					});
+					
+					mui('body').on('tap', '#update', function() {
+						$(".update").show()
+					});
+					
+					mui('body').on('tap', '#inBanben', function() {
+						$(".update").hide()
+						$(".updateIn").show()
+					});
+					mui('body').on('tap', '#cancel', function() {
+						$(".updateIn").hide()
+					});
+					mui('body').on('tap', '#onsetUp', function() {
+						$(".updateIn").hide()
+					});
+
+				});
+			})();
+		</script>
+	</body>
+</html>

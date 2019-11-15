@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.topbox {
+				height: 6.25rem;
+				background: #1777FB;
+				position: fixed;
+				width: 100%;
+				top: 0rem;
+				margin-bottom: 1.25rem;
+				z-index: 5;
+			}
+
+			.top {
+				background-color: #ffffff;
+				margin: 0rem 0.625rem;
+				height: 7.5rem;
+				border-radius: 0.3125rem;
+				box-shadow: 0rem 0.1875rem 0.1875rem #cccccc;
+			}
+
+			.top ul {
+				padding: 0.625rem 0.625rem
+			}
+
+			.top ul li {
+				float: left;
+				width: 33.333333333333333%;
+				text-align: center;
+
+			}
+
+			.top ul li a {
+				width: 3.75rem;
+				height: 3.75rem;
+				margin: 0.625rem 0.625rem 0.3125rem 0.625rem;
+				border-radius: 50%;
+				display: inline-block;
+				font-size: 2.8125rem;
+				line-height: 3.75rem;
+				color: #ffffff;
+				position: relative;
+			}
+
+			.top ul li a span {
+				position: absolute;
+				top: -0.625rem;
+				right: -0.9375rem;
+				width: 1.875rem;
+				height: 1.875rem;
+				overflow: hidden;
+				border-radius: 50%;
+				border: 0.1875rem #ffffff solid;
+				background-color: #DD524D;
+				color: #ffffff;
+				font-size: 0.75rem;
+				line-height: 1.5rem;
+				display: none;
+			}
+
+			.top ul li span {
+				display: block;
+				color: #888888;
+			}
+
+			.top ul li:nth-child(1) a {
+				background-color: #f3ad4c;
+			}
+
+			.top ul li:nth-child(2) a {
+				background-color: #FF6600;
+			}
+
+			.top ul li:nth-child(3) a {
+				background-color: #2E82FF;
+			}
+
+			.top ul li:nth-child(4) a {
+				background-color: #2E82FF;
+			}
+
+			.mui-content {
+				margin-top: 8.125rem;
+			}
+
+			.list {}
+
+			.list ul {
+				padding: 0.625rem 0.625rem;
+				background-color: #ffffff;
+				margin-bottom: 1px;
+			}
+
+			.list ul:active {
+				opacity: 0.7;
+			}
+
+			.list ul li {
+				float: left;
+			}
+
+			.list ul li:nth-child(1) {
+				width: 15%;
+				position: relative;
+			}
+
+			.list ul li:nth-child(1) span {
+				width: 1rem;
+				height: 1rem;
+				display: block;
+				border-radius: 50%;
+				background-color: #ff6600;
+				color: #ffffff;
+				text-align: center;
+				font-size: 0.75rem;
+				line-height: 1rem;
+				border: 1px #ffffff solid;
+				position: absolute;
+				top: 0rem;
+				right: 0rem;
+			}
+
+			.list ul li:nth-child(1) img {
+				width: 13vw;
+				height: 13vw;
+				border-radius: 50%;
+				margin: auto;
+				display: block;
+			}
+
+			.list ul li:nth-child(2) {
+				width: 60%;
+			}
+
+			.list ul li:nth-child(2) span,
+			.list ul li:nth-child(3) span {
+				display: block;
+				margin-left: 0.625rem;
+			}
+
+			.lvname {
+				margin-top: 0.625rem;
+				font-size: 1rem;
+			}
+
+			.lvmes {
+
+				font-size: 0.875rem;
+				line-height: 1.125rem;
+				color: #888888;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			.lvdate {
+				color: #999999;
+				margin-top: 0rem;
+				overflow: hidden;
+				white-space: nowrap;
+				text-align: center;
+				font-size: 0.75rem;
+			}
+
+			.lvzt_a,
+			.lvzt_b {
+				border-radius: 0.1875rem;
+				text-align: center;
+				height: 1.25rem;
+				line-height: 1.25rem;
+			}
+
+			.lvzt_a {
+				color: #1777FB;
+				border: 1px #1777FB solid;
+			}
+
+			.lvzt_a:after {
+				content: '已购买';
+			}
+
+			.lvzt_b {
+				color: #cccccc;
+				border: 1px #cccccc solid;
+			}
+
+			.lvzt_b:after {
+				content: '已过期';
+			}
+
+			.list ul li:nth-child(3) {
+				width: 25%;
+			}
+
+			.mui-popover {
+				position: fixed;
+			}
+
+			.editcyy {
+				bottom: 20vh;
+				left: 20vw;
+				right: 20vw;
+				width: 60vw;
+				height: auto;
+			}
+
+			.mui-popup-input input {
+				height: 1.875rem;
+				line-height: 1.875rem;
+				border: 1px #cccccc solid;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="topbox">
+			<div class="top" id="top">
+				<ul>
+					<li data-id="2"><a class="fa fa-comments"><span id="num_xt">0</span></a><span>系统消息</span></li>
+					<li data-id="3"><a class="fa fa-user-circle-o"><span id="num_kf">0</span></a><span>平台客服</span></li>
+					<li data-id="4" id="top_xr" style="display: none;"><a class="fa fa-volume-up"><span id="num_xr">0</span></a><span>官司小二</span></li>
+					<li data-id="new" id="top_zx" style="display: none;"><a class="fa fa-volume-up"><span id="num_zx">0</span></a><span>新咨询</span></li>
+				</ul>
+			</div>
+		</div>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<div class="list" id="list">
+					<!-- <ul>
+						<li><span>6</span><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>
+							<span class="lvname">刘红</span>
+							<span class="lvmes">个二个热个人啊额个人师傅是个色额个热水管热egress啊瑞啊额个人师傅是个色额个热水管热egress啊瑞啊额个人师傅是个色额个热水管热egress啊瑞文啊V</span>
+						</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_a"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li><img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" /></li>
+						<li>1</li>
+						<li>
+							<span class="lvdate">5月12日</span>
+							<span class="lvzt_b"></span>
+						</li>
+						<div class="cl"></div>
+					</ul> -->
+				</div>
+			</div>
+		</div>
+		<!-- 修改朋友 -->
+		<div id="editcyy" class="mui-popover editcyy">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell" data-id="1"><a>置顶/取消置顶该聊天</a></li>
+				<li class="mui-table-view-cell" data-id="2"><a>删除该聊天</a></li>
+				<li class="mui-table-view-cell" data-id="3"><a>修改备注名</a></li>
+				<li class="mui-table-view-cell" data-id="4"><a>全部标记为已读</a></li>
+			</ul>
+		</div>
+		<!-- 修改朋友 -->
+		<!-- 弹出分类框 -->
+		<div id="popover" class="mui-popover" style="right: 10vw;left: 10vw;top:7rem;">
+			<ul class="fenleilist" id="fenleilist">
+			</ul>
+		</div>
+		<!-- 弹出分类框 -->
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false,
+					gestureConfig: {
+						longtap: true, //默认为false  
+						hold: true, //默认为false，不监听  
+						release: true //默认为false，不监听  
+					},
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: YiRu.downstyle(pulldownRefresh)
+					}
+				});
+				var loadPage, w, ws, state = {},
+					num_xt = 0,
+					num_zx = 0,
+					num_kf = 0,
+					num_xr = 0,
+					m_xitong = {},
+					m_kefu = {},
+					m_xiaoer = {},
+					a_id,
+					a_type,
+					a_fid,
+					a_fname,
+					a_beizhu,
+					a_status;
+
+				function pulldownRefresh() {
+					//
+					//isdown = 1;
+					loadPage();
+					//
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui.toast('下拉刷新成功');
+				}
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					if (YiRu.getuserinfo().type == "3") {
+						$("#top_xr").show();
+					} else {
+						$("#top_zx").show();
+					}
+					loadPage = function() {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('message/getFriend', function(data) {
+							w.close();
+							var mes = data.data;
+							if (mes.length > 0) {
+								$("#list").html(initData(mes));
+								if (m_xitong.new_message_num > 0) {
+									$("#num_xt").html(m_xitong.new_message_num);
+									$("#num_xt").show();
+								}
+								if (num_zx > 0) {
+									$("#num_zx").html(num_zx);
+									$("#num_zx").show();
+								}
+								if (m_kefu.new_message_num > 0) {
+									$("#num_kf").html(m_kefu.new_message_num);
+									$("#num_kf").show();
+								}
+								if (m_xiaoer.new_message_num > 0) {
+									$("#num_xr").html(m_xiaoer.new_message_num);
+									$("#num_xr").show();
+								}
+							}
+
+						}, {
+							loginuid: YiRu.getuserinfo().uid
+						}, w);
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+					// mui('.mui-scroll-wrapper').scroll({
+					// 	indicators: false
+					// });
+					//setTimeout(function() {
+					loadPage();
+					//}, 300);
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					//点击好友进入聊天界面
+					mui('#list').on('tap', 'ul', function(e) {
+						var _id = this.getAttribute("data-id");
+						var _type = this.getAttribute("data-type");
+						var _fid = this.getAttribute("data-fid");
+						var _fname = this.getAttribute("data-fname");
+						var _fimg = this.getAttribute("data-img");
+						var _num = this.getAttribute("data-num");
+						if (_num != "0") {
+							$(this).children("li:first").children(".messagenum").remove();
+						}
+						//更新消息已读
+						// 						YiRu.getajax('message/setMessageStatus', function(data) {
+						// 
+						// 						}, {
+						// 							id: _id,
+						// 							localid: '',
+						// 							friend_uid: _fid
+						// 						});
+						YiRu.openVW("send.html", {
+							fid: _fid,
+							fname: _fname,
+							fimg: _fimg
+						})
+
+					});
+					//点击顶部三个图标
+					mui('#top').on('tap', 'ul li', function(e) {
+						var _id = this.getAttribute("data-id");
+						if (_id == "3") {
+							YiRu.openVW("send.html", {
+								fid: m_kefu.uid,
+								fname: m_kefu.friend_authname,
+								fimg: BaseUrl + "/" + m_kefu.friend_avatar
+							});
+						}
+						if (_id == "4") {
+							// YiRu.openVW("send.html", {
+							// 	fid: m_xiaoer.uid,
+							// 	fname: m_xiaoer.friend_authname,
+							// 	fimg: BaseUrl + "/" + m_xiaoer.friend_avatar
+							// });
+							w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+							GetTagsData(function(data) {
+								w.close();
+								var fl = data;
+								if (fl.length > 0) {
+									var html = "";
+									for (var i = 0; i < fl.length; i++) {
+										html += '<li class=""><a data-id="' + fl[i].id + '" data-name="' + fl[i].name + '">' +
+											'<img src="' + BaseUrl + '/' + fl[i].ico + '" />' + fl[i].name + '</a></li>';
+									}
+									$("#fenleilist").html(html + '<div class="cl"></div>');
+									mui('#popover').popover('toggle');
+								}
+							});
+						}
+						if (_id == "new") {
+							YiRu.openVW("qiangdan.html");
+						}
+						if (_id == "2") {
+							YiRu.openVW("send_xitong.html", {
+								fid: m_xitong.uid,
+								fname: m_xitong.friend_authname,
+								fimg: BaseUrl + "/" + m_xitong.friend_avatar
+							});
+						}
+
+						// YiRu.openVW("send.html", {
+						// 	fid: _fid,
+						// 	fname: _fname,
+						// 	ftype: _type,
+						// 	mid: _id,
+						// 	fimg: _fimg
+						// });
+
+					});
+					//点击官司小二分类图标
+					mui('#popover').on('tap', 'ul li a', function(e) {
+						var _id = this.getAttribute("data-id");
+						//var _name = this.getAttribute("data-name");
+						mui('#popover').popover('toggle');
+						GetToXiaoEr(_id, function(data) {
+							//console.log(JSON.stringify(data));
+							YiRu.openVW("send.html", {
+								fid: data.data[0].js_id,
+								fname: data.data[0].title,
+								ftype: '3',
+								//ftype: '3',
+								//mid: '12',
+								fimg: BaseUrl + '/' + (data.data[0].avatar ? data.data[0].avatar :
+									'images/public/avatar/message_gsgw4.png')
+							});
+						});
+					});
+					//长按朋友列表
+					mui('#list').on('longtap', 'ul', function(e) {
+						a_id = this.getAttribute("data-id");
+						a_type = this.getAttribute("data-type");
+						a_fid = this.getAttribute("data-fid");
+						a_fname = this.getAttribute("data-fname");
+						a_beizhu = this.getAttribute("data-beizhu");
+						a_status = this.getAttribute("data-status");
+						//console.log(_id + "/" + _type + "/" + _fid + "/" + _fname);
+						mui('#editcyy').popover('toggle');
+					});
+					mui('#editcyy').on('tap', 'ul li', function(e) {
+						var _id = this.getAttribute("data-id");
+						//置顶
+						if (_id == 1) {
+							YiRu.getajax('message/setFriendStatus', function(data) {
+								mui('#editcyy').popover('toggle');
+								mui.toast("设置成功");
+								loadPage();
+							}, {
+								friend_uid: a_fid,
+								type: a_status == 1 ? 99 : 1
+							}, null);
+						}
+						//删除
+						if (_id == 2) {
+							YiRu.getajax('message/setFriendStatus', function(data) {
+								mui('#editcyy').popover('toggle');
+								mui.toast("删除成功");
+								loadPage();
+							}, {
+								friend_uid: a_fid,
+								type: 0
+							}, null);
+						}
+						//修改备注名
+						if (_id == 3) {
+							mui('#editcyy').popover('toggle');
+							mui.prompt('请输入备注名', a_beizhu, '修改备注名', ['修改', '取消'], function(e) {
+								if (e.index == 0) {
+									YiRu.getajax('message/setFriendAlias', function(data) {
+										mui.toast('修改成功');
+										//mui('#editcyy').popover('toggle');
+										loadPage();
+									}, {
+										friend_uid: a_fid,
+										alias: e.value
+									}, null);
+								} else {
+									//mui('#editcyy').popover('toggle');
+								}
+								//console.log(JSON.stringify(e));
+							}, 'div');
+							document.querySelector('.mui-popup-input input').value = a_beizhu;
+						}
+						//设置所有信息已读状态
+						if (_id == 4) {
+
+							YiRu.getajax('message/setMessageStatusAll', function(data) {
+								mui('#editcyy').popover('toggle');
+								mui.toast("设置成功");
+								loadPage();
+
+							});
+						}
+						//mui('#editcyy').popover('toggle');
+						//console.log("444");
+					});
+					document.addEventListener('updatedata', function(tab) {
+						num_zx = tab.detail.zxcount ? tab.detail.zxcount : num_zx;
+						loadPage();
+					});
+					var _oldback = mui.back;
+					mui.back = function() {
+						mui.fire(plus.webview.getLaunchWebview(), 'pageActive', {
+							newUrl: 'home.html'
+						});
+					}
+				});
+
+
+				function initData(data) {
+					var html = "";
+					//console.log(JSON.stringify(data));
+					for (var i = 0; i < data.length; i++) { //images/lvshi/avatar/message_system.png
+						// if (parseInt(data[i].type) == 1) {
+						// 	num_zx += parseInt(data[i].new_message_num);
+						// }
+						// if (parseInt(data[i].type) == 2) {
+						// 	num_xt += parseInt(data[i].new_message_num);
+						// }
+						// if (parseInt(data[i].type) == 3) {
+						// 	num_kf += parseInt(data[i].new_message_num);
+						// }
+						if (data[i].friend_name == "system") {
+							m_xitong = data[i];
+						}
+						if (data[i].friend_name == "kefu") {
+							m_kefu = data[i];
+						}
+						if (data[i].friend_name == "gsxiaoer") {
+							m_xiaoer = data[i];
+						}
+						if (data[i].type == "1") {
+							html += '<ul data-img="' + BaseUrl + '/' + data[i].friend_avatar + '" data-type="' + data[i].type +
+								'" data-fid="' + data[i].friend_uid + '" data-fname="' + (!!data[i].alias ? data[i].alias : data[i].friend_authname) +
+								'" data-id="' + data[i].id + '" data-beizhu="' + data[i].alias + '" data-num="' + data[i].new_message_num +
+								'" data-status="' + data[i].status + '">' +
+								'<li>' + (parseInt(data[i].new_message_num) > 0 ? '<span class="messagenum">' + data[i].new_message_num +
+									'</span>' : '') +
+								'<img src="' + BaseUrl + '/' + data[i].friend_avatar + '" /></li>' +
+								'<li>' +
+								'<span class="lvname">' + (!!data[i].alias ? data[i].alias : data[i].friend_authname) + '</span>' +
+								'<span class="lvmes">' + (data[i].last_message != "" ? data[i].last_message : "") + '</span>' +
+								'</li>' +
+								'<li>' +
+								'<span class="lvdate">' + getDateDiff(data[i].last_created_at) + '</span>' +
+								(data[i].buy_status == "0" ? '<span class="lvzt_c"></span>' : (data[i].buy_dayend_at >= new Date().toLocaleDateString() ?
+									'<span class="lvzt_a"></span>' : '<span class="lvzt_b"></span>')) +
+								'</li><div class="cl"></div>' +
+								'</ul>';
+						}
+					}
+					return html;
+				}
+			})();
+		</script>
+	</body>
+</html>

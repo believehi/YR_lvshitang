@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.wenti {
+				padding: 0.625rem;
+				background: #ffffff;
+				height: 3.125rem;
+				line-height: 1.875rem;
+				font-size: 1rem;
+			}
+
+			.fenlei {
+				float: right;
+			}
+
+			.miaoshu {
+				height: 12.5rem;
+				background: #ffffff;
+				padding: 0.625rem;
+				border-top: 1px #cccccc solid;
+			}
+
+			.miaoshu textarea {
+				height: 100%;
+				border: 0rem;
+			}
+
+			.btnbox {
+				margin-top: 1.25rem;
+				width: 100%;
+				text-align: center;
+			}
+
+			.btnbox button {
+				margin: auto;
+				width: 60%;
+				line-height: 1.875rem;
+				font-size: 1rem;
+			}
+
+			.mui-popover {}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">立即咨询</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<input type="hidden" id="tagname" />
+				<input type="hidden" id="tag" />
+				<div class="wenti">
+					<span class="fenlei" id="fenlei"><u id="fenlei_txt">所有分类</u><i class="fa fa-chevron-down"></i></span>
+					<span><b id="wenti_txt">问题专业分类</b></span>
+				</div>
+				<div class="miaoshu">
+					<textarea id="message" placeholder="请输入您要咨询律师的问题"></textarea>
+				</div>
+				<div class="btnbox"><button id="btn" type="button" class="mui-btn mui-btn-primary">提交</button></div>
+			</div>
+		</div>
+		<!-- 弹出框 -->
+		<div id="popover" class="mui-popover">
+			<ul class="fenleilist" id="fenleilist">
+				<li class=""><a href="#">Item1</a></li>
+			</ul>
+		</div>
+		<!-- 弹出框 -->
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					//获取原始窗口的高度   阻止安卓机型软键盘打开时顶起内容
+					var originalHeight = document.documentElement.clientHeight || document.body.clientHeight;
+					window.onresize = function() {
+						//软键盘弹起与隐藏  都会引起窗口的高度发生变化
+						var resizeHeight = document.documentElement.clientHeight || document.body.clientHeight;
+						if (resizeHeight * 1 < originalHeight * 1) { //resizeHeight<originalHeight证明窗口被挤压了
+							plus.webview.currentWebview().setStyle({
+								height: originalHeight
+							});
+						}
+					}
+
+					loadPage = function() {
+
+
+					};
+					setTimeout(function() {
+						loadPage();
+					}, 300);
+					mui('body').on('tap', '#fenlei', function(e) {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						GetTagsData(function(data) {
+							w.close();
+							var fl = data;
+							if (fl) {
+								if (fl.length > 0) {
+									var html = "";
+									for (var i = 0; i < fl.length; i++) {
+										html += '<li class=""><a data-id="' + fl[i].id + '" data-name="' + fl[i].name + '">' +
+											'<img src="' + BaseUrl + '/' + fl[i].ico + '" />' + fl[i].name + '</a></li>';
+									}
+									$("#fenleilist").html(html + '<div class="cl"></div>');
+									mui('.mui-popover').popover('toggle', document.getElementById("fenlei"));
+								}
+							} else {
+								plus.nativeUI.toast("分类获取错误");
+							}
+						});
+					});
+					mui('#popover').on('tap', 'ul li a', function(e) {
+						var _id = this.getAttribute("data-id");
+						var _name = this.getAttribute("data-name");
+
+						$("#tagname").val(_name);
+						$("#tag").val(_id);
+						$("#wenti_txt").html(_name);
+						mui('.mui-popover').popover('hide');
+					});
+					mui('body').on('tap', '#btn', function(e) {
+						$("#message").blur();
+						var _name = $("#tagname").val();
+						var _id = $("#tag").val();
+						var _message = $("#message").val();
+						if (_name == "" || _id == "") {
+							plus.nativeUI.toast("请选择您要咨询的问题分类");
+							return false;
+						}
+						if (_message == "") {
+							plus.nativeUI.toast("请输入您要咨询的问题");
+							return false;
+						}
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('message/sendMessageQuickOrder', function(data) {
+							w.close();
+							$("#tagname").val("");
+							$("#tag").val("");
+							$("#message").val("");
+							$("#wenti_txt").html("问题专业分类");
+							mui.confirm("信息发送成功，预计2分钟内收到回复", "咨询发送成功", ['确认'], function() {
+
+							}, "div");
+						}, {
+							message: _message,
+							tagname: _name,
+							tag: _id
+						}, w);
+
+
+					});
+					// mui('.mui-scroll-wrapper-popover').scroll();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+
+				});
+			})();
+		</script>
+	</body>
+</html>

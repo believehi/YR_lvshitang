@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/mui.picker.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/mui.poppicker.css" />
+		<style type="text/css">
+			.soop {
+				height: 2.5rem;
+				line-height: 2.5rem;
+				border-bottom: 2px #cccccc solid;
+				margin-bottom: 0.3125rem;
+				background-color: #ffffff;
+			}
+
+			.soop li {
+				float: left;
+				width: 33.3333333333333%;
+				text-align: center;
+			}
+
+			.soop li a {
+				display: inline-block;
+				color: #555555;
+			}
+
+			.soop li i {font-size:1rem;}
+
+			.lvshibox {}
+
+			.lvshibox ul {
+				padding: 0.625rem 0.3125rem;
+				margin-bottom: 1px;
+				background-color: #ffffff;
+			}
+
+			.lvshibox ul:active {
+				opacity: 0.7;
+			}
+
+			.lvshibox ul li {
+				float: left;
+			}
+
+			.lvshibox ul li.lvimg {
+				width: 25%;
+				text-align: center;
+			}
+
+			.lvshibox ul li.lvimg img {
+				width: 20vw;
+				height: 20vw;
+				border-radius: 50%;
+				display: block;
+				margin: auto;
+			}
+
+			.lvshibox ul li.lvimg span.lvzx_zx,
+			.lvshibox ul li.lvimg span.lvzx_lx {
+				display: inline-block;
+				border-radius: 0.3125rem;
+				padding: 0rem 0.3125rem;
+				color: #ffffff;
+				height: 1rem;
+				line-height: 1rem;
+				font-size: 0.75rem;
+			}
+
+			.lvshibox ul li.lvimg span.lvzx_zx {
+				background-color: #2AC845;
+			}
+
+			.lvshibox ul li.lvimg span.lvzx_lx {
+				background-color: #cccccc;
+			}
+
+			.lvshibox ul li.lvtxt {
+				width: 74%;
+				padding-left: 1%;
+				position: relative;
+			}
+
+			.lvshibox ul li.lvtxt span.lvright {
+				/* width: 25%; */
+				position: absolute;
+				right:0rem;
+				top: 0rem;
+			}
+
+			.lvname {
+				display: block;
+				font-size: 1rem;
+				height: 1.5625rem;
+				line-height: 1.5625rem;
+				position: relative;
+			}
+
+			.lvname u {
+				font-size: 0.875rem;
+				margin-left: 0.3125rem;
+				line-height: 1.5625rem;
+			}
+
+			.lvname b {
+				/* position: absolute; */
+				font-size: 0.875rem;
+				height: 1rem;
+				line-height: 1rem;
+				padding: 0rem 0.25rem;
+				text-align: center;
+				color: #ffffff;
+				font-weight: normal;
+				font-size: 0.75rem;
+				border-radius: 1.25rem 1.25rem 1.25rem 0rem;
+				margin: 0rem 0rem 0.25rem 0rem;
+				background-color: #EC971F;
+
+			}
+
+			.lvzy {
+				display: block;
+				font-size: 0.75rem;
+				color: #999999;
+				line-height: 1.125rem;
+			}
+
+			.lvfl {
+				display: block;
+				margin-top: 0.3125rem;
+			}
+
+			.lvfl i {
+				height: 1.25rem;
+				line-height: 1.25rem;
+				display: inline-block;
+				padding: 0px 0.3125rem;
+				color: #007AFF;
+				border: #007AFF 1px solid;
+				border-radius: 0.3125rem;
+				margin-right: 0.3125rem;
+			}
+
+			.lvright {
+				font-size: 1rem;
+				color: #f3ad4c;
+				font-weight: bold;
+				/* text-align: center; */
+			}
+
+			.lvright u {
+				font-size: 0.75rem;
+				font-weight: normal;
+			}
+
+			.lvzxrs {
+				font-size: 0.75rem;
+				color: #999999;
+				font-weight: normal;
+				display: block;
+				line-height: 1.25rem;
+				line-height: 1.25rem;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="soop">
+			<li><a id="quanguo"><u>全国</u><i class="mui-icon mui-icon-arrowdown"></i></a></li>
+			<li><a id="zhuanchang"><u>所有专长</u><i class="mui-icon mui-icon-arrowdown"></i></a></li>
+			<li><a id="paixu"><u>综合排序</u><i class="mui-icon mui-icon-arrowdown"></i></a></li>
+		</ul>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<div class="lvshibox" id="lvshibox">
+					<!-- <ul>
+						<li class="lvimg">
+							<img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" />
+							<span class="lvzx_zx">•在线•</span>
+							<span class="lvzxrs">1214人咨询</span>
+						</li>
+						<li class="lvtxt">
+							<span class="lvname">刘叶红<b>金牌</b><u>执业32年</u></span>
+							<span class="lvzy">湖南长沙</span>
+							<span class="lvfl"><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i><i>合同纠纷</i></span>
+						</li>
+						<li class="lvright">￥248<u>/天</u></li>
+						<div class="cl"></div>
+					</ul>
+					<ul>
+						<li class="lvimg">
+							<img src="http://www.lvshitang.cn/images/jxlw/371122199004100623-1.jpg" />
+							<span class="lvzx_lx">•离线•</span>
+							<span class="lvzxrs">1214人咨询</span>
+						</li>
+						<li class="lvtxt"></li>
+						<li class="lvright"></li>
+						<div class="cl"></div>
+					</ul> -->
+				</div>
+			</div>
+		</div>
+		<!-- 弹出框 -->
+		<div id="popover" class="mui-popover">
+			<ul class="fenleilist" id="fenleilist">
+			</ul>
+		</div>
+		<div id="popover_px" class="mui-popover">
+			<ul class="fenleilist" id="paixulist">
+			</ul>
+		</div>
+		<!-- 弹出框 -->
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/mui.picker.min.js"></script>
+		<script src="js/mui.poppicker.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false,
+					pullRefresh: {
+						container: '#pullrefresh',
+						down: YiRu.downstyle(pulldownRefresh),
+						up: {
+							contentrefresh: '正在加载...',
+							callback: pullupRefresh
+						}
+					}
+				});
+				var loadPage, w, ws, state = {};
+				var paginate = 10, //每页返回数据条数，默认为10；
+					page = 1, //第几页
+					province = "", //省ID
+					city = "", //城市ID
+					tag = "", //专业ID
+					keywords = "", //搜索关键字
+					sort = 1, //排序：1://默认综合	2://女商家	3://男商家	4://经验优先	5://价格由高到低 6://价格由低到高
+					order = "DESC", //升序或降序
+					tagname = "",
+					quanguoname = "",
+					pagecount,
+					isdata = false;
+
+				function pulldownRefresh() {
+					//
+					page = 1;
+					isdata = false;
+					loadPage();
+					//
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh(); //refresh completed
+					mui('#pullrefresh').pullRefresh().refresh(true);
+					$(".mui-pull-bottom-pocket .mui-pull-caption").empty();
+					mui.toast('下拉刷新成功');
+				}
+
+				function pullupRefresh() {
+					var allCount = pagecount / paginate;
+					if (allCount > parseInt(allCount)) {
+						allCount = parseInt(allCount) + 1;
+					}
+					page++;
+					if (page > allCount) {
+						isdata = true;
+					}
+
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh(isdata); //参数为true代表没有更多数据了。
+					if (!isdata) {
+						YiRu.getajax('shop/getShopGoodsListFind', function(data) {
+
+							var list = data.data;
+							if (list.length > 0) {
+								$("#lvshibox").append(initData(list));
+							}
+							//console.log(JSON.stringify(data));
+						}, {
+							paginate: paginate,
+							page: page,
+							province: province,
+							city: city,
+							cate: tag,
+							service_type_id: '',
+							keywords: keywords,
+							sort: sort,
+							order: order
+						}, w);
+					}
+				}
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					tag = ws.tag || '';
+					tagname = ws.tagname || '';
+					console.log(tag);
+					loadPage = function() {
+						$("#lvshibox").html("");
+						$("#zhuanchang u").html(tagname == "" ? "所有专长" : tagname);
+						$("#quanguo u").html(quanguoname == "" ? "全国" : quanguoname);
+						tag = tag == 1 ? '' : tag;
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('shop/getShopGoodsListFind', function(data) {
+							w.close();
+							pagecount = data.pagecount;
+							//console.log(pagecount);
+							var list = data.data;
+							if (list.length > 0) {
+								$("#lvshibox").html(initData(list));
+							}
+							YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+							//console.log(JSON.stringify(data));
+						}, {
+							paginate: paginate,
+							page: page,
+							province: province,
+							city: city,
+							cate: tag,
+							service_type_id: '',
+							keywords: keywords,
+							sort: sort,
+							order: order
+						}, w);
+					};
+					loadPage();
+
+
+					document.addEventListener('search', function(tab) {
+						page = 1;
+						tag = tab.detail.tag || tab.detail.tag == '' ? tab.detail.tag : tag;
+						province = tab.detail.province || tab.detail.province == '' ? tab.detail.province : province;
+						city = tab.detail.city || tab.detail.city == '' ? tab.detail.city : city;
+						keywords = tab.detail.keywords || tab.detail.keywords == '' ? tab.detail.keywords : keywords;
+						sort = tab.detail.sort || tab.detail.sort == '' ? tab.detail.sort : sort;
+						order = tab.detail.order || tab.detail.order == '' ? tab.detail.order : order;
+						tagname = tab.detail.tagname || tab.detail.tagname == '' ? tab.detail.tagname : tagname;
+						quanguoname = tab.detail.quanguoname || tab.detail.quanguoname == '' ? tab.detail.quanguoname : quanguoname;
+						loadPage();
+					});
+					mui('#lvshibox').on('tap', 'ul', function(e) {
+						var _id = this.getAttribute("data-id");
+						if (_id == "") {
+							return false;
+						}
+						YiRu.openVW("dianpu.html", {
+							shopid: _id
+						});
+					});
+					mui('body').on('tap', '#zhuanchang', function(e) {
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						GetTagsData(function(data) {
+							w.close();
+							var fl = data;
+							if (fl.length > 0) {
+								var html = "";
+								for (var i = 0; i < fl.length; i++) {
+									html += '<li class=""><a data-id="' + fl[i].id + '" data-name="' + fl[i].name + '">' +
+										'<img src="' + BaseUrl + '/' + fl[i].ico + '" />' + fl[i].name + '</a></li>';
+								}
+								$("#fenleilist").html(html + '<div class="cl"></div>');
+								mui('#popover').popover('toggle', document.getElementById("zhuanchang"));
+							}
+						});
+					});
+					mui('body').on('tap', '#paixu', function(e) {
+						var fl = [{
+							id: 1,
+							name: '默认综合'
+						}, {
+							id: 2,
+							name: '女商家'
+						}, {
+							id: 3,
+							name: '男商家'
+						}, {
+							id: 4,
+							name: '经验优先'
+						}, {
+							id: 5,
+							name: '价格由高到低'
+						}, {
+							id: 6,
+							name: '价格由低到高'
+						}];
+						var html = "";
+						for (var i = 0; i < fl.length; i++) {
+							html += '<li class=""><a data-id="' + fl[i].id + '" data-name="' + fl[i].name + '">' +
+								'' + fl[i].name + '</a></li>';
+						}
+						$("#paixulist").html(html + '<div class="cl"></div>');
+						mui('#popover_px').popover('toggle', document.getElementById("paixu"));
+					});
+					mui('#popover').on('tap', 'ul li a', function(e) {
+						var _id = this.getAttribute("data-id");
+						var _name = this.getAttribute("data-name");
+						tagname = _name;
+						tag = _id;
+						page = 1;
+						loadPage();
+						mui('#popover').popover('hide');
+
+					});
+					mui('#popover_px').on('tap', 'ul li a', function(e) {
+						var _id = this.getAttribute("data-id");
+						var _name = this.getAttribute("data-name");
+						$("#paixu u").html(_name);
+						sort = _id;
+						page = 1;
+						loadPage();
+						mui('#popover_px').popover('hide');
+
+					});
+					// 地区选择
+					var city_picker = new mui.PopPicker({
+						layer: 2
+					});
+					$("#quanguo").on("tap", function() {
+						mui('#pullrefresh').pullRefresh().setStopped(true); //暂时禁止上拉和下拉刷新
+						/////////
+						//w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('common/getDistricts', function(data) {
+							//w.close();
+							var cityData = JSON.parse(localStorage.getItem('$lst_cityinfo') || "[]");
+							if (cityData.length < 1) {
+								var dq = data.data;
+								for (var i = 0; i < dq.length; i++) {
+									var _chidren = [];
+									for (var ci = 0; ci < dq[i].child.length; ci++) {
+										_chidren.push({
+											value: dq[i].child[ci].id,
+											text: dq[i].child[ci].name
+										});
+									}
+									cityData.push({
+										value: dq[i].id,
+										text: dq[i].name,
+										children: _chidren
+									});
+								}
+								localStorage.setItem('$lst_cityinfo', JSON.stringify(cityData));
+							}
+							//////////////
+							city_picker.setData(cityData);
+							setTimeout(function() {
+								city_picker.show(function(items) {
+									// if ((items[0] || {}).text == undefined) {
+									// 	(items[0] || {}).text = "";
+									// } else if ((items[1] || {}).text == undefined) {
+									// 	(items[1] || {}).text = "";
+									// }
+									mui('#pullrefresh').pullRefresh().setStopped(false); //开启上拉和下拉刷新
+									province = items[0].value;
+									city = items[1].value;
+									page = 1;
+									quanguoname = items[1].text;
+									$("#quanguo u").html(items[1].text);
+									loadPage();
+								})
+							}, 200);
+
+						}, {}, null, 'post', {
+							key: '',
+							num: 1440
+						});
+						///////
+					});
+					var _oldback = mui.back;
+					mui.back = function() {
+						mui.fire(plus.webview.getLaunchWebview(), 'pageActive', {
+							newUrl: 'home.html'
+						});
+					}
+				});
+
+				function initData(list) {
+					var html = "";
+					for (var i = 0; i < list.length; i++) { //avatar //shop_picmax
+						html += '<ul data-id="' + list[i].shop_id + '">' +
+							'<li class="lvimg">' +
+							'<img src="' + BaseUrl + '/' + list[i].avatar + '" />' +
+							(list[i].online == 1 ? '<span class="lvzx_zx">•在线•</span>' : '<span class="lvzx_lx">•离线•</span>') +
+							//'<span class="lvzxrs fa fa-bar-chart">' + list[i].shopzxrs + '人咨询</span>' +
+							'</li>' +
+							'<li class="lvtxt">' +
+							'<span class="lvname">' + list[i].authname + '律师' + (list[i].is_recommend == 1 ? '<b>金牌</b>' : '') +
+							'<u>从业' + list[i].years + '年</u></span>' +
+							'<span class="lvzy">' + list[i].provincename + '.' + list[i].cityname + '(' + parseFloat(list[i].distance)
+							.toFixed(1) +
+							'km)<br />' + list[i].shopzxrs + '人咨询</span>' +
+							'<span class="lvfl">' + gettags(list[i].tags) + '</span>' +
+							'<span class="lvright">￥' + list[i].cash + '<u>/天</u></span>'+
+							'</li>' +
+							//'<li></li>' +
+							'<div class="cl"></div>' +
+							'</ul>';
+					}
+					return html;
+				}
+
+				function gettags(tags) {
+					if (!tags) return "";
+					if (tags.length > 0) {
+						var _html = "";
+						for (var i = 0; i < tags.length; i++) {
+							_html += '<i>' + tags[i].name + '</i>';
+						}
+						return _html;
+					}
+					return "";
+				}
+			})();
+		</script>
+	</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.btnbox {
+				position: fixed;
+				bottom: 0rem;
+				height: 2.8125rem;
+				line-height: 2.8125rem;
+				left: 0.625rem;
+				right: 0.625rem;
+			}
+
+			.btnbox button {
+				width: 100%;
+				height: 2.5rem;
+			}
+
+			.mui-content {
+				margin-bottom: 2.8125rem;
+			}
+
+			.radio input[type="radio"] {
+				position: absolute;
+				opacity: 0;
+			}
+
+			.radio input[type="radio"]+.radio-label:before {
+				content: '';
+				background: #f4f4f4;
+				border-radius: 100%;
+				border: 1px solid #b4b4b4;
+				display: inline-block;
+				width: 1.4em;
+				height: 1.4em;
+				position: relative;
+				top: -0.2em;
+				margin-right: 1em;
+				vertical-align: top;
+				cursor: pointer;
+				text-align: center;
+				-webkit-transition: all 250ms ease;
+				transition: all 250ms ease;
+			}
+
+			.radio input[type="radio"]:checked+.radio-label:before {
+				background-color: #3197EE;
+				box-shadow: inset 0 0 0 4px #f4f4f4;
+			}
+
+			.radio input[type="radio"]:focus+.radio-label:before {
+				outline: none;
+				border-color: #3197EE;
+			}
+
+			.radio input[type="radio"]:disabled+.radio-label:before {
+				box-shadow: inset 0 0 0 4px #f4f4f4;
+				border-color: #b4b4b4;
+				background: #b4b4b4;
+			}
+
+			.radio input[type="radio"]+.radio-label:empty:before {
+				margin-right: 0;
+			}
+
+			.mui-badge {
+				font-size: 1rem;
+			}
+
+			.wxpay,
+			.alipay {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">订单支付</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper transparent">
+			<div class="mui-scroll">
+				<ul class="mui-table-view" style="margin-bottom:0.625rem;">
+					<li class="mui-table-view-cell">订单金额<span class="mui-badge mui-badge-warning mui-badge-inverted">￥<u id="bounty">0</u></span></li>
+					<li class="mui-table-view-cell">账户余额<span class="mui-badge mui-badge-inverted">￥<u id="yue">0</u></span></li>
+					<li class="mui-table-view-cell">余额支付<span class="mui-badge mui-badge-inverted">￥<u id="yuezhifu">0</u></span></li>
+				</ul>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">实际支付<span class="mui-badge mui-badge-warning mui-badge-inverted">￥<u id="shiji">0</u></span></li>
+					<li class="mui-table-view-cell wxpay" id="wxpay">微信<span class="mui-pull-right radio"><input name="paytype" value="wxpay"
+							 type="radio"><label for="wxpay" class="radio-label"></label></span></li>
+					<li class="mui-table-view-cell alipay" id="alipay">支付宝<span class="mui-pull-right radio"><input name="paytype"
+							 value="alipay" type="radio"><label for="alipay" class="radio-label"></label></span></li>
+				</ul>
+
+			</div>
+		</div>
+		<div class="btnbox"><button type="button" id="btn" class="mui-btn mui-btn-primary">立即支付</button></div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {},
+					channels = [],
+					bounty = 0,
+					ordeyid = '',
+					out_trade_no,
+					shijizhifu = 0;
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+					bounty = ws.bounty;
+					ordeyid = ws.ordeyid;
+
+					loadPage = function() {
+						state = YiRu.getuserinfo();
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						YiRu.getajax('users/regOrLogin', function(data) {
+							w.close();
+							state = data.data;
+							//console.log(JSON.stringify(data));
+
+							//state.balance = 12;
+							out_trade_no = '2' + formatTime(new Date().toLocaleString(), 'yyyyMMddhhmmss') + state.uid + ordeyid;
+							//获取支付通道
+							plus.payment.getChannels(function(s) {
+								channels = s;
+								for (var i = 0; i < channels.length; i++) {
+									if (channels[i].serviceReady) {
+										$("#" + channels[i].id).show();
+									}
+								}
+								$("#bounty").html(bounty);
+								$("#yue").html(state.balance);
+								shijizhifu = parseFloat(bounty - state.balance).toFixed(2);
+								if (shijizhifu < 0) {
+									shijizhifu = 0;
+									$("#alipay").hide();
+									$("#wxpay").hide();
+								}
+
+								var yuezhifu = parseFloat(bounty - shijizhifu).toFixed(2);
+								$("#shiji").html(shijizhifu);
+								$("#yuezhifu").html(yuezhifu);
+
+								//console.log(JSON.stringify(channels) + out_trade_no);
+							}, function() {
+								mui.toast("获取支付通道失败");
+							});
+							YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+						}, {
+							uid: state.uid
+						}, w);
+					};
+
+					loadPage();
+					mui('body').on('tap', '#btn', function() {
+						var paytype = $(':radio[name="paytype"]:checked').val();
+						if (!paytype && shijizhifu > 0) {
+							mui.toast("请选择支付方式");
+							return false;
+						}
+						w = plus.nativeUI.showWaiting('', YiRu.WaitingStyle());
+						if (shijizhifu > 0) {
+
+							if (paytype == "alipay") {
+
+								YiRu.getajax('payment/getAlipayData', function(data) {
+									w.close();
+									payment(paytype, data.data);
+									console.log(JSON.stringify(data));
+								}, {
+									total_amount: bounty,
+									order_id: ordeyid
+								}, w);
+							} else {
+								YiRu.getajax('payment/setWeChatPayOrder', function(data) {
+									w.close();
+									//payment(paytype, data.data);
+									console.log(JSON.stringify(data));
+								}, {
+									out_trade_no: out_trade_no,
+									total_fee: bounty,
+									notes: '',
+									order_id: ordeyid
+								}, w);
+							}
+						} else {
+							//余额支付
+							//console.log(ordeyid);
+							YiRu.getajax('order/orderBuy', function(data) {
+								w.close();
+								mui.toast("余额支付成功");
+								todingdan();
+							}, {
+								order_id: ordeyid
+							}, w);
+						}
+
+					});
+
+					function todingdan() {
+						var dd = plus.webview.getWebviewById("dingdan.html");
+						if (dd) {
+							mui.fire(dd, 'updatedata');
+						}
+						YiRu.openVW("dingdan.html");
+					}
+
+					function payment(paytype, statement) {
+						plus.payment.request(getchannels(paytype), statement, function(e) {
+							mui.toast("支付成功");
+							todingdan();
+						}, function(e) {
+							console.log(JSON.stringify(e));
+						});
+					}
+
+				});
+
+				function getchannels(s) {
+					for (var i = 0; i < channels.length; i++) {
+						if (channels[i].id == s) {
+							return channels[i];
+						}
+					}
+				}
+			})();
+		</script>
+	</body>
+</html>

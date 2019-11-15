@@ -1,0 +1,58 @@
+.index {
+	display: block;
+	z-index: 3;
+	position: fixed;
+	bottom: 0rem;
+	height: 3.125rem;
+	overflow: hidden;
+}
+
+.indexnav {
+	display: table;
+	width: 100%;
+	height: 3.125rem;
+	table-layout: fixed;
+	bottom: 0;
+	border-top: 1px #cccccc solid;
+}
+
+.indexnav a {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	overflow: hidden;
+	color: #1777FB;
+}
+
+.indexnav a span {
+	display: block;
+	height: 1.25rem;
+	line-height: 1.25rem;
+}
+
+.indexnav a span.fa {
+	font-size: 1.25rem;
+	overflow: hidden;
+	margin-bottom: 0px;
+}
+
+.indexnav a span.fa:before {
+	margin: 0px;
+	overflow: hidden;
+}
+
+.indexnav a:nth-child(1) span.fa {
+	font-size: 1.5rem
+}
+
+.indexnav a:nth-child(2) span.fa {}
+
+.indexnav a:nth-child(3) span.fa {}
+
+.indexnav a:nth-child(4) span.fa {}
+
+.indexnav a.txt-active {
+	color: #ff6600;
+}
+.indextop{background-color: #FF0000;width:100%;height: auto;line-height: 44px;display: block;top: 0;position: fixed;z-index: 10;}
+.txt-title{text-align: center;font-size:1rem;color:#ffffff;font-weight: normal;}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			.fa {
+				color: #EA8C59;
+			}
+
+			.title-jy {
+				background: #fff;
+				padding: 20px 16px;
+			}
+
+			.title-jy p {
+				color: #333;
+			}
+
+			.title-jy p:nth-child(3) {
+				color: #EB6727;
+			}
+			.footer {
+				position: fixed;
+				z-index: 9;
+				bottom: 0;
+				width: 100%;
+				height: 2.5rem;
+				background: #ddd;
+				text-align: center;
+				/* background: #fff; */
+			}
+			.footer div {
+				margin: .25rem auto 0;
+				width: 90%;
+				border-radius: 1rem;
+				color: #fff;
+				background: #003499;
+				height: 2rem;
+				line-height: 2rem;
+			}			
+			.details {
+				position: fixed;
+				z-index: 99;
+				background: #fff;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 90%;
+				padding: 0 0.625rem 0.5rem;
+				border-radius: 0.625rem;
+			}
+			.details p {
+				border-bottom: 0.125rem solid #003499;
+				line-height: 3rem;
+				text-align: center;
+				color: #003499;
+				font-weight: 600;
+				font-size: 1rem;
+			}			
+			.queding {
+				background: #003499;
+				color: #fff;
+				line-height: 2.375rem;
+				text-align: center;
+			}
+			.de-mian {
+				min-height: 6.25rem;
+				max-height: 12rem;
+				overflow: auto;
+				margin: 0.5rem 0 0.5rem;
+			}
+			.back_info {
+				position: absolute;
+				width: 90%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 0.25rem;
+				background: #fff;
+				
+			}
+			.back_title {
+				padding-left: 4rem;
+				line-height: 3rem;
+				font-size: 1.25rem;
+				border-bottom: 0.0625rem solid #3CAED7;
+				color: #3CAED7;
+				background: url(img/logo.png) no-repeat 1rem center;
+				background-size: 2rem 2rem;
+			}
+			.back_ts {
+				padding: 0.625rem 1rem;
+				font-size: 1rem;
+				font-weight: 600;
+				min-height: 80px;
+			}
+			.back_xz {
+				padding: 0 20px;
+				text-align: right;
+				line-height: 3rem;
+			}
+			.back_xz span {
+				font-weight: 600;
+				color: #F1709E;
+				padding: 5px 12px;
+			}
+			.mui-backdrop {display: none;}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">交易保障金</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div class="title-jy">
+					<p>缴纳的保障金：555</p>
+					<p>账户余额：125</p>
+					<p>平台最低保障金：1000</p>
+				</div>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" id="pay_jn"><i class="fa fa-bandcamp"></i>&ensp;撤销退还保障金申请<span class="mui-badge mui-badge-inverted">取消您的退还申请</span></a>
+					</li>
+					<li class="mui-table-view-cell">
+						<a class="mui-navigate-right" id="pay_add"><i class="fa fa-gavel"></i>&ensp;保障金操作记录</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer"><div>交易保证金说明</div></div>
+		<!-- 交易保证金说明 -->
+		<div class="mui-backdrop de_baozhengjin">
+			<div class="details">
+				<p>交易保证金说明</p>
+				<div class="de-mian">
+					交易保证金说明交易保证金说明交易
+				</div>
+				<div class="queding">确定</div>
+			</div>
+		</div>
+		<!-- 撤销退还保障金申请 -->
+		<div class="mui-backdrop onpay">
+			<div class="back_info">
+				<p class="back_title">撤销退还保障金申请</p>
+				<div class="back_ts">
+					<p>您是否确定撤销退还保障金申请？</p>
+				</div>
+				<div class="back_xz">
+					<span class="clear">取消</span>
+					<span class="cancel">撤销</span>
+				</div>
+			</div>
+		</div>
+		
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					mui('body').on('tap', '#pay_add', function() {
+						YiRu.openVW("bond_jilu.html");
+					});
+					
+					mui('body').on('tap', '.footer', function() {
+						$(".de_baozhengjin").show()
+					});
+					mui('body').on('tap', '.queding', function() {
+						$(".de_baozhengjin").hide()
+					});
+					
+					mui('body').on('tap', '#pay_jn', function() {
+						$(".onpay").show();
+					});
+					mui('body').on('tap', '.cancel', function() {
+						$(".onpay").hide()
+					});
+					mui('body').on('tap', '.clear', function() {
+						$(".onpay").hide()
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>

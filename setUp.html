@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<title>律师堂</title>
+		<link href="css/font-awesome.min.css" rel="stylesheet" />
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/public.css" rel="stylesheet" />
+		<style type="text/css">
+			i {
+				color: #F3AD4C;
+			}
+
+			.content {
+				position: fixed;
+				top: 44px;
+				bottom: 0;
+				width: 100%;
+				overflow: auto;
+				padding-bottom: 10px;
+			}
+
+			.mui-backdrop {
+				display: none;
+			}
+
+			.details {
+				position: fixed;
+				z-index: 99;
+				background: #fff;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 90%;
+				padding: 0 0.625rem 0.5rem;
+				border-radius: 0.625rem;
+			}
+
+			.details p {
+				border-bottom: 0.125rem solid #003499;
+				line-height: 3rem;
+				text-align: center;
+				color: #003499;
+				font-weight: 600;
+				font-size: 1rem;
+			}
+
+			.de-mian {
+				min-height: 6.25rem;
+				max-height: 12rem;
+				overflow: auto;
+				margin: 0.5rem 0 0.5rem;
+			}
+
+			.queding {
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.queding span {
+				width: 48%;
+				background: #003499;
+				color: #fff;
+				line-height: 2.375rem;
+				text-align: center;
+			}
+
+			.back_info {
+				position: absolute;
+				width: 90%;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				border-radius: 0.25rem;
+				background: #fff;
+
+			}
+
+			.back_title {
+				padding-left: 4rem;
+				line-height: 3rem;
+				font-size: 1.25rem;
+				border-bottom: 0.0625rem solid #3CAED7;
+				color: #3CAED7;
+				background: url(img/logo.png) no-repeat 1rem center;
+				background-size: 2rem 2rem;
+			}
+
+			.back_ts {
+				padding: 0.625rem 1rem;
+				font-size: 1rem;
+				font-weight: 600;
+				min-height: 80px;
+			}
+
+			.back_xz {
+				padding: 0 20px;
+				text-align: right;
+				line-height: 3rem;
+			}
+
+			.back_xz span {
+				font-weight: 600;
+				color: #F1709E;
+				padding: 5px 12px;
+			}
+
+			.sign_out {
+				position: absolute;
+				bottom: 0;
+				width: 100%;
+			}
+			.sign-title {
+				background: #003096;
+				color: #fff;
+				text-align: center;
+				line-height: 50px;
+				font-size: 16px;
+			}
+			.sign-title span {
+				font-size: 18px;
+				float: right;
+				color: #ccc;
+				margin: 16px 20px 0 0;
+				border-radius: 50%;
+				border: 0.0625rem solid #ccc;
+			}
+			.sign_out li {
+				display: flex;
+				align-items: center;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-arrowleft mui-pull-left"></a>
+			<h1 id="title" class="mui-title">设置</h1>
+			<!-- <i class="mui-icon mui-icon-arrowleft mui-pull-right" id="addrenwu" style="display: ;"><span>申请任务</span></i> -->
+		</header>
+		<div class="content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="personal"><i class="fa fa-user"></i>&ensp;个人资料</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="power"><i class="fa fa-snapchat"></i>&ensp;权限获取</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="cache"><i class="fa fa-hourglass-half"></i>&ensp;缓存清理</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="about"><i class="fa fa-refresh"></i>&ensp;更新版本</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right" id="signout"><i class="fa fa-sign-out"></i>&ensp;退出</a>
+				</li>
+			</ul>
+
+		</div>
+		<!-- 获取相关权限说明 -->
+		<div class="mui-backdrop de_baozhengjin">
+			<div class="details">
+				<p>获取相关权限说明！</p>
+				<div class="de-mian">
+					获取相关权限说明
+				</div>
+				<div class="queding">
+					<span id="cancel">取消</span>
+					<span id="onsetUp">去设置</span>
+				</div>
+			</div>
+		</div>
+		<!-- 清除全部缓存 -->
+		<div class="mui-backdrop onpay">
+			<div class="back_info">
+				<p class="back_title">清除全部缓存</p>
+				<div class="back_ts">
+					<p>确定清除全部缓存吗，包括图片，聊天记录等记录信息？</p>
+				</div>
+				<div class="back_xz">
+					<span id="conceal">取消</span>
+					<span id="clear">清理</span>
+				</div>
+			</div>
+		</div>
+		<!-- 退出 -->
+		<div class="mui-backdrop sign">
+			<div class="sign_out">
+				<p class="sign-title">&emsp;&emsp;退出<span class="mui-icon mui-icon-closeempty"></span></p>
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<i class="fa fa-sign-out"></i>&ensp;&ensp;
+						<span class="onsign">
+							<p>退出登录</p>
+							<p>只是退出目前账号，可以换账号登录！</p>
+						</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<i class="fa fa-power-off"></i>&ensp;&ensp;
+						<span class="onsign">
+							<p>关闭应用</p>
+							<p>关闭应用程序，退出律师堂法律软件！</p>
+						</span>
+					</li>
+					<li class="mui-table-view-cell">
+						<i class="fa fa-exclamation-circle"></i>&ensp;&ensp;
+						<span class="onsign">
+							<p>注销账号</p>
+							<p>删除所有信息，恢复到未注册转态，不可恢复！</p>
+						</span>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script src="js/jquery-1.12.0.min.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script src="js/crypto-js.js"></script>
+		<script src="js/app.js"></script>
+		<script type="text/javascript">
+			(function() {
+				mui.init({
+					swipeBack: false
+				});
+				var loadPage, w, ws, state = {};
+				mui.plusReady(function() {
+					ws = plus.webview.currentWebview();
+					ws.setStyle(YiRu.viewstyle());
+					// 判断是否登录
+					YiRu.UserLogin();
+
+
+					loadPage = function() {
+
+						YiRu.removeClass(document.querySelector('.mui-content'), 'transparent');
+					};
+
+					loadPage();
+					// mui('body').on('tap', '#donghua', function() {
+					// 	YiRu.openVW("/pages/cartoonList/cartoonList.html");
+					// });
+					mui('body').on('tap', '#personal', function() {
+						YiRu.openVW("setUp_a.html");
+					});
+					mui('body').on('tap', '#about', function() {
+						YiRu.openVW("setUp_about.html");
+					});
+					mui('body').on('tap', '#power', function() {
+						$(".de_baozhengjin").show()
+					});
+					mui('body').on('tap', '#cancel', function() {
+						$(".de_baozhengjin").hide()
+					});
+					mui('body').on('tap', '#onsetUp', function() {
+						$(".de_baozhengjin").hide()
+					});
+
+					mui('body').on('tap', '#cache', function() {
+						$(".onpay").show()
+					});
+					mui('body').on('tap', '#conceal', function() {
+						$(".onpay").hide()
+					});
+					mui('body').on('tap', '#clear', function() {
+						$(".onpay").hide()
+					});
+					
+					mui('body').on('tap', '#signout', function() {
+						$(".sign").show()
+					});
+					mui('body').on('tap', '.sign-title', function() {
+						$(".sign").hide()
+					});
+				});
+			})();
+		</script>
+	</body>
+</html>
